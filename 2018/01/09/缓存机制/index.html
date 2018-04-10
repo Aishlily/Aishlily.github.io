@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="JavaScript,笔记," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="缓存的作用  重用已获取的资源，减少延迟与网络阻塞，进而减少显示某个资源所用的事件，借助HTTP缓存，Web站点变得更具有响应性。 缓存分类![name][01][01]:./cache01.png ‘图片来自网络’ 缓存应用场景 每次都加载某个相同的静态文件 =&amp;gt; 浪费带宽，重复请求 =&amp;gt; 让浏览器使用本地缓存（协商缓存，返回304） 协商缓存依然需要同服务器通信 =&amp;gt; 强制浏">
+<meta name="keywords" content="JavaScript,笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="缓存机制">
+<meta property="og:url" content="/2018/01/09/缓存机制/index.html">
+<meta property="og:site_name" content="Aishlily&#39;s Blog">
+<meta property="og:description" content="缓存的作用  重用已获取的资源，减少延迟与网络阻塞，进而减少显示某个资源所用的事件，借助HTTP缓存，Web站点变得更具有响应性。 缓存分类![name][01][01]:./cache01.png ‘图片来自网络’ 缓存应用场景 每次都加载某个相同的静态文件 =&amp;gt; 浪费带宽，重复请求 =&amp;gt; 让浏览器使用本地缓存（协商缓存，返回304） 协商缓存依然需要同服务器通信 =&amp;gt; 强制浏">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="/2018/01/09/缓存机制/cache02.png">
+<meta property="og:image" content="/2018/01/09/缓存机制/cache02.png">
+<meta property="og:updated_time" content="2018-04-10T08:21:11.771Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="缓存机制">
+<meta name="twitter:description" content="缓存的作用  重用已获取的资源，减少延迟与网络阻塞，进而减少显示某个资源所用的事件，借助HTTP缓存，Web站点变得更具有响应性。 缓存分类![name][01][01]:./cache01.png ‘图片来自网络’ 缓存应用场景 每次都加载某个相同的静态文件 =&amp;gt; 浪费带宽，重复请求 =&amp;gt; 让浏览器使用本地缓存（协商缓存，返回304） 协商缓存依然需要同服务器通信 =&amp;gt; 强制浏">
+<meta name="twitter:image" content="/2018/01/09/缓存机制/cache02.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="/2018/01/09/缓存机制/"/>
+
+
+
+
+
+  <title>缓存机制 | Aishlily's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Aishlily's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-search">
+          <a href="/search/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-search"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="/2018/01/09/缓存机制/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Aishlily">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/my.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Aishlily's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">缓存机制</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-09T15:55:45+08:00">
+                2018-01-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript技术/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="缓存的作用"><a href="#缓存的作用" class="headerlink" title="缓存的作用"></a>缓存的作用</h2><p>  重用已获取的资源，减少延迟与网络阻塞，进而减少显示某个资源所用的事件，借助HTTP缓存，Web站点变得更具有响应性。</p>
+<h2 id="缓存分类"><a href="#缓存分类" class="headerlink" title="缓存分类"></a>缓存分类</h2><p>![name][01]<br>[01]:./cache01.png ‘图片来自网络’</p>
+<h2 id="缓存应用场景"><a href="#缓存应用场景" class="headerlink" title="缓存应用场景"></a>缓存应用场景</h2><ol>
+<li>每次都加载某个相同的静态文件 =&gt; 浪费带宽，重复请求 =&gt; 让浏览器使用本地缓存（协商缓存，返回304）</li>
+<li>协商缓存依然需要同服务器通信 =&gt; 强制浏览器使用本地强缓存（返回200）</li>
+<li>缓存更新 =&gt; 请求header加上ETag或者URL的修改与文件内容关联（文件名加Hash）</li>
+<li>静态资源和动态页面分集群部署，静态资源部署到CDN节点傻瓜，网页中引用的资源变成对应的部署路径 =&gt; HTML中的资源引用和CDN上的静态资源对应URL地址联系起来</li>
+<li>非覆盖式发布，用文件的摘要信息来对资源文件进行重命名，把摘要信息放到资源文件发布路径中，这样，内容有修改的资源就变成了一个新的文件发布到线上，不会覆盖已有的资源文件。上线过程中，先全量部署静态资源，再灰度部署页面</li>
+</ol>
+<h2 id="缓存机制"><a href="#缓存机制" class="headerlink" title="缓存机制"></a>缓存机制</h2><p> 良好的缓存策略可以降低资源的重复加载提高网页的整体加载速度，通常浏览器缓存策略分为两种：强缓存和协商缓存</p>
+<ul>
+<li>基本原理<ol>
+<li>浏览器在加载资源时，先根据这个资源的一些http header判断它是否命中强缓存，强缓存如果命中，浏览器直接从自己的缓存中读取资源，不会发请求到服务器</li>
+<li>当强缓存没有命中的时候，浏览器一定会发送请求到服务器，通过服务器端依据资源的另外一些http header验证这个资源是否命中协商缓存，如果协商缓存命中，服务器会将这个请求返回，但是不会返回这个资源的数据，而是告诉客户端可以直接从缓存中加载这个资源，于是浏览器就又会从自己的缓存中去加载这个资源</li>
+<li>强缓存与协商缓存的共同点是：如果命中，都是从客户端缓存中加载资源，而不是从服务器加载资源数据；区别是：强缓存不发请求到服务器，协商缓存会发请求到服务器</li>
+<li>当协商缓存也没有命中的时候，浏览器直接从服务器加载资源数据</li>
+</ol>
+</li>
+</ul>
+<h2 id="强缓存"><a href="#强缓存" class="headerlink" title="强缓存"></a>强缓存</h2><p>  强缓存通过Expires和Cache-Control两种响应头实现</p>
+<ol>
+<li>Expires<br>Expires是http1.0提出的一个表示资源过期时间的header，它描述的是一个绝对时间，由服务器返回。Expires受限于本地时间，如果修改了本地时间，可能会造成缓存失效<br><code>Expires: Wed, 11 May 2018 07:20:00 GMT</code></li>
+<li>Cache-Control<br>Cache-Control出现于HTTP/1.1，优先级高于Expires，表示的是相对时间<br><code>Cache-Control: max-age=315360000</code><ul>
+<li>Cache-Control: no-cache 缓存在本地缓存区中，但是在与服务器验证之前，混村不能提供给客户端使用</li>
+<li>Cache-Control: no-store 不缓存数据到本地</li>
+<li>Cache-Control: public 多用户共享缓存，包括终端和CDN等中间代理服务器</li>
+<li>Cache-Control: private 只能被终端浏览器缓存，不允许中继缓存器进行缓存<br><img src="./cache02.png" alt="name" title="图片来自网络"></li>
+</ul>
+</li>
+</ol>
+<h2 id="协商缓存"><a href="#协商缓存" class="headerlink" title="协商缓存"></a>协商缓存</h2><p>当浏览器对某个资源的请求没有命中强缓存，就会发一个请求到服务器，验证协商缓存是否命中，如果协商缓存命中，请求响应返回的http状态为304并且会显示一个Not Modified的字符串</p>
+<p>协商缓存管理：<code>[Last-Modified, if-Modified-Since]</code>和<code>[ETag, If-None-Match]</code></p>
+<ol>
+<li>Last-Modified， If-Modified-Since<br><code>Last-Modified</code>表示本地文件最后修改日期，浏览器会在request header加上<code>If-Modified-Since</code>，询问服务器在该日期后资源是否有更新，有更新的话就会将新的资源发送回来<br>但是如果在本地打开缓存文件，就会造成<code>Last-Modified</code>被修改，所以在HTTP/1.1出现了ETag</li>
+<li><p>ETag，If-None-Match<br><code>Etag</code>就像一个指纹，资源变化都会导致Etag变化，跟最后修改时间没关系，Etag可以保证每一个资源是唯一的<br><code>If-None-Match</code>的header会将上次返回的<code>Etag</code>发送给服务器，询问该资源的<code>Etag</code>是否有更新，有变动就会发送新的资源回来</p>
+<p><img src="./cache02.png" alt="name" title="图片来自网络"></p>
+</li>
+</ol>
+<p><code>Etag</code>的优先级比<code>Last-Modified</code>更高<br> 使用<code>Etag</code>的原因：</p>
+<ul>
+<li>一些文件也许会周期性的更改的，但是他的内容并不改变（仅仅改变修改时间），这个时候 我们并不希望客户端认为这个文件被修改了，而重新GET</li>
+<li>某些文件修改非常频繁，比如在秒以下的时间内进行修改，<code>If-Modified-Since</code>能检查到的粒度是S级的，这种修改无法判断</li>
+<li>某些服务器不能精确的得到文件的最后修改时间</li>
+</ul>
+<h2 id="整体流程"><a href="#整体流程" class="headerlink" title="整体流程"></a>整体流程</h2><p>![name][04]<br>[04]:./cache04.png ‘图片来自网络’</p>
+<h2 id="状态码"><a href="#状态码" class="headerlink" title="状态码"></a>状态码</h2><ul>
+<li><code>200</code>：强缓存<code>Expires/Cache-Control</code>失效时，返回新的资源文件</li>
+<li><code>200(from cache)</code>：强缓存<code>Expires/Cache-Control</code>两者都存在，未过期，<code>Cache-Control</code>优先<code>Expires</code>时，浏览器从本地获取资源成功</li>
+<li><code>304(Not Modified)</code>：协商缓存<code>Last-Modified/Etag</code>没有过期时，服务端返回状态码304</li>
+</ul>
+<h2 id="如何选择合适的缓存"><a href="#如何选择合适的缓存" class="headerlink" title="如何选择合适的缓存"></a>如何选择合适的缓存</h2><p>协商缓存需要配合强缓存使用，如果不启用强缓存的话，协商缓存根本没有意义</p>
+<p>大部分web服务器都默认开启协商缓存，而且是同时启用<code>[Last-Modified, If-Modified-Since]</code>和<code>[ETag, If-None-Match]</code></p>
+<p><strong>注意</strong>：</p>
+<ul>
+<li>分布式系统里多台机器间文件的<code>Last-Modified</code>必须保持一致，以免负载均衡到不同机器导致比对失败</li>
+<li>分布式系统尽量关闭掉<code>Etag</code>（每台机器生成的<code>Etag</code>都会不一样）</li>
+</ul>
+<h2 id="缓存方式"><a href="#缓存方式" class="headerlink" title="缓存方式"></a>缓存方式</h2><ol>
+<li>cookie：4K，可以手动设置失效期</li>
+<li>localStorage： 5M，除非手动清除，否则一致存在</li>
+<li>sessionStorage：5M，不可以跨标签访问，页面关闭就清理</li>
+<li>indexedDB：浏览器端数据库，无限容量，除非手动清除，否则一致存在</li>
+<li>Web SQL：关系数据库，通过SQL语句访问（已经被抛弃）</li>
+</ol>
+<h2 id="cookie"><a href="#cookie" class="headerlink" title="cookie"></a>cookie</h2><blockquote>
+<p>Cookie通过在客户端记录信息确定用户身份<br>Session通过在服务器端记录信息确定用户身份</p>
+</blockquote>
+<ol>
+<li>Cookie机制<br>一个用户的所有请求操作都应该属于同一个会话，而另一个用户的所有请求操作则应该属于另一个会话HTTP协议是无状态的协议。一旦数据交换完毕，客户端与服务器端的链接就会关闭，再次交换数据需要建立新的连接。这就意味着服务器无法从连接上跟踪会话。<br>Cookie实际上是一小段的文本信息。客户端请求服务器，如果服务器需要记录该用户状态，就使用response向客户端浏览器颁发一个Cookie。客户端浏览器会把Cookie保存起来。当浏览器再请求该网站时，浏览器把请求的网址连同该Cookie一同提交给服务器。服务器检查该Cookie，以此来辨认用户状态。服务器还可以根据需要修改Cookie的内容。<br>Cookie的内容主要包括：名字，值，过期时间，路径和域。路径与域一起构成cookie的作用范围</li>
+<li>session机制<br>Session是另一种记录客户状态的机制，不同的是Cookie保存在客户端浏览器中，而Session保存在服务器上，客户端浏览器访问服务器的时候，服务器把客户端信息以某种形式记录在服务器上。这就是Session。客户端浏览器再次访问时只需要从该Session中查找该客户的状态就可以了。<br>如果说Cookie机制是通过检查客户身上的“通行证”来确定客户身份的话，那么Session机制就是通过检查服务器上的“客户明细表”来确认客户身份。Session相当于程序在服务器上建立的一份客户档案，客户来访的时候只需要查询客户档案就可以了。</li>
+</ol>
+<p>当程序需要为某个客户端的请求创建一个session时：</p>
+<ul>
+<li>服务器首先检查这个客户端的请求是否已包含了session id</li>
+<li>如果已包含则说明以前已经为此客户端创建过session，服务器就会按照session id检索session并使用</li>
+<li>如果客户端请求不包含session id，则为此客户端创建一个session并且生成一个与此session相关联的session id， session id的值应该是一个既不会重复，又不容易被找到规律以仿造的字符串，这个session id将被在本次响应中返回给客户端保存。</li>
+</ul>
+<ul>
+<li><code>document.cookie</code>可以获取cookie<br>  cookie可以设置路径path，所以它要比另外两个多了一层访问限制<br>  cookie可以通过设置domain属性值，可以不同二级域名下共享cookie，而Storage不可以，比如<code>http://image.baidu.com</code>的cookie<code>http://map.baidu.com</code>是可以访问的，前提是Cookie的domain设置为<code>http://baidu.com</code>，而Storage是不可以的</li>
+</ul>
+<p><strong>缺点</strong> 在请求头上带着数据，大小是4K之内，主Domain污染</p>
+<ul>
+<li>常用的配置属性有以下几个：<ul>
+<li>Expires： cookie最长有效期</li>
+<li>Max-Age： 在cookie失效之前需要经过的秒数。</li>
+<li>Domain： 指定cookie可以送达的主机名</li>
+<li>Path： 指定一个URL路径，这个路径必须出现在要请求的资源的路径中才可以发送cookie首部</li>
+<li>Secure： 一个带有安全属性的cookie只有在请求使用SSL和HTTPS协议的时候才会被发送到服务器。</li>
+<li>HttpOnly： 设置了HttpOnly属性的cookie不能使用JavaScript经由Document.cookie属性、XMLHttpRequest和Request APIs进行访问，以防跨站脚本攻击（XSS）</li>
+</ul>
+</li>
+</ul>
+<h2 id="Storage-localStorage、sessionStorage"><a href="#Storage-localStorage、sessionStorage" class="headerlink" title="Storage: localStorage、sessionStorage"></a>Storage: localStorage、sessionStorage</h2><p>  大小：官方建议是5M存储空间<br>  类型：只能操作字符串，在存储之间应该使用JSON.stringfy()方法先进行一步安全转换字符串，取值时再用JSON.parse()方法再转换一次<br>  存储的内容： 数组，图片，json，样式，脚本</p>
+<p><strong>注意</strong>： 数据是明文存储，绝对不能用于存储重要信息<br>  区别: sessionStorage将数据临时存储在session中，浏览器关闭，数据随之消失，localStorage将数据存储在本地，理论上来说数据永远不会消失，除非人为删除</p>
+<ol>
+<li>API<ul>
+<li>保存数据<br>  <code>localStorage.setItem(key, value)</code><br>  <code>sessionStorage.setItem(key, value)</code></li>
+<li>读取数据<br><code>localStorage.getItem(key, value)</code><br><code>sessionStorage.getItem(key, value)</code></li>
+<li>删除单个数据<br><code>localStorage.removeItem(key)</code><br><code>sessionStorage.removeItem(key)</code></li>
+<li>删除全部数据<br><code>localStorage.clear()</code><br><code>sessionStorage.clear()</code></li>
+<li>获取索引的key<br><code>localStorage.key(index)</code><br><code>sessionStorage.key(index)</code></li>
+</ul>
+</li>
+<li><p>监听storage事件<br>可以通过监听window对象的storage事件并指定其事件处理函数，当页面中对localStorage或sessionStorage进行修改时，则会触发对应的处理函数</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">window.addEventListener(<span class="string">'storage'</span>, <span class="keyword">function</span>(e)&#123;</span><br><span class="line">   console.log(<span class="string">'key = '</span> + e.key + <span class="string">', oldValue = '</span>+ e.oldValue + <span class="string">', newValue = '</span>+e.newValue)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>触发事件的事件对象（e参数值）：<br>key：键值<br>oldValue：修改前的值<br>newValue：修改后的值<br>url：页面URL<br>storageArea：被修改的storage对象</p>
+</li>
+</ol>
+<h2 id="indexedDB"><a href="#indexedDB" class="headerlink" title="indexedDB"></a>indexedDB</h2><ol>
+<li><p>打开数据库<br><code>var DBOpenRequest = window.indexedDB.open(dbName, version)</code><br>dbName是数据库名称，version是数据库版本<br>打开数据库的结果是：</p>
+<ul>
+<li>success：打开成功</li>
+<li>error：打开失败</li>
+<li>upgradeneeded：第一次打开该数据库，或者数据库版本发生变化</li>
+<li>blocked：上一次的数据库连接还未关闭</li>
+</ul>
+<p>第一次打开数据库时，会先触发upgradeneeded事件，然后触发success事件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">var openRequest = indexedDB.open(<span class="string">"test"</span>,1)</span><br><span class="line">var db</span><br><span class="line"> </span><br><span class="line">openRequest.onupgradeneeded = <span class="keyword">function</span>(e)&#123;</span><br><span class="line">  console.log(<span class="string">"Upgrading..."</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">openRequest.onsuccess = <span class="keyword">function</span>(e)&#123;</span><br><span class="line">  console.log(<span class="string">"Success"</span>)</span><br><span class="line">  db = e.target.result</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">openRequest.onerror = <span class="keyword">function</span>(e)&#123;</span><br><span class="line">  console.log(<span class="string">"Error"</span>)</span><br><span class="line">  console.dir(e)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>open返回的是一个对象，回调函数定义在这个对象上面，回调函数接受一个事件对象event作为参数，它的target.result属性就指向打开的indexedDB数据库，也就是说<code>db = e.target.result</code>才算是我们真正拿到的数据库</p>
+</li>
+<li><p>创建一个数据库存储对象</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var objectStore = db.createObjectStore(dbName,&#123;</span><br><span class="line">  keyPath: <span class="string">'id'</span>,</span><br><span class="line">  autoIncrement: <span class="literal">true</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>objectStore是一个重要的对象，可以理解为存储对象<br>objectStore.add()可以向数据库添加数据，objectStore.delete()可以删除数据，objectStore.clear()可以清空数据库，objectStore.put()可以替换数据</p>
+<p>使用objectStore来创建数据库的主键和普通字段</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">objectStore.createIndex(<span class="string">'id'</span>,<span class="string">'id'</span>,&#123;</span><br><span class="line">  unique: <span class="literal">true</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>向indexedDB数据库添加数据<br>数据库的操作都是基于事务(transaction)来进行，于是，无论是添加编辑还是删除数据库，我们都要先建立一个事务(transaction)，然后才能继续下面的操作<br><code>var transaction = db.transaction(dbName, &quot;readwrite&quot;)</code><br>dbName就是数据的名称</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//新建一个事务</span><br><span class="line">var transaction = db.transaction(<span class="string">'project'</span>,<span class="string">"readwrite"</span>)</span><br><span class="line">//打开存储对象</span><br><span class="line">var objectStore = transaction.objectStore(<span class="string">'project'</span>)</span><br><span class="line">//添加到数据对象中</span><br><span class="line">objectStore.add(newItem)</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="localStorage、sessionStor和cookie的区别"><a href="#localStorage、sessionStor和cookie的区别" class="headerlink" title="localStorage、sessionStor和cookie的区别"></a>localStorage、sessionStor和cookie的区别</h2><p>如果是浏览器主窗体线程开发，同时存储数据结构简单，localStorage比较好；<br>如果数据结构比较复杂，同时对浏览器兼容性没什么要求，可以考虑使用indexedDB；<br>如果是在Service Workers中开发应用，只能使用indexedDB数据存储。<br>indexedDB数据库的使用目前可以直接在http协议下使用，这个和cacheStorage缓存存储必须使用https协议不一样</p>
+<blockquote>
+<p>cacheStorage缓存页面，indexedDB数据库缓存数据，两者一结合而就可以实现百分百的离线开发</p>
+</blockquote>
+<p>localStorage，sessionStorage和cookie的区别</p>
+<ul>
+<li>共同点：都是保存在浏览器端、且同源的</li>
+<li>区别：<ul>
+<li>cookie数据始终在同源的http请求中携带（即使不需要），即cookie在浏览器和服务器间来回传递，而sessionStorage和localStorage不会自动把数据发送给服务器，仅在本地保存。cookie数据还有路径（path）的概念，可以限制cookie只属于某个路径下</li>
+<li>存储大小限制也不同，cookie数据不能超过4K，同时因为每次http请求都会携带cookie、所以cookie只适合保存很小的数据，如会话标识。sessionStorage和localStorage虽然也有存储大小的限制，但比cookie大得多，可以达到5M或更大</li>
+<li>数据有效期不同，sessionStorage：仅在当前浏览器窗口关闭之前有效；localStorage：始终有效，窗口或浏览器关闭也一直保存，因此用作持久数据；cookie：只在设置的cookie过期时间之前有效，即使窗口关闭或浏览器关闭</li>
+<li>作用域不同，sessionStorage不在不同的浏览器窗口中共享，即使是同一个页面；localstorage在所有同源窗口中都是共享的；cookie也是在所有同源窗口中都是共享的</li>
+<li>web Storage支持事件通知机制，可以将数据更新的通知发送给监听者</li>
+<li>web Storage的api接口使用更方便</li>
+</ul>
+</li>
+</ul>
+<h2 id="各类缓存技术优缺点"><a href="#各类缓存技术优缺点" class="headerlink" title="各类缓存技术优缺点"></a>各类缓存技术优缺点</h2><ol>
+<li>cookie<br>优点：对于传输部分少量不敏感数据，非常简明有效<br>缺点：容量小（4K），不安全（cookie被拦截，很可能暴露session）；原生接口不够友好，需要自己封装；需要指定作用域，不可以跨域调用</li>
+<li>Web Storage<br>容量稍大一点（5M），localStorage可做持久化数据存储<br>支持事件通知机制，可以将数据更新的通知发送给监听者<br>缺点：本地储存数据都容易被篡改，容易受到XSS攻击<br>缓存读取需要依靠js的执行，所以前提条件就是能够读取到html及js代码段，其次文件的版本更新控制会带来更多的代码层面的维护成本，所以LocalStorage更适合关键的业务数据而非静态资源<br>Cookie的作用是与服务器进行交互，作为HTTP规范的一部分而存在 ，而Web Storage仅仅是为了在本地“存储”数据而生</li>
+<li>indexDB<br>IndexedDb提供了一个结构化的、事务型的、高性能的NoSQL类型的数据库，包含了一组同步/异步API，这部分不好判断优缺点，主要看使用者。</li>
+<li><p>Manifest（已经被web标准废除）<br>优点</p>
+<ul>
+<li>可以离线运行</li>
+<li>可以减少资源请求</li>
+<li>可以更新资源<br>缺点</li>
+<li>更新的资源，需要二次刷新才会被页面采用</li>
+<li>不支持增量更新，只有manifest发生变化，所有资源全部重新下载一次</li>
+<li>缺乏足够容错机制，当清单中任意资源文件出现加载异常，都会导致整个manifest策略运行异常</li>
+</ul>
+<p>Manifest被移除是技术发展的必然，请拥抱Service Worker吧</p>
+</li>
+<li>PWA(Service Worker)<br>这位目前是最炙手可热的缓存明星，是官方建议替代Application Cache（Manifest）的方案<br>作为一个独立的线程，是一段在后台运行的脚本，可使web app也具有类似原生App的离线使用、消息推送、后台自动更新等能力</li>
+</ol>
+<p>目前有三个限制（不能明说是缺点）</p>
+<ul>
+<li>不能访问 DOM</li>
+<li>不能使用同步 API</li>
+<li>需要HTTPS协议</li>
+</ul>
+<h2 id="缓存实践（视项目而定，不要死板）"><a href="#缓存实践（视项目而定，不要死板）" class="headerlink" title="缓存实践（视项目而定，不要死板）"></a>缓存实践（视项目而定，不要死板）</h2><ol>
+<li><p>大公司静态资源优化方案</p>
+<p>配置超长时间的本地缓存 —— 节省带宽，提高性能<br>采用内容摘要作为缓存更新依据 —— 精确的缓存控制<br>静态资源CDN部署 —— 优化网络请求<br>更资源发布路径实现非覆盖式发布 —— 平滑升级</p>
+</li>
+<li><p>利用浏览器缓存机制</p>
+<p> 对于某些不需要缓存的资源，可以使用 Cache-control: no-store ，表示该资源不需要缓存<br> 对于频繁变动的资源（比如经常需要刷新的首页，资讯论坛新闻类），可以使用 Cache-Control: no-cache 并配合 ETag 使用，表示该资源已被缓存，但是每次都会发送请求询问资源是否更新。<br> 对于代码文件来说，通常使用 Cache-Control: max-age=31536000 并配合策略缓存使用，然后对文件进行指纹处理，一旦文件名变动就会立刻下载新的文件。</p>
+</li>
+<li><p>静态资源文件通过Service Worker进行缓存控制和离线化加载</p>
+</li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+            <a href="/tags/笔记/" rel="tag"># 笔记</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/01/09/JavaScript Event Loop/" rel="next" title="JavaScript Event Loop">
+                <i class="fa fa-chevron-left"></i> JavaScript Event Loop
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/my.jpg"
+                alt="Aishlily" />
+            
+              <p class="site-author-name" itemprop="name">Aishlily</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/Aishlily" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:mali_job@yeah.net" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#缓存的作用"><span class="nav-number">1.</span> <span class="nav-text">缓存的作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#缓存分类"><span class="nav-number">2.</span> <span class="nav-text">缓存分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#缓存应用场景"><span class="nav-number">3.</span> <span class="nav-text">缓存应用场景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#缓存机制"><span class="nav-number">4.</span> <span class="nav-text">缓存机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#强缓存"><span class="nav-number">5.</span> <span class="nav-text">强缓存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#协商缓存"><span class="nav-number">6.</span> <span class="nav-text">协商缓存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#整体流程"><span class="nav-number">7.</span> <span class="nav-text">整体流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#状态码"><span class="nav-number">8.</span> <span class="nav-text">状态码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何选择合适的缓存"><span class="nav-number">9.</span> <span class="nav-text">如何选择合适的缓存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#缓存方式"><span class="nav-number">10.</span> <span class="nav-text">缓存方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cookie"><span class="nav-number">11.</span> <span class="nav-text">cookie</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Storage-localStorage、sessionStorage"><span class="nav-number">12.</span> <span class="nav-text">Storage: localStorage、sessionStorage</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#indexedDB"><span class="nav-number">13.</span> <span class="nav-text">indexedDB</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#localStorage、sessionStor和cookie的区别"><span class="nav-number">14.</span> <span class="nav-text">localStorage、sessionStor和cookie的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#各类缓存技术优缺点"><span class="nav-number">15.</span> <span class="nav-text">各类缓存技术优缺点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#缓存实践（视项目而定，不要死板）"><span class="nav-number">16.</span> <span class="nav-text">缓存实践（视项目而定，不要死板）</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Aishlily</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+  <script type="text/javascript" src="/js/src/exturl.js?v=5.1.4"></script>
+
+
+</body>
+</html>
+<script type="text/javascript" src="/js/src/love.js"></script>>
