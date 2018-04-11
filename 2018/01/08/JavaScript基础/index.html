@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="JavaScript,笔记," />
+  <meta name="keywords" content="笔记,JavaScript," />
 
 
 
@@ -80,14 +80,14 @@
 
 
 <meta name="description" content="JavaScript是ECMAScript规范的一种实现，是一种弱类型脚本语言。 原始类型： Boolean String Number Null Undefined Symbol(ES6新定义) 注意： 原始类型不包含Object。   类型判断方法： typeof 返回值： undefined、 boolean、 number、 string、 object、 function、 symbol">
-<meta name="keywords" content="JavaScript,笔记">
+<meta name="keywords" content="笔记,JavaScript">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JavaScript 基础">
 <meta property="og:url" content="/2018/01/08/JavaScript基础/index.html">
 <meta property="og:site_name" content="Aishlily&#39;s Blog">
 <meta property="og:description" content="JavaScript是ECMAScript规范的一种实现，是一种弱类型脚本语言。 原始类型： Boolean String Number Null Undefined Symbol(ES6新定义) 注意： 原始类型不包含Object。   类型判断方法： typeof 返回值： undefined、 boolean、 number、 string、 object、 function、 symbol">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-10T03:42:24.772Z">
+<meta property="og:updated_time" content="2018-04-11T14:18:29.588Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript 基础">
 <meta name="twitter:description" content="JavaScript是ECMAScript规范的一种实现，是一种弱类型脚本语言。 原始类型： Boolean String Number Null Undefined Symbol(ES6新定义) 注意： 原始类型不包含Object。   类型判断方法： typeof 返回值： undefined、 boolean、 number、 string、 object、 function、 symbol">
@@ -440,7 +440,11 @@
 <li>函数由new进行调用,<code>this</code>指向新创建的对象</li>
 <li>函数由<code>dot(.)</code>进行调用，<code>this</code>指向<code>dot</code>之前的对象</li>
 <li>其他情况，<code>this</code>指向全局对象window</li>
-<li><code>call</code>、<code>apply</code>…</li>
+<li><code>call</code>、<code>apply</code>:</li>
+<li>apply 、 call 、bind 三者都是用来改变函数的this对象的指向的；</li>
+<li>apply 、 call 、bind 三者第一个参数都是this要指向的对象，也就是想指定的上下文；</li>
+<li>apply 、 call 、bind 三者都可以利用后续参数传参；</li>
+<li>bind是返回对应函数，便于稍后调用；apply、call则是立即调用</li>
 </ul>
 </li>
 <li>作用域<ul>
@@ -583,9 +587,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
-          
             <a href="/tags/笔记/" rel="tag"># 笔记</a>
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
           
         </div>
       
@@ -687,7 +691,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -698,7 +702,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -709,7 +713,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
