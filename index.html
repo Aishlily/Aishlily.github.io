@@ -269,7 +269,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="/2018/01/17/原型链/">
+    <link itemprop="mainEntityOfPage" href="/2018/04/14/算法基础/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Aishlily">
@@ -288,7 +288,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/01/17/原型链/" itemprop="url">原型链</a></h1>
+                <a class="post-title-link" href="/2018/04/14/算法基础/" itemprop="url">未命名</a></h1>
         
 
         <div class="post-meta">
@@ -300,8 +300,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-17T16:45:45+08:00">
-                2018-01-17
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-14T12:02:34+08:00">
+                2018-04-14
               </time>
             
 
@@ -310,28 +310,6 @@
             
           </span>
 
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JavaScript技术/" itemprop="url" rel="index">
-                    <span itemprop="name">JavaScript技术</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -362,14 +340,23 @@
       
         
           
-          
-Prototype每个函数都有这属性，有且仅有函数才拥有该属性但有个例外：12// 用这个方法创建的函数是不具备prototype属性的let fun = Function.prototype.bind()
-Prototype属性里面默认有一个属性constructor,对应着构造函数
-const
+          title: 算法基础
+前端常遇见的数据结构：
+简单数据结构
+有序数据结构：栈、队列、链表，有序数据结构省空间（存储空间小）
+无序数据结构：集合、字典、散列表，无序数据结构省时间（读取时间快）
+
+
+复杂数据结构
+
+树、堆
+图
+
+在 ES 中对应的是数组（Array）和对象（Object）。可以想一下
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/01/17/原型链/#more" rel="contents">
+            <a class="btn" href="/2018/04/14/算法基础/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -420,7 +407,7 @@ const
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="/2018/01/16/异步1/">
+    <link itemprop="mainEntityOfPage" href="/2018/04/14/前端模块化概述/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Aishlily">
@@ -439,7 +426,7 @@ const
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/01/16/异步1/" itemprop="url">异步--Promise</a></h1>
+                <a class="post-title-link" href="/2018/04/14/前端模块化概述/" itemprop="url">未命名</a></h1>
         
 
         <div class="post-meta">
@@ -451,8 +438,8 @@ const
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-16T16:45:45+08:00">
-                2018-01-16
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-14T12:02:34+08:00">
+                2018-04-14
               </time>
             
 
@@ -461,28 +448,6 @@ const
             
           </span>
 
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JavaScript技术/" itemprop="url" rel="index">
-                    <span itemprop="name">JavaScript技术</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -513,16 +478,16 @@ const
       
         
           
-          回调的缺陷
-顺序不确定性 回调表达异步流程是非线性、非顺序的
-可信任性 回调会受到控制反转的影响，因为回调暗中把控制权交给了第三方（通常是不受控制的第三方工具）来调用代码中的continuation
+          title: 前端模块化概述
+为什么需要模块化？　　 代码量骤增 =&gt; 分治管理的刚性需求
+模块化方案需解决什么问题？   模块化要实现两个东西：模块加载与模块封装。面临的具体问题包括：
+1. 如何定义模块以确保模块的作用域独立，避免命名冲突？
 
-Promise本质
-Promise展开后可以看到Promise构造器上定义了resolve和rej
+2. 如何管理模块间的依赖关系，避免重复加载与
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/01/16/异步1/#more" rel="contents">
+            <a class="btn" href="/2018/04/14/前端模块化概述/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -573,7 +538,7 @@ Promise展开后可以看到Promise构造器上定义了resolve和rej
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="/2018/01/16/异步3/">
+    <link itemprop="mainEntityOfPage" href="/2018/04/14/面试题/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Aishlily">
@@ -592,7 +557,7 @@ Promise展开后可以看到Promise构造器上定义了resolve和rej
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/01/16/异步3/" itemprop="url">异步--async/wait</a></h1>
+                <a class="post-title-link" href="/2018/04/14/面试题/" itemprop="url">未命名</a></h1>
         
 
         <div class="post-meta">
@@ -604,8 +569,8 @@ Promise展开后可以看到Promise构造器上定义了resolve和rej
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-16T16:45:45+08:00">
-                2018-01-16
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-14T12:02:34+08:00">
+                2018-04-14
               </time>
             
 
@@ -614,28 +579,6 @@ Promise展开后可以看到Promise构造器上定义了resolve和rej
             
           </span>
 
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JavaScript技术/" itemprop="url" rel="index">
-                    <span itemprop="name">JavaScript技术</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -666,14 +609,15 @@ Promise展开后可以看到Promise构造器上定义了resolve和rej
       
         
           
-          async是ES7提出的函数，被誉为目前为止JS在异步操作方面的最优解
-async 函数是 Generator 的语法糖。而await命令就是内部then命令的语法糖。使用 关键字 async 来表示，在函数内部使用 await 来表示异步。
-相对于Generator的改进
-内置执行器Generat
+          title: 面试题
+谈谈对前端安全的理解，有什么，怎么防范前端安全问题主要有XSS、CSRF攻击XSS：跨站脚本攻击它允许用户将恶意代码植入到提供给其他用户使用的页面中，可以简单的理解为一种javascript代码注入。XSS的防御措施：
+
+过滤转义输入输出
+避免使用eval、new Functi
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/01/16/异步3/#more" rel="contents">
+            <a class="btn" href="/2018/04/14/面试题/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -724,7 +668,7 @@ async 函数是 Generator 的语法糖。而await命令就是内部then命令的
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="/2018/01/16/异步2/">
+    <link itemprop="mainEntityOfPage" href="/2018/04/14/浏览器相关知识点/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Aishlily">
@@ -743,7 +687,7 @@ async 函数是 Generator 的语法糖。而await命令就是内部then命令的
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/01/16/异步2/" itemprop="url">异步--generator</a></h1>
+                <a class="post-title-link" href="/2018/04/14/浏览器相关知识点/" itemprop="url">未命名</a></h1>
         
 
         <div class="post-meta">
@@ -755,8 +699,8 @@ async 函数是 Generator 的语法糖。而await命令就是内部then命令的
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-16T16:45:45+08:00">
-                2018-01-16
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-14T12:02:34+08:00">
+                2018-04-14
               </time>
             
 
@@ -765,28 +709,6 @@ async 函数是 Generator 的语法糖。而await命令就是内部then命令的
             
           </span>
 
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JavaScript技术/" itemprop="url" rel="index">
-                    <span itemprop="name">JavaScript技术</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -817,12 +739,25 @@ async 函数是 Generator 的语法糖。而await命令就是内部then命令的
       
         
           
-          Generator基础认知最基础的原则就是见到yield就暂停，next()就继续到下一个yield……以此知道函数执行完毕。
-先不上理论，直接看一段代码，这里的step()是一个辅助函数，用来控制迭代器，替代手动next()1234567891011121314151617181920212223
+          title: 浏览器相关知识点
+加载页面和渲染过程
+加载过程：
+
+浏览器根据DNS服务器得到域名的IP地址
+向这个IP的机器发送HTTP请求
+服务器收到、处理并返回HTTP请求
+浏览器得到返回内容
+
+
+渲染过程：
+
+根据HTML结构生成DOM树
+根据CSS生成CSSDOM
+将DOM和CSSDOM整合
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/01/16/异步2/#more" rel="contents">
+            <a class="btn" href="/2018/04/14/浏览器相关知识点/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -873,7 +808,7 @@ async 函数是 Generator 的语法糖。而await命令就是内部then命令的
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="/2018/01/14/文件处理/">
+    <link itemprop="mainEntityOfPage" href="/2018/04/14/从零构建JavaScript的对象系统/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Aishlily">
@@ -892,7 +827,7 @@ async 函数是 Generator 的语法糖。而await命令就是内部then命令的
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/01/14/文件处理/" itemprop="url">文件处理</a></h1>
+                <a class="post-title-link" href="/2018/04/14/从零构建JavaScript的对象系统/" itemprop="url">未命名</a></h1>
         
 
         <div class="post-meta">
@@ -904,8 +839,8 @@ async 函数是 Generator 的语法糖。而await命令就是内部then命令的
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-14T16:45:45+08:00">
-                2018-01-14
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-14T12:02:34+08:00">
+                2018-04-14
               </time>
             
 
@@ -914,28 +849,6 @@ async 函数是 Generator 的语法糖。而await命令就是内部then命令的
             
           </span>
 
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/实践/" itemprop="url" rel="index">
-                    <span itemprop="name">实践</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -966,15 +879,13 @@ async 函数是 Generator 的语法糖。而await命令就是内部then命令的
       
         
           
-          读取文件前端无法向原生App那样直接操作本地文件，不然一个网页就能偷光用户电脑上的文件，用户想要触发文件操作，主要有三种
-
-&lt;input type=&#39;file&#39; /&gt;选择本地文件
-通过拖拽，利用drop事件
-在编辑框里面复制粘贴（这里不讲，有兴趣的同学可当做延伸题目自己去
+          title: 从零构建JavaScript的对象系统
+http://javascript.ruanyifeng.com/oop/prototype.html
+正统的类与继承类是对象的定义，而对象是类的实例（`Instance`）。类不可直接使用，要想使用就必须在内存上生成该类的副本，这个副本就是对象
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/01/14/文件处理/#more" rel="contents">
+            <a class="btn" href="/2018/04/14/从零构建JavaScript的对象系统/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1025,7 +936,7 @@ async 函数是 Generator 的语法糖。而await命令就是内部then命令的
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="/2018/01/13/Object.defineProperty()和双向绑定原理/">
+    <link itemprop="mainEntityOfPage" href="/2018/04/14/XMLHttpRequest/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Aishlily">
@@ -1044,7 +955,7 @@ async 函数是 Generator 的语法糖。而await命令就是内部then命令的
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/01/13/Object.defineProperty()和双向绑定原理/" itemprop="url">Object.defineProperty()和双向绑定原理</a></h1>
+                <a class="post-title-link" href="/2018/04/14/XMLHttpRequest/" itemprop="url">未命名</a></h1>
         
 
         <div class="post-meta">
@@ -1056,8 +967,8 @@ async 函数是 Generator 的语法糖。而await命令就是内部then命令的
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-13T16:45:45+08:00">
-                2018-01-13
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-14T12:02:34+08:00">
+                2018-04-14
               </time>
             
 
@@ -1066,28 +977,6 @@ async 函数是 Generator 的语法糖。而await命令就是内部then命令的
             
           </span>
 
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JavaScript技术/" itemprop="url" rel="index">
-                    <span itemprop="name">JavaScript技术</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -1118,12 +1007,17 @@ async 函数是 Generator 的语法糖。而await命令就是内部then命令的
       
         
           
-          先简单看下MDN上的介绍Object.defineProperty() - JavaScript | MDN
-Object.defineProperty(obj, prop, descriptor)Obj：要在其上定义属性的对象prop：要定义或修改的属性的名称Descriptor：将被定义或修改的
+          title: XMLHttpRequest
+https://segmentfault.com/a/1190000004322487
+Ajax和XMLHttpRequest
+摘自what is Ajax{:target=”_blank”}
+
+
+AJAX stands for Asynchronous 
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/01/13/Object.defineProperty()和双向绑定原理/#more" rel="contents">
+            <a class="btn" href="/2018/04/14/XMLHttpRequest/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1174,7 +1068,7 @@ Object.defineProperty(obj, prop, descriptor)Obj：要在其上定义属性的对
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="/2018/01/13/彻底捋清楚new的实现/">
+    <link itemprop="mainEntityOfPage" href="/2018/04/14/WEB API/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Aishlily">
@@ -1193,7 +1087,7 @@ Object.defineProperty(obj, prop, descriptor)Obj：要在其上定义属性的对
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/01/13/彻底捋清楚new的实现/" itemprop="url">彻底捋清楚new的实现</a></h1>
+                <a class="post-title-link" href="/2018/04/14/WEB API/" itemprop="url">未命名</a></h1>
         
 
         <div class="post-meta">
@@ -1205,8 +1099,8 @@ Object.defineProperty(obj, prop, descriptor)Obj：要在其上定义属性的对
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-13T16:45:45+08:00">
-                2018-01-13
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-14T12:02:34+08:00">
+                2018-04-14
               </time>
             
 
@@ -1215,28 +1109,6 @@ Object.defineProperty(obj, prop, descriptor)Obj：要在其上定义属性的对
             
           </span>
 
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JavaScript技术/" itemprop="url" rel="index">
-                    <span itemprop="name">JavaScript技术</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -1267,15 +1139,24 @@ Object.defineProperty(obj, prop, descriptor)Obj：要在其上定义属性的对
       
         
           
-          实现
-声明一个中间对象
-将该中间对象的原型指向构造函数的原型
-将构造函数的this，指向该中间对象
-返回该中间对象，即返回实例对象12345678910111213function newF() &#123;  // 创建一个新的对象  let obj = &#123;&#125;;  // 取出第
+          title: WEB API
+知识点梳理
+BOM 操作
+DOM 操作
+事件绑定
+Ajax
+存储
+
+BOMBOM（浏览器对象模型）是浏览器本身的一些信息的设置和获取，例如获取浏览器的宽度、高度，设置让浏览器跳转到哪个地址。
+
+navigator
+screen
+location
+history这些对象就
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/01/13/彻底捋清楚new的实现/#more" rel="contents">
+            <a class="btn" href="/2018/04/14/WEB API/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1326,7 +1207,7 @@ Object.defineProperty(obj, prop, descriptor)Obj：要在其上定义属性的对
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="/2018/01/12/map、forEach、filter、reduce/">
+    <link itemprop="mainEntityOfPage" href="/2018/04/14/vue组件/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Aishlily">
@@ -1345,7 +1226,7 @@ Object.defineProperty(obj, prop, descriptor)Obj：要在其上定义属性的对
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/01/12/map、forEach、filter、reduce/" itemprop="url">map、forEach、filter、reduce</a></h1>
+                <a class="post-title-link" href="/2018/04/14/vue组件/" itemprop="url">未命名</a></h1>
         
 
         <div class="post-meta">
@@ -1357,8 +1238,8 @@ Object.defineProperty(obj, prop, descriptor)Obj：要在其上定义属性的对
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-12T13:45:45+08:00">
-                2018-01-12
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-14T12:02:34+08:00">
+                2018-04-14
               </time>
             
 
@@ -1367,28 +1248,6 @@ Object.defineProperty(obj, prop, descriptor)Obj：要在其上定义属性的对
             
           </span>
 
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JavaScript技术/" itemprop="url" rel="index">
-                    <span itemprop="name">JavaScript技术</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -1419,12 +1278,12 @@ Object.defineProperty(obj, prop, descriptor)Obj：要在其上定义属性的对
       
         
           
-          map：让数组通过某种计算产生一个新数组，返回修改后的数组forEach：让数组中的每一项做一件事，返回underfinedfilter：筛选出数组中符合条件的项，组成新数组，过滤后的数组reduce：让数组中的前项和后项做某种计算，并累计最终值，返回值
-forEach用于看，map用于改，filt
+          title: vue组件
+全局注册1234567891011121314151617181920212223&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;    &lt;meta charset="UTF-8" /&gt;    &lt;title&gt;
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/01/12/map、forEach、filter、reduce/#more" rel="contents">
+            <a class="btn" href="/2018/04/14/vue组件/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1475,7 +1334,7 @@ forEach用于看，map用于改，filt
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="/2018/01/11/JS事件/">
+    <link itemprop="mainEntityOfPage" href="/2018/04/14/vue自定义指令和用法与实例/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Aishlily">
@@ -1494,7 +1353,7 @@ forEach用于看，map用于改，filt
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/01/11/JS事件/" itemprop="url">JavaScript事件</a></h1>
+                <a class="post-title-link" href="/2018/04/14/vue自定义指令和用法与实例/" itemprop="url">未命名</a></h1>
         
 
         <div class="post-meta">
@@ -1506,8 +1365,8 @@ forEach用于看，map用于改，filt
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-11T18:45:45+08:00">
-                2018-01-11
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-14T12:02:34+08:00">
+                2018-04-14
               </time>
             
 
@@ -1516,28 +1375,6 @@ forEach用于看，map用于改，filt
             
           </span>
 
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JavaScript技术/" itemprop="url" rel="index">
-                    <span itemprop="name">JavaScript技术</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -1568,16 +1405,13 @@ forEach用于看，map用于改，filt
       
         
           
-          捕获与冒泡事件流描述的是从页面中接收事件的顺序IE 的事件流是事件冒泡流而 Netscape Communicator 的事件流是事件捕获流
-DOM2级事件规定的事件流包括三个阶段:
-
-事件捕获阶段
-处于目标阶段
-事件冒泡阶段首先发生的是事件捕获，为截获事件提供了机会。然后是实际的目标接收到事件。最
+          title: vue自定义指令和用法与实例
+自定义指令是用来操作DOM的。尽管Vue推崇数据驱动视图的理念，但并非所有情况都适合数据驱动。自定义指令就是一种有效的补充和扩展，不仅可用于定义任何的DOM操作，并且是可复用的。
+　　比如谷歌图片的加载做得非常优雅，在图片未完成加载前，用随机的背景色占位，
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/01/11/JS事件/#more" rel="contents">
+            <a class="btn" href="/2018/04/14/vue自定义指令和用法与实例/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1628,7 +1462,7 @@ DOM2级事件规定的事件流包括三个阶段:
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="/2018/01/11/JavaScript五大排序算法/">
+    <link itemprop="mainEntityOfPage" href="/2018/04/14/vue运行概览/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Aishlily">
@@ -1647,7 +1481,7 @@ DOM2级事件规定的事件流包括三个阶段:
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/01/11/JavaScript五大排序算法/" itemprop="url">JavaScript五大排序算法</a></h1>
+                <a class="post-title-link" href="/2018/04/14/vue运行概览/" itemprop="url">未命名</a></h1>
         
 
         <div class="post-meta">
@@ -1659,8 +1493,8 @@ DOM2级事件规定的事件流包括三个阶段:
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-11T17:45:45+08:00">
-                2018-01-11
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-14T12:02:34+08:00">
+                2018-04-14
               </time>
             
 
@@ -1669,28 +1503,6 @@ DOM2级事件规定的事件流包括三个阶段:
             
           </span>
 
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -1721,11 +1533,13 @@ DOM2级事件规定的事件流包括三个阶段:
       
         
           
-          冒泡算法比较任意两个相邻的项，如果第一个比第二个大，则交换顺序12345678910for (var i = 0; i &lt; a.length; i++) &#123;	for (var j = i+1; j &lt; a.length; j++) &#123;		if (a[j] &lt; a
+          title: vue运行概览
+https://juejin.im/book/5a36661851882538e2259c0f/section/5a37bbb35188257d167a4d64
+全局概览这一节笔者将为大家介绍一下 Vue.js 内部的整个流程，希望能让大家对全局有一个整体的印象，然后我
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/01/11/JavaScript五大排序算法/#more" rel="contents">
+            <a class="btn" href="/2018/04/14/vue运行概览/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1767,7 +1581,7 @@ DOM2级事件规定的事件流包括三个阶段:
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1817,7 +1631,7 @@ DOM2级事件规定的事件流包括三个阶段:
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-count">48</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1892,7 +1706,7 @@ DOM2级事件规定的事件流包括三个阶段:
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

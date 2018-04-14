@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Aishlily" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="title: vue源码阅读-插件入侵机制 插件就是按照一定的封装方式，暴露接口。让我们利用这些接口更快捷的实现功能。升职加薪。每个框架都提供了插件的扩展机制。这是框架可扩展性必不可少的一个部分。插件机制越简单。对于框架的生态的发展大有好处。jquery提供了$.fn.extend,angular有对应的依赖注入，module机制。既然vue那么精美，能迅速火起来。插件这部分的可扩展性必须顶级。这">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Aishlily&#39;s Blog">
+<meta property="og:url" content="/2018/04/14/vue源码阅读-插件入侵机制/index.html">
+<meta property="og:site_name" content="Aishlily&#39;s Blog">
+<meta property="og:description" content="title: vue源码阅读-插件入侵机制 插件就是按照一定的封装方式，暴露接口。让我们利用这些接口更快捷的实现功能。升职加薪。每个框架都提供了插件的扩展机制。这是框架可扩展性必不可少的一个部分。插件机制越简单。对于框架的生态的发展大有好处。jquery提供了$.fn.extend,angular有对应的依赖注入，module机制。既然vue那么精美，能迅速火起来。插件这部分的可扩展性必须顶级。这">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-04-12T07:09:21.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Aishlily&#39;s Blog">
+<meta name="twitter:description" content="title: vue源码阅读-插件入侵机制 插件就是按照一定的封装方式，暴露接口。让我们利用这些接口更快捷的实现功能。升职加薪。每个框架都提供了插件的扩展机制。这是框架可扩展性必不可少的一个部分。插件机制越简单。对于框架的生态的发展大有好处。jquery提供了$.fn.extend,angular有对应的依赖注入，module机制。既然vue那么精美，能迅速火起来。插件这部分的可扩展性必须顶级。这">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="/2018/04/14/vue源码阅读-插件入侵机制/"/>
+
+
+
+
+
+  <title> | Aishlily's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Aishlily's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-search">
+          <a href="/search/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-search"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="/2018/04/14/vue源码阅读-插件入侵机制/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Aishlily">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/my.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Aishlily's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline"></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-14T12:02:34+08:00">
+                2018-04-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>title: vue源码阅读-插件入侵机制</p>
+<p>插件就是按照一定的封装方式，暴露接口。让我们利用这些接口更快捷的实现功能。升职加薪。每个框架都提供了插件的扩展机制。这是框架可扩展性必不可少的一个部分。插件机制越简单。对于框架的生态的发展大有好处。jquery提供了<code>$.fn.extend</code>,angular有对应的依赖注入，module机制。既然vue那么精美，能迅速火起来。插件这部分的可扩展性必须顶级。这里接下来我们看看vue插件的入侵机制。<br>说到插件。我们最多使用的一个方法。无非就是 <code>Vue.use(MyPlugin, { someOption: true })</code>;<br>这么说的话，这个方法应该是所有插件入侵vue的起点。没错。那么我们来看看这个方法：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">Vue.use = <span class="keyword">function</span> (plugin) &#123;</span><br><span class="line">    /* istanbul ignore <span class="keyword">if</span> */</span><br><span class="line">    <span class="keyword">if</span> (plugin.installed) &#123;</span><br><span class="line">      <span class="built_in">return</span>.  //假如插件已经初始化过就不再继续。避免插件重复入侵</span><br><span class="line">    &#125;</span><br><span class="line">    // additional parameters</span><br><span class="line">    var args = toArray(arguments, 1);   //获取插件的配置参数</span><br><span class="line">    args.unshift(this);</span><br><span class="line">    <span class="keyword">if</span> (typeof plugin.install === <span class="string">'function'</span>) &#123;</span><br><span class="line">      plugin.install.apply(plugin, args);   //调用的是插件的install方法；</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (typeof plugin === <span class="string">'function'</span>) &#123;</span><br><span class="line">      plugin.apply(null, args);     //若插件本省就是一个函数。则直接调用该函数</span><br><span class="line">    &#125;</span><br><span class="line">    plugin.installed = <span class="literal">true</span>;</span><br><span class="line">    <span class="built_in">return</span> this</span><br><span class="line">  &#125;;</span><br></pre></td></tr></table></figure></p>
+<p>Vue.use这个方法让我们知道来。插件入侵的起点是调用插件自身的install函数。那么不同的插件入侵的机制有些时候很不一样。我们可以知道。这个不一样肯定发生在install函数中。我们来看看官方的install函数中的一些方式：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">MyPlugin.install = <span class="keyword">function</span> (Vue, options) &#123;</span><br><span class="line">  // 1. 添加全局方法或属性</span><br><span class="line">  Vue.myGlobalMethod = <span class="function"><span class="title">function</span></span> () &#123;</span><br><span class="line">    // 逻辑...</span><br><span class="line">  &#125;</span><br><span class="line">  // 2. 添加全局资源</span><br><span class="line">  Vue.directive(<span class="string">'my-directive'</span>, &#123;</span><br><span class="line">    <span class="built_in">bind</span> (el, binding, vnode, oldVnode) &#123;</span><br><span class="line">      // 逻辑...</span><br><span class="line">    &#125;</span><br><span class="line">    ...</span><br><span class="line">  &#125;)</span><br><span class="line">  // 3. 注入组件</span><br><span class="line">  Vue.mixin(&#123;</span><br><span class="line">    created: <span class="function"><span class="title">function</span></span> () &#123;</span><br><span class="line">      // 逻辑...</span><br><span class="line">    &#125;</span><br><span class="line">    ...</span><br><span class="line">  &#125;)</span><br><span class="line">  // 4. 添加实例方法</span><br><span class="line">  Vue.prototype.<span class="variable">$myMethod</span> = <span class="keyword">function</span> (options) &#123;</span><br><span class="line">    // 逻辑...</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>我们按官网推荐的四种例子。来看看每种方法对应的源码：</p>
+<ol>
+<li>添加全局方法或属性<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Vue.myGlobalMethod = <span class="function"><span class="title">function</span></span> () &#123;</span><br><span class="line">  // 逻辑...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>类似jquery中的<code>jquery.myGlobalMethod</code>或则<code>$.myGlobalMethod</code>简单来说就是给Vue这个全局对象添加一些工具方法。可以供全局快捷调用。我们这里就略过了</p>
+<ol start="2">
+<li><p>添加全局资源</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Vue.directive(<span class="string">'my-directive'</span>, &#123;</span><br><span class="line">  <span class="built_in">bind</span> (el, binding, vnode, oldVnode) &#123;</span><br><span class="line">    // 逻辑...</span><br><span class="line">  &#125;</span><br><span class="line">  ...</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p><code>Vue.directive</code>，<code>Vue.filter</code>，<code>Vue.component</code>等价。当全局使用这些api时。会在vue上把这些指令过滤器组件等放在相应的属性数组里。形如：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Vue.options = &#123;</span><br><span class="line">    components: &#123;</span><br><span class="line">      </span><br><span class="line">    &#125;,</span><br><span class="line">    directives: &#123;&#125;,</span><br><span class="line">    filters: &#123;&#125;,</span><br><span class="line">    _base: Vue</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>因为他挂在全局的vue中。在vue初始化。调用init方法时。会执行：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">vm.<span class="variable">$options</span> = mergeOptions(</span><br><span class="line">       resolveConstructorOptions(vm.constructor),  //策略合并核心函数。可以仔细去看看</span><br><span class="line">       options || &#123;&#125;,</span><br><span class="line">       vm</span><br><span class="line">     );</span><br></pre></td></tr></table></figure></p>
+<p>vue在创建实例时。会把vue对象上的options的对象中的属性提取出来和传入的options做合并。这里涉及到合并策略。以后会专门讲一下。这里只要知道。vue每个配置相都有自己的合并规则。mergeOptions会根据合并的类目去选择对应的合并规则。这里的<code>component.directive.filter</code>根据合并规则。Vue对象上的全局的这些属性会被放在实例的<code>__proto__</code>上。<br>同样的。相应的子组件。可以回过头去看一下组件那一章。在render创建子组件的时候。代码如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> createComponent (</span><br><span class="line">  Ctor,</span><br><span class="line">  data,</span><br><span class="line">  context,</span><br><span class="line">  children,</span><br><span class="line">  tag</span><br><span class="line">) &#123;</span><br><span class="line">  <span class="keyword">if</span> (isUndef(Ctor)) &#123;</span><br><span class="line">    <span class="built_in">return</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  var baseCtor = context.<span class="variable">$options</span>._base;</span><br><span class="line"></span><br><span class="line">  // plain options object: turn it into a constructor</span><br><span class="line">  <span class="keyword">if</span> (isObject(Ctor)) &#123;</span><br><span class="line">    Ctor = baseCtor.extend(Ctor);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  // <span class="keyword">if</span> at this stage it<span class="string">'s not a constructor or an async component factory,</span></span><br><span class="line"><span class="string">  // reject.</span></span><br><span class="line"><span class="string">  if (typeof Ctor !== '</span><span class="keyword">function</span><span class="string">') &#123;</span></span><br><span class="line"><span class="string">    &#123;</span></span><br><span class="line"><span class="string">      warn(("Invalid Component definition: " + (String(Ctor))), context);</span></span><br><span class="line"><span class="string">    &#125;</span></span><br><span class="line"><span class="string">    return</span></span><br><span class="line"><span class="string">  &#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">  // async component</span></span><br><span class="line"><span class="string">  if (isUndef(Ctor.cid)) &#123;</span></span><br><span class="line"><span class="string">    Ctor = resolveAsyncComponent(Ctor, baseCtor, context);</span></span><br><span class="line"><span class="string">    if (Ctor === undefined) &#123;</span></span><br><span class="line"><span class="string">      // return nothing if this is indeed an async component</span></span><br><span class="line"><span class="string">      // wait for the callback to trigger parent update.</span></span><br><span class="line"><span class="string">      return</span></span><br><span class="line"><span class="string">    &#125;</span></span><br><span class="line"><span class="string">  &#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">  // resolve constructor options in case global mixins are applied after</span></span><br><span class="line"><span class="string">  // component constructor creation</span></span><br><span class="line"><span class="string">  resolveConstructorOptions(Ctor);//核心：这里会再次合并一下vue上的全局的一些指令或则组件或则过滤器到组件的构造函数上</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">  data = data || &#123;&#125;;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">  // transform component v-model data into props &amp; events</span></span><br><span class="line"><span class="string">  if (isDef(data.model)) &#123;</span></span><br><span class="line"><span class="string">    transformModel(Ctor.options, data);</span></span><br><span class="line"><span class="string">  &#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">  // extract props</span></span><br><span class="line"><span class="string">  var propsData = extractPropsFromVNodeData(data, Ctor, tag);</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">  // functional component</span></span><br><span class="line"><span class="string">  if (isTrue(Ctor.options.functional)) &#123;</span></span><br><span class="line"><span class="string">    return createFunctionalComponent(Ctor, propsData, data, context, children)</span></span><br><span class="line"><span class="string">  &#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">  // extract listeners, since these needs to be treated as</span></span><br><span class="line"><span class="string">  // child component listeners instead of DOM listeners</span></span><br><span class="line"><span class="string">  var listeners = data.on;</span></span><br><span class="line"><span class="string">  // replace with listeners with .native modifier</span></span><br><span class="line"><span class="string">  data.on = data.nativeOn;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">  if (isTrue(Ctor.options.abstract)) &#123;</span></span><br><span class="line"><span class="string">    // abstract components do not keep anything</span></span><br><span class="line"><span class="string">    // other than props &amp; listeners</span></span><br><span class="line"><span class="string">    data = &#123;&#125;;</span></span><br><span class="line"><span class="string">  &#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">  // merge component management hooks onto the placeholder node</span></span><br><span class="line"><span class="string">  mergeHooks(data);</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">  // return a placeholder vnode</span></span><br><span class="line"><span class="string">  var name = Ctor.options.name || tag;</span></span><br><span class="line"><span class="string">  var vnode = new VNode(</span></span><br><span class="line"><span class="string">    ("vue-component-" + (Ctor.cid) + (name ? ("-" + name) : '</span><span class="string">')),</span></span><br><span class="line"><span class="string">    data, undefined, undefined, undefined, context,</span></span><br><span class="line"><span class="string">    &#123; Ctor: Ctor, propsData: propsData, listeners: listeners, tag: tag, children: children &#125;</span></span><br><span class="line"><span class="string">  );</span></span><br><span class="line"><span class="string">  return vnode</span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure></p>
+<p>最后在内部组件初始化时。vue会调用<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> initInternalComponent (vm, options) &#123;</span><br><span class="line">  var opts = vm.<span class="variable">$options</span> = Object.create(vm.constructor.options);//这里还是把构造函数的options放在了<span class="variable">$options</span>上供后续使用</span><br><span class="line">  // doing this because it<span class="string">'s faster than dynamic enumeration.</span></span><br><span class="line"><span class="string">  opts.parent = options.parent;</span></span><br><span class="line"><span class="string">  opts.propsData = options.propsData;</span></span><br><span class="line"><span class="string">  opts._parentVnode = options._parentVnode;</span></span><br><span class="line"><span class="string">  opts._parentListeners = options._parentListeners;</span></span><br><span class="line"><span class="string">  opts._renderChildren = options._renderChildren;</span></span><br><span class="line"><span class="string">  opts._componentTag = options._componentTag;</span></span><br><span class="line"><span class="string">  opts._parentElm = options._parentElm;</span></span><br><span class="line"><span class="string">  opts._refElm = options._refElm;</span></span><br><span class="line"><span class="string">  if (options.render) &#123;</span></span><br><span class="line"><span class="string">    opts.render = options.render;</span></span><br><span class="line"><span class="string">    opts.staticRenderFns = options.staticRenderFns;</span></span><br><span class="line"><span class="string">  &#125;</span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure></p>
+<p>总的来说。如果是全局的指令过滤器时。vue统一把他放在根构造方法上。根实例初始化时。通过策略合并合并到<code>$options</code>中。而子组件稍微绕了一下。最终也是放在<code>$options</code>的原型上。很连贯啊。这样只要是全局的组件。指令过滤器。每个子组件都可以继承使用。达到了插件的效果。</p>
+<ol start="3">
+<li>mixin方法：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">Vue.mixin(&#123;</span><br><span class="line">    created: <span class="function"><span class="title">function</span></span> () &#123;</span><br><span class="line">      // 逻辑...</span><br><span class="line">    &#125;</span><br><span class="line">    ...</span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Vue.mixin = <span class="keyword">function</span> (mixin) &#123;</span><br><span class="line">    this.options = mergeOptions(this.options, mixin);</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//这里还是不可避免要看看mergeOptions函数：</span><br><span class="line"><span class="keyword">function</span> mergeOptions (</span><br><span class="line">  parent,</span><br><span class="line">  child,</span><br><span class="line">  vm</span><br><span class="line">) &#123;</span><br><span class="line">  &#123;</span><br><span class="line">    checkComponents(child);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (typeof child === <span class="string">'function'</span>) &#123;</span><br><span class="line">    child = child.options;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  normalizeProps(child);</span><br><span class="line">  normalizeDirectives(child);</span><br><span class="line">  var extendsFrom = child.extends;</span><br><span class="line">  <span class="keyword">if</span> (extendsFrom) &#123;</span><br><span class="line">    parent = mergeOptions(parent, extendsFrom, vm);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (child.mixins) &#123;</span><br><span class="line">    <span class="keyword">for</span> (var i = 0, l = child.mixins.length; i &lt; l; i++) &#123;</span><br><span class="line">      parent = mergeOptions(parent, child.mixins[i], vm);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  var options = &#123;&#125;;</span><br><span class="line">  var key;</span><br><span class="line">  <span class="keyword">for</span> (key <span class="keyword">in</span> parent) &#123;</span><br><span class="line">    mergeField(key);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">for</span> (key <span class="keyword">in</span> child) &#123;</span><br><span class="line">    <span class="keyword">if</span> (!hasOwn(parent, key)) &#123;</span><br><span class="line">      mergeField(key);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">function</span> mergeField (key) &#123;</span><br><span class="line">    var strat = strats[key] || defaultStrat;</span><br><span class="line">    options[key] = strat(parent[key], child[key], vm, key);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">return</span> options</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>分两种情况吧：</p>
+<p>a: 全局注册时即<code>vue.mixin</code>时。直接调用合并。直接便利mixin中的项目。分别调用相应合并策略。合并到构造函数的options中。影响后面所有的子组件</p>
+<p>b: 局部注册时。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (child.mixins) &#123;</span><br><span class="line">    <span class="keyword">for</span> (var i = 0, l = child.mixins.length; i &lt; l; i++) &#123;</span><br><span class="line">      parent = mergeOptions(parent, child.mixins[i], vm);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></p>
+<p>则会去递归的调用合并策略把该合并的项目合并结束为止；</p>
+<p>vue.mixin就相当于是一个传入的额外的配置项目，会让vue重新按照规则合并一次，成功入侵vue</p>
+<ol start="4">
+<li>添加实例方法<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Vue.prototype.<span class="variable">$myMethod</span> = <span class="keyword">function</span> (options) &#123;</span><br><span class="line">  // 逻辑...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>这个方法就很明显了。在vue的原型上挂载方法。vue的实例自然而然就能继承。子组件在创建的时候。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Sub.prototype = Object.create(Super.prototype);</span><br><span class="line">    Sub.prototype.constructor = Sub;</span><br></pre></td></tr></table></figure></p>
+<p>将原型指向根构造函数Vue的prototype；自然而然就会有Vue的原型上的所有属性和方法。。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/14/vue源码阅读-prop机制/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/04/14/vue源码阅读-事件机制/" rel="prev" title="">
+                 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/my.jpg"
+                alt="Aishlily" />
+            
+              <p class="site-author-name" itemprop="name">Aishlily</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">48</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/Aishlily" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:mali_job@yeah.net" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Aishlily</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+  <script type="text/javascript" src="/js/src/exturl.js?v=5.1.4"></script>
+
+
+</body>
+</html>
+<script type="text/javascript" src="/js/src/love.js"></script>>
