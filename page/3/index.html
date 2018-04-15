@@ -1597,10 +1597,7 @@ Event
       
         
           
-          
-Prototype每个函数都有这属性，有且仅有函数才拥有该属性但有个例外：12// 用这个方法创建的函数是不具备prototype属性的let fun = Function.prototype.bind()
-Prototype属性里面默认有一个属性constructor,对应着构造函数
-const
+          原型对象构造函数JavaScript通过构造函数生成新对象，因此构造函数可以视为对象的模板。实例对象的属性和方法，可以定义在构造函数内部。123456function Cat (name, color)&#123;  this.name = name  this.color = color&#125
           ...
           <!--noindex-->
           <div class="post-button text-center">
