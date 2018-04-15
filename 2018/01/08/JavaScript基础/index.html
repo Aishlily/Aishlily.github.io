@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Aishlily&#39;s Blog">
 <meta property="og:description" content="JavaScript是ECMAScript规范的一种实现，是一种弱类型脚本语言。 原始类型： Boolean String Number Null Undefined Symbol(ES6新定义) 注意： 原始类型不包含Object。   类型判断方法： typeof 返回值： undefined、 boolean、 number、 string、 object、 function、 symbol">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-11T14:18:29.588Z">
+<meta property="og:updated_time" content="2018-04-15T13:15:26.092Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript 基础">
 <meta name="twitter:description" content="JavaScript是ECMAScript规范的一种实现，是一种弱类型脚本语言。 原始类型： Boolean String Number Null Undefined Symbol(ES6新定义) 注意： 原始类型不包含Object。   类型判断方法： typeof 返回值： undefined、 boolean、 number、 string、 object、 function、 symbol">
@@ -433,22 +433,6 @@
 </ul>
 </li>
 </ol>
-<h2 id="原型和原型链"><a href="#原型和原型链" class="headerlink" title="原型和原型链"></a>原型和原型链</h2><ol>
-<li>如何理解原型<ul>
-<li>所有的引用类型（数组、对象、函数），都具有对象特性，即可自由扩展属性（<code>null</code>除外）</li>
-<li>所有的引用类型（数组、对象、函数），都有一个<code>__proto__</code>属性，属性值是一个普通的对象</li>
-<li>所有的函数，都有一个<code>prototype</code>属性，属性值也是一个普通的对象</li>
-<li>所有的引用类型（数组、对象、函数），<code>__proto__</code>属性值指向它的构造函数的<code>prototype</code>属性值</li>
-<li>获取对象的属性时，如果对象本身没有这个属性，则会在<code>__proto__</code>（即它的构造函数的prototype）中寻找</li>
-<li>使用<code>hasOwnProperty</code>判断属性是否为该对象本身的属性</li>
-</ul>
-</li>
-<li>如何理解原型链<ul>
-<li>如果当前对象本身没有这个属性，则会去它的<code>__proto__</code>（即它的构造函数的<code>prototype</code>）中寻找，如果在<code>f.__proto__</code>中没有找到，那么继续去<code>f.__proto__.__proto__</code>中寻找，直到最上层都没有找到，返回<code>undefined</code>。最上层即<code>Object.prototype.__proto__ === null</code></li>
-<li>所有从原型或更高级原型中得到、执行的方法，其中的<code>this</code>在执行时，就指向了当前这个触发事件执行的对象</li>
-</ul>
-</li>
-</ol>
 <h2 id="作用域和闭包"><a href="#作用域和闭包" class="headerlink" title="作用域和闭包"></a>作用域和闭包</h2><ol>
 <li>执行上下文<ul>
 <li>代码执行前需要解析代码，解析时会先创建一个<strong>全局执行上下文</strong>环境，将代码中的变量、函数声明都保存在全局执行上下文环境中（不包括内部函数中的变量、函数），变量值保存为<code>undefined</code>，函数先声明好可使用。</li>
@@ -711,7 +695,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">47</span>
+                  <span class="site-state-item-count">49</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -782,7 +766,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#原始类型："><span class="nav-number">1.</span> <span class="nav-text">原始类型：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类型判断方法："><span class="nav-number">2.</span> <span class="nav-text">类型判断方法：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#值类型-vs-引用类型"><span class="nav-number">3.</span> <span class="nav-text">值类型 vs 引用类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原型和原型链"><span class="nav-number">4.</span> <span class="nav-text">原型和原型链</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#作用域和闭包"><span class="nav-number">5.</span> <span class="nav-text">作用域和闭包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#异步"><span class="nav-number">6.</span> <span class="nav-text">异步</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ES6箭头函数中的this和普通函数中的有什么不同"><span class="nav-number">7.</span> <span class="nav-text">ES6箭头函数中的this和普通函数中的有什么不同</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ES6模块化"><span class="nav-number">8.</span> <span class="nav-text">ES6模块化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ES6-class和普通构造函数的区别"><span class="nav-number">9.</span> <span class="nav-text">ES6 class和普通构造函数的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Set和Map"><span class="nav-number">10.</span> <span class="nav-text">Set和Map</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Promise"><span class="nav-number">11.</span> <span class="nav-text">Promise</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#原始类型："><span class="nav-number">1.</span> <span class="nav-text">原始类型：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类型判断方法："><span class="nav-number">2.</span> <span class="nav-text">类型判断方法：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#值类型-vs-引用类型"><span class="nav-number">3.</span> <span class="nav-text">值类型 vs 引用类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#作用域和闭包"><span class="nav-number">4.</span> <span class="nav-text">作用域和闭包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#异步"><span class="nav-number">5.</span> <span class="nav-text">异步</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ES6箭头函数中的this和普通函数中的有什么不同"><span class="nav-number">6.</span> <span class="nav-text">ES6箭头函数中的this和普通函数中的有什么不同</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ES6模块化"><span class="nav-number">7.</span> <span class="nav-text">ES6模块化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ES6-class和普通构造函数的区别"><span class="nav-number">8.</span> <span class="nav-text">ES6 class和普通构造函数的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Set和Map"><span class="nav-number">9.</span> <span class="nav-text">Set和Map</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Promise"><span class="nav-number">10.</span> <span class="nav-text">Promise</span></a></li></ol></div>
             
 
           </div>
