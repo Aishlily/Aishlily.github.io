@@ -289,7 +289,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="/2018/01/21/promise手动封装ajax函数/">
+    <link itemprop="mainEntityOfPage" href="/2018/01/21/vue计算属性的秘密/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Aishlily">
@@ -308,7 +308,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/01/21/promise手动封装ajax函数/" itemprop="url">prmomise手动封装ajax函数</a></h1>
+                <a class="post-title-link" href="/2018/01/21/vue计算属性的秘密/" itemprop="url">vue计算属性的秘密</a></h1>
         
 
         <div class="post-meta">
@@ -343,8 +343,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JavaScript技术/" itemprop="url" rel="index">
-                    <span itemprop="name">JavaScript技术</span>
+                  <a href="/categories/vue/" itemprop="url" rel="index">
+                    <span itemprop="name">vue</span>
                   </a>
                 </span>
 
@@ -382,12 +382,11 @@
       
         
           
-          ajax是一种技术方案，但并不是一种新技术。它依赖的是现有的CSS/HTML/Javascript，而其中最核心的依赖是浏览器提供的XMLHttpRequest对象，是这个对象使得浏览器可以发出HTTP请求与接收HTTP响应。
-一句话来总结两者的关系：使用XMLHttpRequest对象来发送一个A
+          计算属性是一个很邪门的东西，只要在它的函数里引用了 data 中的某个属性，当这个属性发生变化时，函数仿佛可以嗅探到这个变化，并自动重新执行。12345678910111213141516new Vue(&#123;	data:&#123;	   b: 1	&#125;,	mounted: func
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/01/21/promise手动封装ajax函数/#more" rel="contents">
+            <a class="btn" href="/2018/01/21/vue计算属性的秘密/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -438,7 +437,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="/2018/01/21/使用eslint检查JS代码/">
+    <link itemprop="mainEntityOfPage" href="/2018/01/21/使用Promise手动封装JSONP/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Aishlily">
@@ -457,7 +456,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/01/21/使用eslint检查JS代码/" itemprop="url">使用eslint检查JS代码</a></h1>
+                <a class="post-title-link" href="/2018/01/21/使用Promise手动封装JSONP/" itemprop="url">prmomise手动封装JSONP</a></h1>
         
 
         <div class="post-meta">
@@ -531,19 +530,14 @@
       
         
           
-          安装配置
-安装eslint, 如果要全局安装eslint，相关依赖包也要全局安装
-1npm install eslint
-
-初始化配置文件
-1eslint init
-
-
-选择是否使用ES6、是否使用jsx语法、配置文件格式等等。配置完成后，生成一个.eslintrc.js文件：12345678910
+          JSONP原理   动态生成一个JavaScript标签，其src由接口url、请求参数、callback函数名拼接而成，利用js标签没有跨域限制的特性实现跨域请求
+注意事项
+callback函数要绑定在window对象上
+服务端返回数据有特定格式要求：callback函数名+’(‘+JSON.st
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/01/21/使用eslint检查JS代码/#more" rel="contents">
+            <a class="btn" href="/2018/01/21/使用Promise手动封装JSONP/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>

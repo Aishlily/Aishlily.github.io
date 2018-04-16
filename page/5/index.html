@@ -289,7 +289,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="/2018/01/11/Object对象相关方法/">
+    <link itemprop="mainEntityOfPage" href="/2018/01/11/this/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Aishlily">
@@ -308,7 +308,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/01/11/Object对象相关方法/" itemprop="url">Object对象的相关方法</a></h1>
+                <a class="post-title-link" href="/2018/01/11/this/" itemprop="url">this</a></h1>
         
 
         <div class="post-meta">
@@ -382,11 +382,14 @@
       
         
           
-          Object.getPrototypeOf()Object.getPrototypeOf方法返回参数对象的原型。这是获取原型对象的标准方法。123var F = function () &#123;&#125;;var f = new F();Object.getPrototypeOf(f) ===
+          this关键字是一个非常重要的语法点。毫不夸张地说，不理解它的含义，大部分开发任务都无法完成。
+this可以用在构造函数之中，表示实例对象。除此之外，this还可以用在别的场合。但不管是什么场合，this都有一个共同点：它总是返回一个对象。
+简单说，this就是属性或方法“当前”所在的对象。
+1th
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/01/11/Object对象相关方法/#more" rel="contents">
+            <a class="btn" href="/2018/01/11/this/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
