@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="笔记,JavaScript,vue," />
+  <meta name="keywords" content="笔记,JavaScript,ajax," />
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="先简单看下MDN上的介绍Object.defineProperty() - JavaScript | MDN Object.defineProperty(obj, prop, descriptor)Obj：要在其上定义属性的对象prop：要定义或修改的属性的名称Descriptor：将被定义或修改的属性描述符，返回被传递给函数的对象 example123456var obj = &amp;#123;&amp;#1">
-<meta name="keywords" content="笔记,JavaScript,vue">
+<meta name="description" content="JSONP原理   动态生成一个JavaScript标签，其src由接口url、请求参数、callback函数名拼接而成，利用js标签没有跨域限制的特性实现跨域请求 注意事项 callback函数要绑定在window对象上 服务端返回数据有特定格式要求：callback函数名+’(‘+JSON.stringify(返回数据)’)’ 不支持post，因为js标签本身就是一个get请求  代码实现12">
+<meta name="keywords" content="笔记,JavaScript,ajax">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Object.defineProperty()和双向绑定原理">
-<meta property="og:url" content="/2018/01/13/Object.defineProperty()和双向绑定原理/index.html">
+<meta property="og:title" content="prmomise手动封装JSONP">
+<meta property="og:url" content="/2018/01/21/使用Promise手动封装JSONP/index.html">
 <meta property="og:site_name" content="Aishlily&#39;s Blog">
-<meta property="og:description" content="先简单看下MDN上的介绍Object.defineProperty() - JavaScript | MDN Object.defineProperty(obj, prop, descriptor)Obj：要在其上定义属性的对象prop：要定义或修改的属性的名称Descriptor：将被定义或修改的属性描述符，返回被传递给函数的对象 example123456var obj = &amp;#123;&amp;#1">
+<meta property="og:description" content="JSONP原理   动态生成一个JavaScript标签，其src由接口url、请求参数、callback函数名拼接而成，利用js标签没有跨域限制的特性实现跨域请求 注意事项 callback函数要绑定在window对象上 服务端返回数据有特定格式要求：callback函数名+’(‘+JSON.stringify(返回数据)’)’ 不支持post，因为js标签本身就是一个get请求  代码实现12">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-11T14:38:31.248Z">
+<meta property="og:updated_time" content="2018-04-16T05:23:15.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Object.defineProperty()和双向绑定原理">
-<meta name="twitter:description" content="先简单看下MDN上的介绍Object.defineProperty() - JavaScript | MDN Object.defineProperty(obj, prop, descriptor)Obj：要在其上定义属性的对象prop：要定义或修改的属性的名称Descriptor：将被定义或修改的属性描述符，返回被传递给函数的对象 example123456var obj = &amp;#123;&amp;#1">
+<meta name="twitter:title" content="prmomise手动封装JSONP">
+<meta name="twitter:description" content="JSONP原理   动态生成一个JavaScript标签，其src由接口url、请求参数、callback函数名拼接而成，利用js标签没有跨域限制的特性实现跨域请求 注意事项 callback函数要绑定在window对象上 服务端返回数据有特定格式要求：callback函数名+’(‘+JSON.stringify(返回数据)’)’ 不支持post，因为js标签本身就是一个get请求  代码实现12">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="/2018/01/13/Object.defineProperty()和双向绑定原理/"/>
+  <link rel="canonical" href="/2018/01/21/使用Promise手动封装JSONP/"/>
 
 
 
 
 
-  <title>Object.defineProperty()和双向绑定原理 | Aishlily's Blog</title>
+  <title>prmomise手动封装JSONP | Aishlily's Blog</title>
   
 
 
@@ -293,7 +293,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="/2018/01/13/Object.defineProperty()和双向绑定原理/">
+    <link itemprop="mainEntityOfPage" href="/2018/01/21/使用Promise手动封装JSONP/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Aishlily">
@@ -310,7 +310,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Object.defineProperty()和双向绑定原理</h1>
+          <h1 class="post-title" itemprop="name headline">prmomise手动封装JSONP</h1>
         
 
         <div class="post-meta">
@@ -322,8 +322,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-13T16:45:45+08:00">
-                2018-01-13
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-21T12:55:45+08:00">
+                2018-01-21
               </time>
             
 
@@ -382,40 +382,13 @@
       
 
       
-        <p>先简单看下MDN上的介绍<br>Object.defineProperty() - JavaScript | MDN</p>
-<h2 id="Object-defineProperty-obj-prop-descriptor"><a href="#Object-defineProperty-obj-prop-descriptor" class="headerlink" title="Object.defineProperty(obj, prop, descriptor)"></a>Object.defineProperty(obj, prop, descriptor)</h2><p>Obj：要在其上定义属性的对象<br>prop：要定义或修改的属性的名称<br>Descriptor：将被定义或修改的属性描述符，返回被传递给函数的对象</p>
-<p>example<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var obj = &#123;&#125;;</span><br><span class="line">Object.defineProperty(obj, <span class="string">'name'</span>, &#123;</span><br><span class="line">    value: <span class="string">'mike'</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">console.log(obj); // mike</span><br></pre></td></tr></table></figure></p>
-<p>ECMAScript有两种属性：数据属性和访问器属性</p>
-<h2 id="数据属性"><a href="#数据属性" class="headerlink" title="数据属性"></a>数据属性</h2><ol>
-<li><p>[configurable]<br>总开关，一旦为false，就不能再设置他的其他属性（value，writable，configurable）</p>
-</li>
-<li><p>[enumerable]<br>决定了能否被for(prop in obj)和Object.keys()枚举</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Object.defineProperty(dream, <span class="string">'a'</span>, &#123;</span><br><span class="line">    value: 1,</span><br><span class="line">    enumerable: <span class="literal">false</span> // 不可枚举</span><br><span class="line">&#125;);</span><br><span class="line">Object.defineProperty(dream, <span class="string">'b'</span>, &#123;</span><br><span class="line">    value: 2,</span><br><span class="line">    enumerable: <span class="literal">true</span> // 可枚举</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">// 只会输出 b</span><br><span class="line"><span class="keyword">for</span>(prop <span class="keyword">in</span> dream) &#123;</span><br><span class="line">    console.log(prop);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>[writable]<br>当且仅当仅当该属性的writable为true时,该属性才能被赋值运算符改变，默认值为false</p>
-</li>
-<li><p>[Value]<br>value和get,set是不可以共存的，定义了value后就不能够再定义get,set特性了</p>
-</li>
+        <h2 id="JSONP原理"><a href="#JSONP原理" class="headerlink" title="JSONP原理"></a>JSONP原理</h2><p>   动态生成一个JavaScript标签，其src由接口url、请求参数、callback函数名拼接而成，利用js标签没有跨域限制的特性实现跨域请求</p>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><ol>
+<li>callback函数要绑定在window对象上</li>
+<li>服务端返回数据有特定格式要求：callback函数名+’(‘+JSON.stringify(返回数据)’)’</li>
+<li>不支持post，因为js标签本身就是一个get请求</li>
 </ol>
-<h2 id="访问器属性"><a href="#访问器属性" class="headerlink" title="访问器属性"></a>访问器属性</h2><p>访问器属性不包含数据值，没有[value]<br>它们包含一对儿getter和setter函数（但都不是必须的）</p>
-<ol>
-<li><p>[configurable]<br>同上</p>
-</li>
-<li><p>[enumerable]<br>同上</p>
-</li>
-<li><p>[Get]<br>读取属性时调用的函数，默认underfined</p>
-</li>
-<li><p>[Set]<br>写入属性时调用的函数，默认underfined</p>
-</li>
-</ol>
-<p>看个例子<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">let</span> a = &#123;&#125;;</span><br><span class="line">Object.defineProperty(a, <span class="string">'p'</span>, &#123;</span><br><span class="line">  get: () =&gt; &#123;</span><br><span class="line">    <span class="built_in">return</span> 1</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="built_in">set</span>: (newValue) =&gt; &#123;</span><br><span class="line">    console.log(newValue)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line">a.p = 2;</span><br><span class="line">console.log(a.p);</span><br><span class="line"></span><br><span class="line">// 2</span><br><span class="line">// 1</span><br></pre></td></tr></table></figure></p>
-<p>给a定义了一个访问器属性p<br>a.p = 2时调用set方法，但这里什么都没做，只是打印了想要设置的值2</p>
-<p>console.log(a.p);调用get方法，但也只是固定返回1而已</p>
-<p>从这个简单的例子，相信你能举一反三</p>
-<h2 id="简易Vue双向绑定"><a href="#简易Vue双向绑定" class="headerlink" title="简易Vue双向绑定"></a>简易Vue双向绑定</h2><p>看个最简单的vue例子，只是数据和dom节点的绑定</p>
-<p>html<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&lt;div&gt;</span><br><span class="line">    &lt;p&gt;你好，&lt;span id=<span class="string">'nickName'</span>&gt;&lt;/span&gt;&lt;/p&gt;</span><br><span class="line">    &lt;div id=<span class="string">"introduce"</span>&gt;&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;　</span><br><span class="line">```　</span><br><span class="line">Js</span><br><span class="line">```bash</span><br><span class="line">//视图控制器</span><br><span class="line">var userInfo = &#123;&#125;;</span><br><span class="line">Object.defineProperty(userInfo, <span class="string">"nickName"</span>, &#123;</span><br><span class="line">    get: <span class="function"><span class="title">function</span></span>()&#123;</span><br><span class="line">        <span class="built_in">return</span> document.getElementById(<span class="string">'nickName'</span>).innerHTML;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="built_in">set</span>: <span class="keyword">function</span>(nick)&#123;</span><br><span class="line">        document.getElementById(<span class="string">'nickName'</span>).innerHTML = nick;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line">Object.defineProperty(userInfo, <span class="string">"introduce"</span>, &#123;</span><br><span class="line">    get: <span class="function"><span class="title">function</span></span>()&#123;</span><br><span class="line">        <span class="built_in">return</span> document.getElementById(<span class="string">'introduce'</span>).innerHTML;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="built_in">set</span>: <span class="keyword">function</span>(introduce)&#123;</span><br><span class="line">        document.getElementById(<span class="string">'introduce'</span>).innerHTML = introduce;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
-<p>愉快地绑定数据交互</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">userInfo.nickName = <span class="string">"xxx"</span>;</span><br><span class="line">userInfo.introduce = <span class="string">"我是xxx，我来自云南，..."</span></span><br></pre></td></tr></table></figure>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">const jsonp = <span class="keyword">function</span>(url, data) &#123;</span><br><span class="line">	<span class="built_in">return</span> new Promise((resolve, reject) =&gt; &#123;</span><br><span class="line">	   //初始化url</span><br><span class="line">	   <span class="built_in">let</span> dataString = url.indexOf(<span class="string">'?'</span>) === -1 ? <span class="string">'?'</span> : <span class="string">'&amp;'</span></span><br><span class="line">	   <span class="built_in">let</span> callbackName = `jsonpCB_<span class="variable">$&#123;Date.now()&#125;</span>`</span><br><span class="line">	   url += `<span class="variable">$&#123;dataString&#125;</span>callback=&amp;&#123;callbackName&#125;`</span><br><span class="line">	   <span class="keyword">if</span>(data)&#123;</span><br><span class="line">           //有请求参数，依次添加到url</span><br><span class="line">           <span class="keyword">for</span>(<span class="built_in">let</span> k <span class="keyword">in</span> data)&#123;</span><br><span class="line">              url += `&amp;<span class="variable">$&#123;k&#125;</span>=<span class="variable">$&#123;data[k]&#125;</span>`</span><br><span class="line">           &#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">let</span> jsNode = document.createElement(<span class="string">'script'</span>)</span><br><span class="line">		jsNode.src = url</span><br><span class="line">		//触发callback，触发后删除js标签和绑定在window上的callback</span><br><span class="line">		window[callbackName] = result =&gt; &#123;</span><br><span class="line">           delete window[callbackName]</span><br><span class="line">           document.body.removeChild(jsNode)</span><br><span class="line">           <span class="keyword">if</span>(result)&#123;</span><br><span class="line">               resolve(result)</span><br><span class="line">           &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">               reject(<span class="string">'没有返回数据'</span>)</span><br><span class="line">           &#125;</span><br><span class="line">	    &#125;</span><br><span class="line">	    //js加载异常的情况</span><br><span class="line">	    jsNode.addEventListener(<span class="string">'error'</span>,() =&gt; &#123;</span><br><span class="line">	       delete window[callbackName]</span><br><span class="line">	       document.body.removeChild(jsNode)</span><br><span class="line">	       reject(<span class="string">'JavaScript资源加载失败'</span>)</span><br><span class="line">	    &#125;,<span class="literal">false</span>)</span><br><span class="line">	    //添加js节点到document上时，开始请求</span><br><span class="line">	    document.body.appendChild(jsNode)</span><br><span class="line">	&#125;)</span><br><span class="line">&#125;</span><br><span class="line">jsonp(<span class="string">'http://192.168.0.103:8081/jsonp'</span>,&#123;a:1, b:<span class="string">'heiheihei'</span>&#125;)</span><br><span class="line">.<span class="keyword">then</span>(result =&gt; &#123;console.log(result)&#125;)</span><br><span class="line">.catch(err =&gt; &#123;console.log(err)&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">## 总结</span></span><br><span class="line">个人感觉JSONP用的情况还是比较少吧，如果已经是需要服务端配合来进行跨域的情况，为什么不直接用CORS呢</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -436,7 +409,7 @@
           
             <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
           
-            <a href="/tags/vue/" rel="tag"># vue</a>
+            <a href="/tags/ajax/" rel="tag"># ajax</a>
           
         </div>
       
@@ -449,8 +422,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/01/13/彻底捋清楚new的实现/" rel="next" title="彻底捋清楚new的实现">
-                <i class="fa fa-chevron-left"></i> 彻底捋清楚new的实现
+              <a href="/2018/01/21/promise手动封装ajax函数/" rel="next" title="prmomise手动封装ajax函数">
+                <i class="fa fa-chevron-left"></i> prmomise手动封装ajax函数
               </a>
             
           </div>
@@ -459,8 +432,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/01/14/文件处理/" rel="prev" title="文件处理">
-                文件处理 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/01/21/vue计算属性的秘密/" rel="prev" title="vue计算属性的秘密">
+                vue计算属性的秘密 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -564,7 +537,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -613,7 +586,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Object-defineProperty-obj-prop-descriptor"><span class="nav-number">1.</span> <span class="nav-text">Object.defineProperty(obj, prop, descriptor)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据属性"><span class="nav-number">2.</span> <span class="nav-text">数据属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#访问器属性"><span class="nav-number">3.</span> <span class="nav-text">访问器属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#简易Vue双向绑定"><span class="nav-number">4.</span> <span class="nav-text">简易Vue双向绑定</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#JSONP原理"><span class="nav-number">1.</span> <span class="nav-text">JSONP原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注意事项"><span class="nav-number">2.</span> <span class="nav-text">注意事项</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码实现"><span class="nav-number">3.</span> <span class="nav-text">代码实现</span></a></li></ol></div>
             
 
           </div>

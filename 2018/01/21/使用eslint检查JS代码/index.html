@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="笔记,浏览器," />
+  <meta name="keywords" content="笔记,webpack," />
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="加载页面和渲染过程 加载过程：  浏览器根据DNS服务器得到域名的IP地址 向这个IP的机器发送HTTP请求 服务器收到、处理并返回HTTP请求 浏览器得到返回内容   渲染过程：  根据HTML结构生成DOM树 根据CSS生成CSSDOM 将DOM和CSSDOM整合形成RenderTre 根据RenderTree开始渲染和展示 遇到&amp;lt;script&amp;gt;时，会执行并阻塞渲染     为何要">
-<meta name="keywords" content="笔记,浏览器">
+<meta name="description" content="安装配置 安装eslint, 如果要全局安装eslint，相关依赖包也要全局安装 1npm install eslint  初始化配置文件 1eslint init   选择是否使用ES6、是否使用jsx语法、配置文件格式等等。配置完成后，生成一个.eslintrc.js文件：12345678910111213141516171819202122232425262728    &quot;env&quot;: &amp;#1">
+<meta name="keywords" content="笔记,webpack">
 <meta property="og:type" content="article">
-<meta property="og:title" content="浏览器相关知识点">
-<meta property="og:url" content="/2018/02/01/浏览器相关知识点/index.html">
+<meta property="og:title" content="使用eslint检查JS代码">
+<meta property="og:url" content="/2018/01/21/使用eslint检查JS代码/index.html">
 <meta property="og:site_name" content="Aishlily&#39;s Blog">
-<meta property="og:description" content="加载页面和渲染过程 加载过程：  浏览器根据DNS服务器得到域名的IP地址 向这个IP的机器发送HTTP请求 服务器收到、处理并返回HTTP请求 浏览器得到返回内容   渲染过程：  根据HTML结构生成DOM树 根据CSS生成CSSDOM 将DOM和CSSDOM整合形成RenderTre 根据RenderTree开始渲染和展示 遇到&amp;lt;script&amp;gt;时，会执行并阻塞渲染     为何要">
+<meta property="og:description" content="安装配置 安装eslint, 如果要全局安装eslint，相关依赖包也要全局安装 1npm install eslint  初始化配置文件 1eslint init   选择是否使用ES6、是否使用jsx语法、配置文件格式等等。配置完成后，生成一个.eslintrc.js文件：12345678910111213141516171819202122232425262728    &quot;env&quot;: &amp;#1">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-14T06:00:46.741Z">
+<meta property="og:updated_time" content="2018-04-16T06:16:27.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="浏览器相关知识点">
-<meta name="twitter:description" content="加载页面和渲染过程 加载过程：  浏览器根据DNS服务器得到域名的IP地址 向这个IP的机器发送HTTP请求 服务器收到、处理并返回HTTP请求 浏览器得到返回内容   渲染过程：  根据HTML结构生成DOM树 根据CSS生成CSSDOM 将DOM和CSSDOM整合形成RenderTre 根据RenderTree开始渲染和展示 遇到&amp;lt;script&amp;gt;时，会执行并阻塞渲染     为何要">
+<meta name="twitter:title" content="使用eslint检查JS代码">
+<meta name="twitter:description" content="安装配置 安装eslint, 如果要全局安装eslint，相关依赖包也要全局安装 1npm install eslint  初始化配置文件 1eslint init   选择是否使用ES6、是否使用jsx语法、配置文件格式等等。配置完成后，生成一个.eslintrc.js文件：12345678910111213141516171819202122232425262728    &quot;env&quot;: &amp;#1">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="/2018/02/01/浏览器相关知识点/"/>
+  <link rel="canonical" href="/2018/01/21/使用eslint检查JS代码/"/>
 
 
 
 
 
-  <title>浏览器相关知识点 | Aishlily's Blog</title>
+  <title>使用eslint检查JS代码 | Aishlily's Blog</title>
   
 
 
@@ -293,7 +293,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="/2018/02/01/浏览器相关知识点/">
+    <link itemprop="mainEntityOfPage" href="/2018/01/21/使用eslint检查JS代码/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Aishlily">
@@ -310,7 +310,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">浏览器相关知识点</h1>
+          <h1 class="post-title" itemprop="name headline">使用eslint检查JS代码</h1>
         
 
         <div class="post-meta">
@@ -322,8 +322,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-01T12:55:45+08:00">
-                2018-02-01
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-21T12:55:45+08:00">
+                2018-01-21
               </time>
             
 
@@ -345,8 +345,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/浏览器/" itemprop="url" rel="index">
-                    <span itemprop="name">浏览器</span>
+                  <a href="/categories/JavaScript技术/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript技术</span>
                   </a>
                 </span>
 
@@ -382,93 +382,37 @@
       
 
       
-        <h2 id="加载页面和渲染过程"><a href="#加载页面和渲染过程" class="headerlink" title="加载页面和渲染过程"></a>加载页面和渲染过程</h2><ul>
-<li><p>加载过程：</p>
-<ol>
-<li>浏览器根据DNS服务器得到域名的IP地址</li>
-<li>向这个IP的机器发送HTTP请求</li>
-<li>服务器收到、处理并返回HTTP请求</li>
-<li>浏览器得到返回内容</li>
-</ol>
+        <h2 id="安装配置"><a href="#安装配置" class="headerlink" title="安装配置"></a>安装配置</h2><ol>
+<li><p>安装<code>eslint</code>, 如果要全局安装<code>eslint</code>，相关依赖包也要全局安装</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install eslint</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>渲染过程：</p>
-<ol>
-<li>根据HTML结构生成DOM树</li>
-<li>根据CSS生成CSSDOM</li>
-<li>将DOM和CSSDOM整合形成RenderTre</li>
-<li>根据RenderTree开始渲染和展示</li>
-<li>遇到<code>&lt;script&gt;</code>时，会执行并阻塞渲染</li>
-</ol>
+<li><p>初始化配置文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">eslint init</span><br></pre></td></tr></table></figure>
 </li>
-</ul>
-<blockquote>
-<p><strong>为何要将 CSS 放在 HTML 头部？</strong> —— 这样会让浏览器尽早拿到 CSS 尽早生成 CSSOM，然后在解析 HTML 之后可一次性生成最终的 RenderTree，渲染一次即可。如果 CSS 放在 HTML 底部，会出现渲染卡顿的情况，影响性能和体验。</p>
-</blockquote>
-<p>推荐阅读下：《<a href="http://fex.baidu.com/blog/2014/05/what-happen/" target="_blank" rel="noopener">从输入 URL 到页面加载完成的过程中都发生了什么事情？</a>{:target=”_blank”} 》</p>
-<h2 id="性能优化"><a href="#性能优化" class="headerlink" title="性能优化"></a>性能优化</h2><ul>
-<li><p>优化原则和方向<br><strong>性能优化的原则是以更好的用户体验为标准，具体就是实现下面的目标：</strong></p>
-<ol>
-<li>多使用内存、缓存或者其他方法</li>
-<li>减少 CPU 和GPU 计算，更快展现</li>
 </ol>
-</li>
-</ul>
-<p><strong>优化的方向有两个：</strong></p>
-<ol>
-<li>减少页面体积，提升网络加载</li>
-<li>优化页面渲染</li>
-</ol>
-<p><strong>减少页面体积，提升网络加载</strong></p>
+<p>选择是否使用<code>ES6</code>、是否使用<code>jsx</code>语法、配置文件格式等等。配置完成后，生成一个<code>.eslintrc.js</code>文件：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">    <span class="string">"env"</span>: &#123;</span><br><span class="line">        <span class="string">"browser"</span>: <span class="literal">true</span>,</span><br><span class="line">        <span class="string">"es6"</span>: <span class="literal">true</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">"extends"</span>: <span class="string">"eslint:recommended"</span>,</span><br><span class="line">    <span class="string">"parserOptions"</span>: &#123;</span><br><span class="line">        <span class="string">"sourceType"</span>: <span class="string">"module"</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">"rules"</span>: &#123;</span><br><span class="line">        <span class="string">"indent"</span>: [</span><br><span class="line">            <span class="string">"error"</span>,</span><br><span class="line">            <span class="string">"tab"</span></span><br><span class="line">        ],</span><br><span class="line">        <span class="string">"linebreak-style"</span>: [</span><br><span class="line">            <span class="string">"error"</span>,</span><br><span class="line">            <span class="string">"windows"</span></span><br><span class="line">        ],</span><br><span class="line">        <span class="string">"quotes"</span>: [</span><br><span class="line">            <span class="string">"error"</span>,</span><br><span class="line">            <span class="string">"double"</span></span><br><span class="line">        ],</span><br><span class="line">        <span class="string">"semi"</span>: [</span><br><span class="line">            <span class="string">"error"</span>,</span><br><span class="line">            <span class="string">"never"</span></span><br><span class="line">        ],</span><br><span class="line">        <span class="string">"no-console"</span>: 0 </span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
 <ul>
-<li>静态资源的压缩合并（JS 代码压缩合并、CSS 代码压缩合并、雪碧图）</li>
-<li>静态资源缓存（资源名称加 MD5 戳）</li>
-<li>使用 CDN 让资源加载更快</li>
-</ul>
-<p><strong>优化页面渲染</strong></p>
-<ul>
-<li>CSS 放前面，JS 放后面</li>
-<li>懒加载（图片懒加载、下拉加载更多）<blockquote>
-<p>所有img公用一张预览图片，页面下拉时，再现实正确的图片<br><code>&lt;img src=&quot;preview.png&quot; data-realsrc=&quot;abc.png&quot; /&gt;</code><br>所有HTML中自定义的属性，都应该用<code>data-</code>开头，因为<code>data-</code>开头的属性浏览器渲染时会忽略掉，提高渲染性能</p>
-</blockquote>
+<li><p><code>eslint</code>会根据这里配置的<code>rule</code>规则对代码进行检验，键值分别对应规则名和状态，比如“no-console”是规则名，0表示不执行这条规则。<code>extends</code>表示继承自哪个共享的配置文件，<code>env</code>表示检查代码时所属的环境。</p>
 </li>
-<li>减少DOM 查询，对 DOM 查询做缓存</li>
-<li>减少DOM 操作，多个操作尽量合并在一起执行（<code>DocumentFragment</code>）</li>
-<li><p>事件节流</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">	var textarea = document.getElementById(<span class="string">'text'</span>)</span><br><span class="line">var timeoutId</span><br><span class="line">textarea.addEventListener(<span class="string">'keyup'</span>, <span class="function"><span class="title">function</span></span> () &#123;</span><br><span class="line">    <span class="keyword">if</span> (timeoutId) &#123;</span><br><span class="line">        clearTimeout(timeoutId)</span><br><span class="line">    &#125;</span><br><span class="line">    timeoutId = setTimeout(<span class="function"><span class="title">function</span></span> () &#123;</span><br><span class="line">        // 触发 change 事件</span><br><span class="line">    &#125;, 100)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<li><p><code>0</code>或者<code>off</code>表示关闭规则；<code>1</code>或者<code>warn</code>表示开启规则，使用警告级别的错误；<code>2</code>或者<code>error</code>表示开启规则，使用错误级别的错误</p>
+<ol start="3">
+<li>检查代码<br>创建代码<code>index.js</code>,编写程序，然后输入命令：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">eslint index.js</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>尽早执行操作（<code>DOMContentLoaded</code>）</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">window.addEventListener(<span class="string">'load'</span>, <span class="function"><span class="title">function</span></span> () &#123;</span><br><span class="line">    // 页面的全部资源加载完才会执行，包括图片、视频等</span><br><span class="line">&#125;)</span><br><span class="line">document.addEventListener(<span class="string">'DOMContentLoaded'</span>, <span class="function"><span class="title">function</span></span> () &#123;</span><br><span class="line">    // DOM 渲染完即可执行，此时图片、视频还可能没有加载完</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>使用 SSR 后端渲染，数据直接输出到 HTML 中，减少浏览器使用 JS 模板渲染页面 HTML 的时间</p>
+</ol>
 </li>
 </ul>
-<p><strong>性能优化怎么做</strong></p>
-<ol>
-<li>建立性能数据收集平台，摸底当前性能数据，通过性能打点，将上述整个页面打开过程消耗时间记录下来</li>
-<li>分析耗时较长时间段原因，寻找优化点，确定优化目标</li>
-<li>开始优化</li>
-<li>通过数据收集平台记录优化效果</li>
-<li>不断调整优化点和预期目标，循环2~4步骤<br>性能优化是个长期的事情，不是一蹴而就的，应该本着先摸底、再分析、后优化的原则逐步来做。</li>
+<p>如果代码报错，命令行会提示你多少行触发了哪条规则的错误，你就可以对代码进行改正，或者修改配置文件中的rule规则</p>
+<ol start="4">
+<li>其他方法<br><code>eslint</code>配置还可以卸载<code>package.json</code>中：新增一个<code>eslintConfig</code>，将上述配置文件的内容放在下面。</li>
 </ol>
-<h2 id="WEB安全"><a href="#WEB安全" class="headerlink" title="WEB安全"></a>WEB安全</h2><p>前端安全问题主要有XSS、CSRF攻击<br><strong>XSS：跨站脚本攻击</strong><br>它允许用户将恶意代码植入到提供给其他用户使用的页面中，可以简单的理解为一种javascript代码注入。<strong>注入的JavaScript代码跟原网页的JavaScript代码有相同的权限，可以获取server端数据、获取cookie等</strong></p>
-<p>XSS的防御措施：</p>
-<ol>
-<li><p>过滤转义输入输出</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&amp; 替换为：&amp;amp;</span><br><span class="line">&lt; 替换为：&amp;lt;</span><br><span class="line">&gt; 替换为：&amp;gt;</span><br><span class="line">” 替换为：&amp;quot;</span><br><span class="line">‘ 替换为：&amp;<span class="comment">#x27;</span></span><br><span class="line">/ 替换为：&amp;<span class="comment">#x2f;</span></span><br></pre></td></tr></table></figure>
+<h2 id="集成到webpack"><a href="#集成到webpack" class="headerlink" title="集成到webpack"></a>集成到webpack</h2><ol>
+<li>安装<code>webpack</code></li>
+<li>依次按照<code>eslint-loader</code>、<code>eslint-config-standard</code>、<code>eslint-plugin-html</code>、<code>eslint-plugin-promise</code>、<code>eslint-plugin-standard</code>、<code>eslint-friendly-formatter</code>。注意如果<code>eslint</code>是全局安装的，这些依赖包也需要全局安装。</li>
+<li><p>在项目根目录中，新建<code>webpack</code>配置文件<code>webpack.config.js</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">module.exports = &#123;</span><br><span class="line">    entry: &#123;</span><br><span class="line">        index: <span class="string">"./src/index.js"</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    output: &#123;</span><br><span class="line">        path: __dirname + <span class="string">"/dist/"</span>,</span><br><span class="line">        filename: <span class="string">"[name].js"</span></span><br><span class="line">    &#125;,</span><br><span class="line">    resolve: &#123;</span><br><span class="line">        extensions: [<span class="string">'.js'</span>, <span class="string">'.vue'</span>, <span class="string">'.json'</span>]</span><br><span class="line">    &#125;,</span><br><span class="line">    module: &#123;</span><br><span class="line">         rules: [</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="built_in">test</span>: /\.js$/,</span><br><span class="line">                    exclude: /node_modules/,</span><br><span class="line">                    loaders: [</span><br><span class="line">                        <span class="string">'eslint-loader'</span></span><br><span class="line">                    ]</span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="built_in">test</span>: /\.vue|\.js$/,</span><br><span class="line">                    enforce: <span class="string">'pre'</span>,  // 在babel-loader对源码进行编译前进行lint的检查</span><br><span class="line">                    include: /src/,  // src文件夹下的文件需要被lint</span><br><span class="line">                    use: [&#123;</span><br><span class="line">                        loader: <span class="string">'eslint-loader'</span>,</span><br><span class="line">                        options: &#123;</span><br><span class="line">                            formatter: require(<span class="string">'eslint-friendly-formatter'</span>)   // 编译后错误报告格式</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;]</span><br><span class="line">                &#125;</span><br><span class="line">            ]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>避免使用<code>eval</code>、<code>new Function</code>等执行字符串的方法，除非确定字符串和用户输入无关</p>
+<li><p>在src文件夹下，新建<code>index.js</code>文件，输入<code>webpack</code>打包代码的过程会使用<code>eslint</code>检查代码。</p>
 </li>
-<li>使用<code>cookie</code>的<code>httpOnly</code>属性，加上了这个属性的<code>cookie</code>字段，js是无法进行读写的</li>
-<li>使用<code>innerHTML</code>、<code>document.write</code>的时候，如果数据是用户输入的，那么需要对象关键字符进行过滤与转义</li>
-</ol>
-<p><strong>CSRF：跨站请求伪造</strong><br>CSRF就是借用当前操作者的权限来偷偷地完成某个操作，而不是拿到用户的信息。</p>
-<p>例如，一个支付类网站，给他人转账的接口是<code>http://buy.com/pay?touid=999&amp;money=100</code>，而这个接口在使用时没有任何密码或者 <code>token</code> 的验证，只要打开访问就直接给他人转账。一个用户已经登录了<code>http://buy.com</code>，在选择商品时，突然收到一封邮件，而这封邮件正文有这么一行代码<code>&lt;img src=&quot;http://buy.com/pay?touid=999&amp;money=100&quot;/&gt;</code>，他访问了邮件之后，其实就已经完成了购买。</p>
-<p>CSRF 的发生其实是借助了一个 <code>cookie</code> 的特性。我们知道，登录了<code>http://buy.com</code>之后，<code>cookie</code> 就会有登录过的标记了，此时请求<code>http://buy.com/pay?touid=999&amp;money=100</code>是会带着 <code>cookie</code> 的，因此 <code>server</code> 端就知道已经登录了。而如果在<code>http://buy.com</code>去请求其他域名的 API 例如<code>http://abc.com/api</code>时，是不会带 <code>cookie</code> 的，这是浏览器的同源策略的限制。但是 —— <strong>此时在其他域名的页面中，请求<code>http://buy.com/pay?touid=999&amp;money=100</code>，会带着<code>buy.com</code>的 <code>cookie</code> ，这是发生 CSRF 攻击的理论基础</strong>。</p>
-<p>CSRF防御措施：</p>
-<ol>
-<li>检测<code>http referer</code>是否是同域名</li>
-<li>避免登录的<code>session</code>长时间存储在客户端中</li>
-<li>关键请求使用验证码或者<code>token</code>机制<br>其他的一些攻击方法还有HTTP劫持、界面操作劫持</li>
 </ol>
 
       
@@ -489,7 +433,7 @@
           
             <a href="/tags/笔记/" rel="tag"># 笔记</a>
           
-            <a href="/tags/浏览器/" rel="tag"># 浏览器</a>
+            <a href="/tags/webpack/" rel="tag"># webpack</a>
           
         </div>
       
@@ -502,8 +446,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/01/29/WEB API/" rel="next" title="WEB API">
-                <i class="fa fa-chevron-left"></i> WEB API
+              <a href="/2018/01/20/NodeJs/" rel="next" title="NodeJs">
+                <i class="fa fa-chevron-left"></i> NodeJs
               </a>
             
           </div>
@@ -512,8 +456,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/02/01/从零构建JavaScript的对象系统/" rel="prev" title="从零构建JavaScript的对象系统">
-                从零构建JavaScript的对象系统 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/01/21/promise手动封装ajax函数/" rel="prev" title="prmomise手动封装ajax函数">
+                prmomise手动封装ajax函数 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -666,7 +610,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#加载页面和渲染过程"><span class="nav-number">1.</span> <span class="nav-text">加载页面和渲染过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#性能优化"><span class="nav-number">2.</span> <span class="nav-text">性能优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WEB安全"><span class="nav-number">3.</span> <span class="nav-text">WEB安全</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装配置"><span class="nav-number">1.</span> <span class="nav-text">安装配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#集成到webpack"><span class="nav-number">2.</span> <span class="nav-text">集成到webpack</span></a></li></ol></div>
             
 
           </div>
