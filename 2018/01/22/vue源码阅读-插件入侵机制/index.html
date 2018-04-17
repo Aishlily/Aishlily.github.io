@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="插件就是按照一定的封装方式，暴露接口。让我们利用这些接口更快捷的实现功能。升职加薪。每个框架都提供了插件的扩展机制。这是框架可扩展性必不可少的一个部分。插件机制越简单。对于框架的生态的发展大有好处。jquery提供了$.fn.extend,angular有对应的依赖注入，module机制。既然vue那么精美，能迅速火起来。插件这部分的可扩展性必须顶级。这里接下来我们看看vue插件的入侵机制。说到插">
+<meta name="description" content="插件就是按照一定的封装方式，暴露接口。让我们利用这些接口更快捷的实现功能。每个框架都提供了插件的扩展机制。这是框架可扩展性必不可少的一个部分。插件机制越简单。对于框架的生态的发展大有好处。jquery提供了$.fn.extend,angular有对应的依赖注入，module机制。既然vue那么精美，能迅速火起来。插件这部分的可扩展性必须顶级。这里接下来我们看看vue插件的入侵机制。说到插件。我们最">
 <meta name="keywords" content="笔记,JavaScript,vue">
 <meta property="og:type" content="article">
 <meta property="og:title" content="vue源码阅读-插件入侵机制">
 <meta property="og:url" content="/2018/01/22/vue源码阅读-插件入侵机制/index.html">
 <meta property="og:site_name" content="Aishlily&#39;s Blog">
-<meta property="og:description" content="插件就是按照一定的封装方式，暴露接口。让我们利用这些接口更快捷的实现功能。升职加薪。每个框架都提供了插件的扩展机制。这是框架可扩展性必不可少的一个部分。插件机制越简单。对于框架的生态的发展大有好处。jquery提供了$.fn.extend,angular有对应的依赖注入，module机制。既然vue那么精美，能迅速火起来。插件这部分的可扩展性必须顶级。这里接下来我们看看vue插件的入侵机制。说到插">
+<meta property="og:description" content="插件就是按照一定的封装方式，暴露接口。让我们利用这些接口更快捷的实现功能。每个框架都提供了插件的扩展机制。这是框架可扩展性必不可少的一个部分。插件机制越简单。对于框架的生态的发展大有好处。jquery提供了$.fn.extend,angular有对应的依赖注入，module机制。既然vue那么精美，能迅速火起来。插件这部分的可扩展性必须顶级。这里接下来我们看看vue插件的入侵机制。说到插件。我们最">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-14T05:55:38.620Z">
+<meta property="og:updated_time" content="2018-04-17T09:04:39.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="vue源码阅读-插件入侵机制">
-<meta name="twitter:description" content="插件就是按照一定的封装方式，暴露接口。让我们利用这些接口更快捷的实现功能。升职加薪。每个框架都提供了插件的扩展机制。这是框架可扩展性必不可少的一个部分。插件机制越简单。对于框架的生态的发展大有好处。jquery提供了$.fn.extend,angular有对应的依赖注入，module机制。既然vue那么精美，能迅速火起来。插件这部分的可扩展性必须顶级。这里接下来我们看看vue插件的入侵机制。说到插">
+<meta name="twitter:description" content="插件就是按照一定的封装方式，暴露接口。让我们利用这些接口更快捷的实现功能。每个框架都提供了插件的扩展机制。这是框架可扩展性必不可少的一个部分。插件机制越简单。对于框架的生态的发展大有好处。jquery提供了$.fn.extend,angular有对应的依赖注入，module机制。既然vue那么精美，能迅速火起来。插件这部分的可扩展性必须顶级。这里接下来我们看看vue插件的入侵机制。说到插件。我们最">
 
 
 
@@ -382,7 +382,7 @@
       
 
       
-        <p>插件就是按照一定的封装方式，暴露接口。让我们利用这些接口更快捷的实现功能。升职加薪。每个框架都提供了插件的扩展机制。这是框架可扩展性必不可少的一个部分。插件机制越简单。对于框架的生态的发展大有好处。jquery提供了<code>$.fn.extend</code>,angular有对应的依赖注入，module机制。既然vue那么精美，能迅速火起来。插件这部分的可扩展性必须顶级。这里接下来我们看看vue插件的入侵机制。<br>说到插件。我们最多使用的一个方法。无非就是 <code>Vue.use(MyPlugin, { someOption: true })</code>;<br>这么说的话，这个方法应该是所有插件入侵vue的起点。没错。那么我们来看看这个方法：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">Vue.use = <span class="keyword">function</span> (plugin) &#123;</span><br><span class="line">    /* istanbul ignore <span class="keyword">if</span> */</span><br><span class="line">    <span class="keyword">if</span> (plugin.installed) &#123;</span><br><span class="line">      <span class="built_in">return</span>.  //假如插件已经初始化过就不再继续。避免插件重复入侵</span><br><span class="line">    &#125;</span><br><span class="line">    // additional parameters</span><br><span class="line">    var args = toArray(arguments, 1);   //获取插件的配置参数</span><br><span class="line">    args.unshift(this);</span><br><span class="line">    <span class="keyword">if</span> (typeof plugin.install === <span class="string">'function'</span>) &#123;</span><br><span class="line">      plugin.install.apply(plugin, args);   //调用的是插件的install方法；</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (typeof plugin === <span class="string">'function'</span>) &#123;</span><br><span class="line">      plugin.apply(null, args);     //若插件本省就是一个函数。则直接调用该函数</span><br><span class="line">    &#125;</span><br><span class="line">    plugin.installed = <span class="literal">true</span>;</span><br><span class="line">    <span class="built_in">return</span> this</span><br><span class="line">  &#125;;</span><br></pre></td></tr></table></figure></p>
+        <p>插件就是按照一定的封装方式，暴露接口。让我们利用这些接口更快捷的实现功能。每个框架都提供了插件的扩展机制。这是框架可扩展性必不可少的一个部分。插件机制越简单。对于框架的生态的发展大有好处。jquery提供了<code>$.fn.extend</code>,angular有对应的依赖注入，module机制。既然vue那么精美，能迅速火起来。插件这部分的可扩展性必须顶级。这里接下来我们看看vue插件的入侵机制。<br>说到插件。我们最多使用的一个方法。无非就是 <code>Vue.use(MyPlugin, { someOption: true })</code>;<br>这么说的话，这个方法应该是所有插件入侵vue的起点。没错。那么我们来看看这个方法：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">Vue.use = <span class="keyword">function</span> (plugin) &#123;</span><br><span class="line">    /* istanbul ignore <span class="keyword">if</span> */</span><br><span class="line">    <span class="keyword">if</span> (plugin.installed) &#123;</span><br><span class="line">      <span class="built_in">return</span>.  //假如插件已经初始化过就不再继续。避免插件重复入侵</span><br><span class="line">    &#125;</span><br><span class="line">    // additional parameters</span><br><span class="line">    var args = toArray(arguments, 1);   //获取插件的配置参数</span><br><span class="line">    args.unshift(this);</span><br><span class="line">    <span class="keyword">if</span> (typeof plugin.install === <span class="string">'function'</span>) &#123;</span><br><span class="line">      plugin.install.apply(plugin, args);   //调用的是插件的install方法；</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (typeof plugin === <span class="string">'function'</span>) &#123;</span><br><span class="line">      plugin.apply(null, args);     //若插件本省就是一个函数。则直接调用该函数</span><br><span class="line">    &#125;</span><br><span class="line">    plugin.installed = <span class="literal">true</span>;</span><br><span class="line">    <span class="built_in">return</span> this</span><br><span class="line">  &#125;;</span><br></pre></td></tr></table></figure></p>
 <p>Vue.use这个方法让我们知道来。插件入侵的起点是调用插件自身的install函数。那么不同的插件入侵的机制有些时候很不一样。我们可以知道。这个不一样肯定发生在install函数中。我们来看看官方的install函数中的一些方式：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">MyPlugin.install = <span class="keyword">function</span> (Vue, options) &#123;</span><br><span class="line">  // 1. 添加全局方法或属性</span><br><span class="line">  Vue.myGlobalMethod = <span class="function"><span class="title">function</span></span> () &#123;</span><br><span class="line">    // 逻辑...</span><br><span class="line">  &#125;</span><br><span class="line">  // 2. 添加全局资源</span><br><span class="line">  Vue.directive(<span class="string">'my-directive'</span>, &#123;</span><br><span class="line">    <span class="built_in">bind</span> (el, binding, vnode, oldVnode) &#123;</span><br><span class="line">      // 逻辑...</span><br><span class="line">    &#125;</span><br><span class="line">    ...</span><br><span class="line">  &#125;)</span><br><span class="line">  // 3. 注入组件</span><br><span class="line">  Vue.mixin(&#123;</span><br><span class="line">    created: <span class="function"><span class="title">function</span></span> () &#123;</span><br><span class="line">      // 逻辑...</span><br><span class="line">    &#125;</span><br><span class="line">    ...</span><br><span class="line">  &#125;)</span><br><span class="line">  // 4. 添加实例方法</span><br><span class="line">  Vue.prototype.<span class="variable">$myMethod</span> = <span class="keyword">function</span> (options) &#123;</span><br><span class="line">    // 逻辑...</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>我们按官网推荐的四种例子。来看看每种方法对应的源码：</p>
 <ol>
@@ -450,8 +450,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/01/22/vue组件/" rel="next" title="vue组件">
-                <i class="fa fa-chevron-left"></i> vue组件
+              <a href="/2018/01/22/vue响应式数组/" rel="next" title="vue响应式--数组变异方法">
+                <i class="fa fa-chevron-left"></i> vue响应式--数组变异方法
               </a>
             
           </div>
@@ -460,8 +460,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/01/22/vue源码阅读-prop机制/" rel="prev" title="vue源码阅读-prop机制">
-                vue源码阅读-prop机制 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/01/29/WEB API/" rel="prev" title="WEB API">
+                WEB API <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -534,7 +534,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">49</span>
+                  <span class="site-state-item-count">50</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

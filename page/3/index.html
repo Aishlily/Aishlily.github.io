@@ -289,7 +289,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="/2018/01/21/vue计算属性的秘密/">
+    <link itemprop="mainEntityOfPage" href="/2018/01/21/promise手动封装ajax函数/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Aishlily">
@@ -308,7 +308,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/01/21/vue计算属性的秘密/" itemprop="url">vue计算属性的秘密</a></h1>
+                <a class="post-title-link" href="/2018/01/21/promise手动封装ajax函数/" itemprop="url">prmomise手动封装ajax函数</a></h1>
         
 
         <div class="post-meta">
@@ -343,8 +343,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/vue/" itemprop="url" rel="index">
-                    <span itemprop="name">vue</span>
+                  <a href="/categories/JavaScript技术/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript技术</span>
                   </a>
                 </span>
 
@@ -382,11 +382,12 @@
       
         
           
-          计算属性是一个很邪门的东西，只要在它的函数里引用了 data 中的某个属性，当这个属性发生变化时，函数仿佛可以嗅探到这个变化，并自动重新执行。12345678910111213141516new Vue(&#123;	data:&#123;	   b: 1	&#125;,	mounted: func
+          ajax是一种技术方案，但并不是一种新技术。它依赖的是现有的CSS/HTML/Javascript，而其中最核心的依赖是浏览器提供的XMLHttpRequest对象，是这个对象使得浏览器可以发出HTTP请求与接收HTTP响应。
+一句话来总结两者的关系：使用XMLHttpRequest对象来发送一个A
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/01/21/vue计算属性的秘密/#more" rel="contents">
+            <a class="btn" href="/2018/01/21/promise手动封装ajax函数/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -588,7 +589,7 @@ callback函数要绑定在window对象上
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="/2018/01/20/jQuery()方法的构建原理/">
+    <link itemprop="mainEntityOfPage" href="/2018/01/21/vue计算属性的秘密/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Aishlily">
@@ -607,7 +608,7 @@ callback函数要绑定在window对象上
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/01/20/jQuery()方法的构建原理/" itemprop="url">jQuery()方法的构建原理</a></h1>
+                <a class="post-title-link" href="/2018/01/21/vue计算属性的秘密/" itemprop="url">vue计算属性的秘密</a></h1>
         
 
         <div class="post-meta">
@@ -619,8 +620,8 @@ callback函数要绑定在window对象上
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-20T12:55:45+08:00">
-                2018-01-20
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-21T12:55:45+08:00">
+                2018-01-21
               </time>
             
 
@@ -642,8 +643,8 @@ callback函数要绑定在window对象上
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JavaScript技术/" itemprop="url" rel="index">
-                    <span itemprop="name">JavaScript技术</span>
+                  <a href="/categories/vue/" itemprop="url" rel="index">
+                    <span itemprop="name">vue</span>
                   </a>
                 </span>
 
@@ -681,14 +682,11 @@ callback函数要绑定在window对象上
       
         
           
-          jQuery中最常用方法的就是jQuery( )，也即$( )。
-jQuery( )是一个函数调用，调用的结果是返回了一个jQuery实例对象。
-
-编写组件通常的做法是将组件封装成一个对象，需要用的时候则通过new运算符来创建一个实例。但是jQuery( )无须我们用new手工实例化，它会自动返回一
+          计算属性是一个很邪门的东西，只要在它的函数里引用了 data 中的某个属性，当这个属性发生变化时，函数仿佛可以嗅探到这个变化，并自动重新执行。12345678910111213141516new Vue(&#123;	data:&#123;	   b: 1	&#125;,	mounted: func
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/01/20/jQuery()方法的构建原理/#more" rel="contents">
+            <a class="btn" href="/2018/01/21/vue计算属性的秘密/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -897,6 +895,157 @@ Event
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="/2018/01/20/jQuery()方法的构建原理/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Aishlily">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/my.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Aishlily's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/20/jQuery()方法的构建原理/" itemprop="url">jQuery()方法的构建原理</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-20T12:55:45+08:00">
+                2018-01-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript技术/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          jQuery中最常用方法的就是jQuery( )，也即$( )。
+jQuery( )是一个函数调用，调用的结果是返回了一个jQuery实例对象。
+
+编写组件通常的做法是将组件封装成一个对象，需要用的时候则通过new运算符来创建一个实例。但是jQuery( )无须我们用new手工实例化，它会自动返回一
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/01/20/jQuery()方法的构建原理/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="/2018/01/19/H5问题及解决方案/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -916,7 +1065,7 @@ Event
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/01/19/H5问题及解决方案/" itemprop="url">H5问题及解决方案</a></h1>
+                <a class="post-title-link" href="/2018/01/19/H5问题及解决方案/" itemprop="url">H5项目常见问题及注意事项</a></h1>
         
 
         <div class="post-meta">
@@ -990,7 +1139,8 @@ Event
       
         
           
-          http://www.open-open.com/lib/view/open1452170431167.htmlhttp://www.open-open.com/lib/view/open1448027741088.htmlhttp://www.open-open.com/lib/view/open
+          Meta基础知识H5页面窗口自动调整到设备宽度，并禁止用户缩放页面
+HTML页面结构1&lt;meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1642,154 +1792,6 @@ Event
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="/2018/01/17/原型链/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Aishlily">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/my.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Aishlily's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/01/17/原型链/" itemprop="url">原型链</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-17T16:45:45+08:00">
-                2018-01-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JavaScript技术/" itemprop="url" rel="index">
-                    <span itemprop="name">JavaScript技术</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          原型对象构造函数JavaScript通过构造函数生成新对象，因此构造函数可以视为对象的模板。实例对象的属性和方法，可以定义在构造函数内部。123456function Cat (name, color)&#123;  this.name = name  this.color = color&#125
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/01/17/原型链/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1844,7 +1846,7 @@ Event
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">49</span>
+                  <span class="site-state-item-count">50</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

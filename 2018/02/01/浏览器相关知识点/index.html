@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="加载页面和渲染过程 加载过程：  浏览器根据DNS服务器得到域名的IP地址 向这个IP的机器发送HTTP请求 服务器收到、处理并返回HTTP请求 浏览器得到返回内容   渲染过程：  根据HTML结构生成DOM树 根据CSS生成CSSDOM 将DOM和CSSDOM整合形成RenderTre 根据RenderTree开始渲染和展示 遇到&amp;lt;script&amp;gt;时，会执行并阻塞渲染     为何要">
+<meta name="description" content="加载页面和渲染过程加载过程 浏览器根据DNS服务器得到域名的IP地址 向这个IP的机器发送HTTP请求 服务器收到、处理并返回HTTP请求 浏览器得到返回内容  渲染过程 根据HTML结构生成DOM树 根据CSS生成CSSDOM 将DOM和CSSDOM整合形成RenderTre 根据RenderTree开始渲染和展示 遇到&amp;lt;script&amp;gt;时，会执行并阻塞渲染   为何要将 CSS 放在">
 <meta name="keywords" content="笔记,浏览器">
 <meta property="og:type" content="article">
-<meta property="og:title" content="浏览器相关知识点">
+<meta property="og:title" content="性能优化及WEB安全">
 <meta property="og:url" content="/2018/02/01/浏览器相关知识点/index.html">
 <meta property="og:site_name" content="Aishlily&#39;s Blog">
-<meta property="og:description" content="加载页面和渲染过程 加载过程：  浏览器根据DNS服务器得到域名的IP地址 向这个IP的机器发送HTTP请求 服务器收到、处理并返回HTTP请求 浏览器得到返回内容   渲染过程：  根据HTML结构生成DOM树 根据CSS生成CSSDOM 将DOM和CSSDOM整合形成RenderTre 根据RenderTree开始渲染和展示 遇到&amp;lt;script&amp;gt;时，会执行并阻塞渲染     为何要">
+<meta property="og:description" content="加载页面和渲染过程加载过程 浏览器根据DNS服务器得到域名的IP地址 向这个IP的机器发送HTTP请求 服务器收到、处理并返回HTTP请求 浏览器得到返回内容  渲染过程 根据HTML结构生成DOM树 根据CSS生成CSSDOM 将DOM和CSSDOM整合形成RenderTre 根据RenderTree开始渲染和展示 遇到&amp;lt;script&amp;gt;时，会执行并阻塞渲染   为何要将 CSS 放在">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-14T06:00:46.741Z">
+<meta property="og:updated_time" content="2018-04-17T05:32:26.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="浏览器相关知识点">
-<meta name="twitter:description" content="加载页面和渲染过程 加载过程：  浏览器根据DNS服务器得到域名的IP地址 向这个IP的机器发送HTTP请求 服务器收到、处理并返回HTTP请求 浏览器得到返回内容   渲染过程：  根据HTML结构生成DOM树 根据CSS生成CSSDOM 将DOM和CSSDOM整合形成RenderTre 根据RenderTree开始渲染和展示 遇到&amp;lt;script&amp;gt;时，会执行并阻塞渲染     为何要">
+<meta name="twitter:title" content="性能优化及WEB安全">
+<meta name="twitter:description" content="加载页面和渲染过程加载过程 浏览器根据DNS服务器得到域名的IP地址 向这个IP的机器发送HTTP请求 服务器收到、处理并返回HTTP请求 浏览器得到返回内容  渲染过程 根据HTML结构生成DOM树 根据CSS生成CSSDOM 将DOM和CSSDOM整合形成RenderTre 根据RenderTree开始渲染和展示 遇到&amp;lt;script&amp;gt;时，会执行并阻塞渲染   为何要将 CSS 放在">
 
 
 
@@ -126,7 +126,7 @@
 
 
 
-  <title>浏览器相关知识点 | Aishlily's Blog</title>
+  <title>性能优化及WEB安全 | Aishlily's Blog</title>
   
 
 
@@ -310,7 +310,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">浏览器相关知识点</h1>
+          <h1 class="post-title" itemprop="name headline">性能优化及WEB安全</h1>
         
 
         <div class="post-meta">
@@ -382,37 +382,28 @@
       
 
       
-        <h2 id="加载页面和渲染过程"><a href="#加载页面和渲染过程" class="headerlink" title="加载页面和渲染过程"></a>加载页面和渲染过程</h2><ul>
-<li><p>加载过程：</p>
-<ol>
+        <h2 id="加载页面和渲染过程"><a href="#加载页面和渲染过程" class="headerlink" title="加载页面和渲染过程"></a>加载页面和渲染过程</h2><h3 id="加载过程"><a href="#加载过程" class="headerlink" title="加载过程"></a>加载过程</h3><ol>
 <li>浏览器根据DNS服务器得到域名的IP地址</li>
 <li>向这个IP的机器发送HTTP请求</li>
 <li>服务器收到、处理并返回HTTP请求</li>
 <li>浏览器得到返回内容</li>
 </ol>
-</li>
-<li><p>渲染过程：</p>
-<ol>
+<h3 id="渲染过程"><a href="#渲染过程" class="headerlink" title="渲染过程"></a>渲染过程</h3><ol>
 <li>根据HTML结构生成DOM树</li>
 <li>根据CSS生成CSSDOM</li>
 <li>将DOM和CSSDOM整合形成RenderTre</li>
 <li>根据RenderTree开始渲染和展示</li>
 <li>遇到<code>&lt;script&gt;</code>时，会执行并阻塞渲染</li>
 </ol>
-</li>
-</ul>
 <blockquote>
 <p><strong>为何要将 CSS 放在 HTML 头部？</strong> —— 这样会让浏览器尽早拿到 CSS 尽早生成 CSSOM，然后在解析 HTML 之后可一次性生成最终的 RenderTree，渲染一次即可。如果 CSS 放在 HTML 底部，会出现渲染卡顿的情况，影响性能和体验。</p>
 </blockquote>
-<p>推荐阅读下：《<a href="http://fex.baidu.com/blog/2014/05/what-happen/" target="_blank" rel="noopener">从输入 URL 到页面加载完成的过程中都发生了什么事情？</a>{:target=”_blank”} 》</p>
-<h2 id="性能优化"><a href="#性能优化" class="headerlink" title="性能优化"></a>性能优化</h2><ul>
-<li><p>优化原则和方向<br><strong>性能优化的原则是以更好的用户体验为标准，具体就是实现下面的目标：</strong></p>
+<p>推荐阅读下：《<a href="http://fex.baidu.com/blog/2014/05/what-happen/" target="_blank" rel="noopener">从输入 URL 到页面加载完成的过程中都发生了什么事情？</a>》</p>
+<h2 id="性能优化"><a href="#性能优化" class="headerlink" title="性能优化"></a>性能优化</h2><h3 id="优化原则和方向"><a href="#优化原则和方向" class="headerlink" title="优化原则和方向"></a>优化原则和方向</h3><p><strong>性能优化的原则是以更好的用户体验为标准，具体就是实现下面的目标：</strong></p>
 <ol>
 <li>多使用内存、缓存或者其他方法</li>
 <li>减少 CPU 和GPU 计算，更快展现</li>
 </ol>
-</li>
-</ul>
 <p><strong>优化的方向有两个：</strong></p>
 <ol>
 <li>减少页面体积，提升网络加载</li>
@@ -442,30 +433,86 @@
 <li><p>使用 SSR 后端渲染，数据直接输出到 HTML 中，减少浏览器使用 JS 模板渲染页面 HTML 的时间</p>
 </li>
 </ul>
-<p><strong>性能优化怎么做</strong></p>
-<ol>
+<h3 id="Yahoo黄金定律"><a href="#Yahoo黄金定律" class="headerlink" title="Yahoo黄金定律"></a>Yahoo黄金定律</h3><ol>
+<li>网页内容<ul>
+<li>减少http请求次数</li>
+<li>减少DNS查询次数</li>
+<li>避免页面跳转</li>
+<li>缓存Ajax</li>
+<li>延迟加载</li>
+<li>提前记载</li>
+<li>减少DOM元素数量</li>
+<li>根据域名划分内容</li>
+<li>减少iframe</li>
+<li>避免404</li>
+</ul>
+</li>
+<li>服务器<ul>
+<li>使用CDN</li>
+<li>添加Expires或Cache-Control报头</li>
+<li>Gzip压缩传输文件</li>
+<li>配置ETags</li>
+<li>尽早flush输出</li>
+<li>使用GET Ajax请求</li>
+<li>避免空的图片src</li>
+</ul>
+</li>
+<li>Cookie<ul>
+<li>减少Cookie大小</li>
+<li>页面内容使用无cookie域名</li>
+</ul>
+</li>
+<li>CSS<ul>
+<li>将样式表置顶</li>
+<li>避免CSS表达式</li>
+<li>用<link>代替@import</li>
+<li>避免使用Filters</li>
+</ul>
+</li>
+<li>JavaScript<ul>
+<li>将脚本置底</li>
+<li>使用外部JavaScript和CSS文件</li>
+<li>精简JavaScript和CSS</li>
+<li>去除重复脚本</li>
+<li>减少DOM访问</li>
+<li>使用智能事件处理</li>
+</ul>
+</li>
+<li>图片<ul>
+<li>优化图像</li>
+<li>优化CSS Sprite</li>
+<li>不要在HTML中缩放图片</li>
+<li>使用小且可缓存的favicon.icon</li>
+</ul>
+</li>
+<li>移动客户端<ul>
+<li>保持单个内容小于25KB</li>
+<li>打包组建成符合文档</li>
+</ul>
+</li>
+</ol>
+<h3 id="性能优化怎么做"><a href="#性能优化怎么做" class="headerlink" title="性能优化怎么做"></a><strong>性能优化怎么做</strong></h3><ol>
 <li>建立性能数据收集平台，摸底当前性能数据，通过性能打点，将上述整个页面打开过程消耗时间记录下来</li>
 <li>分析耗时较长时间段原因，寻找优化点，确定优化目标</li>
 <li>开始优化</li>
 <li>通过数据收集平台记录优化效果</li>
 <li>不断调整优化点和预期目标，循环2~4步骤<br>性能优化是个长期的事情，不是一蹴而就的，应该本着先摸底、再分析、后优化的原则逐步来做。</li>
 </ol>
-<h2 id="WEB安全"><a href="#WEB安全" class="headerlink" title="WEB安全"></a>WEB安全</h2><p>前端安全问题主要有XSS、CSRF攻击<br><strong>XSS：跨站脚本攻击</strong><br>它允许用户将恶意代码植入到提供给其他用户使用的页面中，可以简单的理解为一种javascript代码注入。<strong>注入的JavaScript代码跟原网页的JavaScript代码有相同的权限，可以获取server端数据、获取cookie等</strong></p>
-<p>XSS的防御措施：</p>
-<ol>
+<h2 id="WEB安全"><a href="#WEB安全" class="headerlink" title="WEB安全"></a>WEB安全</h2><p>前端安全问题主要有XSS、CSRF攻击</p>
+<h3 id="XSS：跨站脚本攻击"><a href="#XSS：跨站脚本攻击" class="headerlink" title="XSS：跨站脚本攻击"></a><strong>XSS：跨站脚本攻击</strong></h3><p>它允许用户将恶意代码植入到提供给其他用户使用的页面中，可以简单的理解为一种javascript代码注入。<strong>注入的JavaScript代码跟原网页的JavaScript代码有相同的权限，可以获取<code>server</code>端数据、获取<code>cookie</code>等</strong></p>
+<h3 id="XSS的防御措施"><a href="#XSS的防御措施" class="headerlink" title="XSS的防御措施"></a>XSS的防御措施</h3><ol>
 <li><p>过滤转义输入输出</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&amp; 替换为：&amp;amp;</span><br><span class="line">&lt; 替换为：&amp;lt;</span><br><span class="line">&gt; 替换为：&amp;gt;</span><br><span class="line">” 替换为：&amp;quot;</span><br><span class="line">‘ 替换为：&amp;<span class="comment">#x27;</span></span><br><span class="line">/ 替换为：&amp;<span class="comment">#x2f;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&amp; 替换为：`&amp;amp;`</span><br><span class="line">&lt; 替换为：`&amp;lt;`</span><br><span class="line">&gt; 替换为：`&amp;gt;`</span><br><span class="line">” 替换为：`&amp;quot;`</span><br><span class="line">‘ 替换为：`&amp;<span class="comment">#x27;`</span></span><br><span class="line">/ 替换为：`&amp;<span class="comment">#x2f;`</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>避免使用<code>eval</code>、<code>new Function</code>等执行字符串的方法，除非确定字符串和用户输入无关</p>
 </li>
 <li>使用<code>cookie</code>的<code>httpOnly</code>属性，加上了这个属性的<code>cookie</code>字段，js是无法进行读写的</li>
 <li>使用<code>innerHTML</code>、<code>document.write</code>的时候，如果数据是用户输入的，那么需要对象关键字符进行过滤与转义</li>
 </ol>
-<p><strong>CSRF：跨站请求伪造</strong><br>CSRF就是借用当前操作者的权限来偷偷地完成某个操作，而不是拿到用户的信息。</p>
+<h3 id="CSRF：跨站请求伪造"><a href="#CSRF：跨站请求伪造" class="headerlink" title="CSRF：跨站请求伪造"></a><strong>CSRF：跨站请求伪造</strong></h3><p>CSRF就是借用当前操作者的权限来偷偷地完成某个操作，而不是拿到用户的信息。</p>
 <p>例如，一个支付类网站，给他人转账的接口是<code>http://buy.com/pay?touid=999&amp;money=100</code>，而这个接口在使用时没有任何密码或者 <code>token</code> 的验证，只要打开访问就直接给他人转账。一个用户已经登录了<code>http://buy.com</code>，在选择商品时，突然收到一封邮件，而这封邮件正文有这么一行代码<code>&lt;img src=&quot;http://buy.com/pay?touid=999&amp;money=100&quot;/&gt;</code>，他访问了邮件之后，其实就已经完成了购买。</p>
 <p>CSRF 的发生其实是借助了一个 <code>cookie</code> 的特性。我们知道，登录了<code>http://buy.com</code>之后，<code>cookie</code> 就会有登录过的标记了，此时请求<code>http://buy.com/pay?touid=999&amp;money=100</code>是会带着 <code>cookie</code> 的，因此 <code>server</code> 端就知道已经登录了。而如果在<code>http://buy.com</code>去请求其他域名的 API 例如<code>http://abc.com/api</code>时，是不会带 <code>cookie</code> 的，这是浏览器的同源策略的限制。但是 —— <strong>此时在其他域名的页面中，请求<code>http://buy.com/pay?touid=999&amp;money=100</code>，会带着<code>buy.com</code>的 <code>cookie</code> ，这是发生 CSRF 攻击的理论基础</strong>。</p>
-<p>CSRF防御措施：</p>
-<ol>
+<h3 id="CSRF防御措施"><a href="#CSRF防御措施" class="headerlink" title="CSRF防御措施"></a>CSRF防御措施</h3><ol>
 <li>检测<code>http referer</code>是否是同域名</li>
 <li>避免登录的<code>session</code>长时间存储在客户端中</li>
 <li>关键请求使用验证码或者<code>token</code>机制<br>其他的一些攻击方法还有HTTP劫持、界面操作劫持</li>
@@ -502,8 +549,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/02/01/从零构建JavaScript的对象系统/" rel="next" title="从零构建JavaScript的对象系统">
-                <i class="fa fa-chevron-left"></i> 从零构建JavaScript的对象系统
+              <a href="/2018/01/29/WEB API/" rel="next" title="WEB API">
+                <i class="fa fa-chevron-left"></i> WEB API
               </a>
             
           </div>
@@ -512,8 +559,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/02/07/面试题/" rel="prev" title="面试题">
-                面试题 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/02/01/从零构建JavaScript的对象系统/" rel="prev" title="从零构建JavaScript的对象系统">
+                从零构建JavaScript的对象系统 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -595,7 +642,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">49</span>
+                  <span class="site-state-item-count">50</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -666,7 +713,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#加载页面和渲染过程"><span class="nav-number">1.</span> <span class="nav-text">加载页面和渲染过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#性能优化"><span class="nav-number">2.</span> <span class="nav-text">性能优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WEB安全"><span class="nav-number">3.</span> <span class="nav-text">WEB安全</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#加载页面和渲染过程"><span class="nav-number">1.</span> <span class="nav-text">加载页面和渲染过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#加载过程"><span class="nav-number">1.1.</span> <span class="nav-text">加载过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#渲染过程"><span class="nav-number">1.2.</span> <span class="nav-text">渲染过程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#性能优化"><span class="nav-number">2.</span> <span class="nav-text">性能优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#优化原则和方向"><span class="nav-number">2.1.</span> <span class="nav-text">优化原则和方向</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Yahoo黄金定律"><span class="nav-number">2.2.</span> <span class="nav-text">Yahoo黄金定律</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#性能优化怎么做"><span class="nav-number">2.3.</span> <span class="nav-text">性能优化怎么做</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WEB安全"><span class="nav-number">3.</span> <span class="nav-text">WEB安全</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#XSS：跨站脚本攻击"><span class="nav-number">3.1.</span> <span class="nav-text">XSS：跨站脚本攻击</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#XSS的防御措施"><span class="nav-number">3.2.</span> <span class="nav-text">XSS的防御措施</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CSRF：跨站请求伪造"><span class="nav-number">3.3.</span> <span class="nav-text">CSRF：跨站请求伪造</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CSRF防御措施"><span class="nav-number">3.4.</span> <span class="nav-text">CSRF防御措施</span></a></li></ol></li></ol></div>
             
 
           </div>
