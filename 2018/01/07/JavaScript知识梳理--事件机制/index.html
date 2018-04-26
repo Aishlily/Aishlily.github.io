@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/love.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/love.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="JavaScript," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="事件绑定普通的事件绑定写法如下：123456var btn = document.getElementById(&apos;btn1&apos;)btn.addEventListener(&apos;click&apos;, function (event) &amp;#123;    // event.preventDefault() // 阻止默认行为    // event.stopPropagation() // 阻止冒泡    con">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript知识梳理--事件机制">
+<meta property="og:url" content="/2018/01/07/JavaScript知识梳理--事件机制/index.html">
+<meta property="og:site_name" content="Aishlily&#39;s Blog">
+<meta property="og:description" content="事件绑定普通的事件绑定写法如下：123456var btn = document.getElementById(&apos;btn1&apos;)btn.addEventListener(&apos;click&apos;, function (event) &amp;#123;    // event.preventDefault() // 阻止默认行为    // event.stopPropagation() // 阻止冒泡    con">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-04-26T09:15:58.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript知识梳理--事件机制">
+<meta name="twitter:description" content="事件绑定普通的事件绑定写法如下：123456var btn = document.getElementById(&apos;btn1&apos;)btn.addEventListener(&apos;click&apos;, function (event) &amp;#123;    // event.preventDefault() // 阻止默认行为    // event.stopPropagation() // 阻止冒泡    con">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="/2018/01/07/JavaScript知识梳理--事件机制/"/>
+
+
+
+
+
+  <title>JavaScript知识梳理--事件机制 | Aishlily's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Aishlily's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'urw61T1LFFwLwttU72jp','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="/2018/01/07/JavaScript知识梳理--事件机制/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Aishlily">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/my.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Aishlily's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">JavaScript知识梳理--事件机制</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-07T15:25:45+08:00">
+                2018-01-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript技术/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="事件绑定"><a href="#事件绑定" class="headerlink" title="事件绑定"></a>事件绑定</h2><p>普通的事件绑定写法如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var btn = document.getElementById(<span class="string">'btn1'</span>)</span><br><span class="line">btn.addEventListener(<span class="string">'click'</span>, <span class="keyword">function</span> (event) &#123;</span><br><span class="line">    // event.preventDefault() // 阻止默认行为</span><br><span class="line">    // event.stopPropagation() // 阻止冒泡</span><br><span class="line">    console.log(<span class="string">'clicked'</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>为了编写简单的事件绑定，可以编写通用的事件绑定函数。这里虽然比较简单，但是会随着后文的讲解，来继续完善和丰富这个函数。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">// 通用的事件绑定函数</span><br><span class="line"><span class="keyword">function</span> bindEvent(elem, <span class="built_in">type</span>, fn) &#123;</span><br><span class="line">    elem.addEventListener(<span class="built_in">type</span>, fn)</span><br><span class="line">&#125;</span><br><span class="line">var a = document.getElementById(<span class="string">'link1'</span>)</span><br><span class="line">// 写起来更加简单了</span><br><span class="line">bindEvent(a, <span class="string">'click'</span>, <span class="keyword">function</span>(e) &#123;</span><br><span class="line">    e.preventDefault() // 阻止默认行为</span><br><span class="line">    alert(<span class="string">'clicked'</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>最后，如果面试被问到 IE 低版本兼容性问题，我劝你果断放弃这份工作机会。现在互联网流量都在 App 上， IE 占比越来越少，再去为 IE 浪费青春不值得，要尽量去做 App 相关的工作。</p>
+<h2 id="事件冒泡"><a href="#事件冒泡" class="headerlink" title="事件冒泡"></a>事件冒泡</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;div id=<span class="string">"div1"</span>&gt;</span><br><span class="line">        &lt;p id=<span class="string">"p1"</span>&gt;激活&lt;/p&gt;</span><br><span class="line">        &lt;p id=<span class="string">"p2"</span>&gt;取消&lt;/p&gt;</span><br><span class="line">        &lt;p id=<span class="string">"p3"</span>&gt;取消&lt;/p&gt;</span><br><span class="line">        &lt;p id=<span class="string">"p4"</span>&gt;取消&lt;/p&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;div id=<span class="string">"div2"</span>&gt;</span><br><span class="line">        &lt;p id=<span class="string">"p5"</span>&gt;取消&lt;/p&gt;</span><br><span class="line">        &lt;p id=<span class="string">"p6"</span>&gt;取消&lt;/p&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure>
+<p>对于以上 HTML 代码结构，要求点击<code>p1</code>时候进入激活状态，点击其他任何<code>&lt;p&gt;</code>都取消激活状态，如何实现？代码如下，注意看注释：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var body = document.body</span><br><span class="line">bindEvent(body, <span class="string">'click'</span>, <span class="keyword">function</span> (e) &#123;</span><br><span class="line">    // 所有 p 的点击都会冒泡到 body 上，因为 DOM 结构中 body 是 p 的上级节点，事件会沿着 DOM 树向上冒泡</span><br><span class="line">    alert(<span class="string">'取消'</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">var p1 = document.getElementById(<span class="string">'p1'</span>)</span><br><span class="line">bindEvent(p1, <span class="string">'click'</span>, <span class="keyword">function</span> (e) &#123;</span><br><span class="line">    e.stopPropagation() // 阻止冒泡</span><br><span class="line">    alert(<span class="string">'激活'</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>如果我们在<code>p1</code>、<code>div1</code>、<code>body</code>中都绑定了事件，它是会根据 DOM 的结构来冒泡，从下到上挨个执行的。但是我们使用<code>e.stopPropagation()</code>就可以阻止冒泡</p>
+<h2 id="事件代理"><a href="#事件代理" class="headerlink" title="事件代理"></a>事件代理</h2><p>我们设定一种场景，如下代码，一个<code>&lt;div&gt;</code>中包含了若干个<code>&lt;a&gt;</code>，而且还能继续增加。那如何快捷方便地为所有<code>&lt;a&gt;</code>绑定事件呢？<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=<span class="string">"div1"</span>&gt;</span><br><span class="line">    &lt;a href=<span class="string">"#"</span>&gt;a1&lt;/a&gt;</span><br><span class="line">    &lt;a href=<span class="string">"#"</span>&gt;a2&lt;/a&gt;</span><br><span class="line">    &lt;a href=<span class="string">"#"</span>&gt;a3&lt;/a&gt;</span><br><span class="line">    &lt;a href=<span class="string">"#"</span>&gt;a4&lt;/a&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;button&gt;点击增加一个 a 标签&lt;/button&gt;</span><br></pre></td></tr></table></figure></p>
+<p>这里就会用到事件代理。我们要监听<code>&lt;a&gt;</code>的事件，但要把具体的事件绑定到<code>&lt;div&gt;</code>上，然后看事件的触发点是不是<code>&lt;a&gt;</code>。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var div1 = document.getElementById(<span class="string">'div1'</span>)</span><br><span class="line">div1.addEventListener(<span class="string">'click'</span>, <span class="keyword">function</span> (e) &#123;</span><br><span class="line">    // e.target 可以监听到触发点击事件的元素是哪一个</span><br><span class="line">    var target = e.target</span><br><span class="line">    <span class="keyword">if</span> (e.nodeName === <span class="string">'A'</span>) &#123;</span><br><span class="line">        // 点击的是 &lt;a&gt; 元素</span><br><span class="line">        alert(target.innerHTML)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>我们现在完善一下之前写的通用事件绑定函数，加上事件代理。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> bindEvent(elem, <span class="built_in">type</span>, selector, fn) &#123;</span><br><span class="line">    // 这样处理，可接收两种调用方式 bindEvent(div1, <span class="string">'click'</span>, <span class="string">'a'</span>, <span class="function"><span class="title">function</span></span> () &#123;...&#125;) 和 bindEvent(div1, <span class="string">'click'</span>, <span class="function"><span class="title">function</span></span> () &#123;...&#125;) 这两种</span><br><span class="line">    <span class="keyword">if</span> (fn == null) &#123;</span><br><span class="line">        fn = selector</span><br><span class="line">        selector = null</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 绑定事件</span><br><span class="line">    elem.addEventListener(<span class="built_in">type</span>, <span class="keyword">function</span> (e) &#123;</span><br><span class="line">        var target</span><br><span class="line">        <span class="keyword">if</span> (selector) &#123;</span><br><span class="line">            // 有 selector 说明需要做事件代理</span><br><span class="line">            // 获取触发时间的元素，即 e.target</span><br><span class="line">            target = e.target</span><br><span class="line">            // 看是否符合 selector 这个条件</span><br><span class="line">            <span class="keyword">if</span> (target.matches(selector)) &#123;</span><br><span class="line">                fn.call(target, e)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            // 无 selector ，说明不需要事件代理</span><br><span class="line">            fn(e)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>然后这样使用，简单很多。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">// 使用代理，bindEvent 多一个 <span class="string">'a'</span> 参数</span><br><span class="line">var div1 = document.getElementById(<span class="string">'div1'</span>)</span><br><span class="line">bindEvent(div1, <span class="string">'click'</span>, <span class="string">'a'</span>, <span class="keyword">function</span> (e) &#123;</span><br><span class="line">    console.log(this.innerHTML)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">// 不使用代理</span><br><span class="line">var a = document.getElementById(<span class="string">'a1'</span>)</span><br><span class="line">bindEvent(div1, <span class="string">'click'</span>, <span class="keyword">function</span> (e) &#123;</span><br><span class="line">    console.log(a.innerHTML)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>最后，使用代理的优点如下：</p>
+<p>使代码简洁<br>减少浏览器的内存占用</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/01/06/JavaScript知识梳理--BOM、DOM/" rel="next" title="JavaScript知识梳理--BOM/DOM">
+                <i class="fa fa-chevron-left"></i> JavaScript知识梳理--BOM/DOM
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/01/08/JavaScript知识梳理--AJAX/" rel="prev" title="JavaScript知识梳理--AJAX">
+                JavaScript知识梳理--AJAX <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/my.jpg"
+                alt="Aishlily" />
+            
+              <p class="site-author-name" itemprop="name">Aishlily</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">66</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/Aishlily" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:mali_job@yeah.net" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#事件绑定"><span class="nav-number">1.</span> <span class="nav-text">事件绑定</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事件冒泡"><span class="nav-number">2.</span> <span class="nav-text">事件冒泡</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事件代理"><span class="nav-number">3.</span> <span class="nav-text">事件代理</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Aishlily</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+  <script type="text/javascript" src="/js/src/exturl.js?v=5.1.4"></script>
+
+
+</body>
+</html>
+<script type="text/javascript" src="/js/src/love.js"></script>>

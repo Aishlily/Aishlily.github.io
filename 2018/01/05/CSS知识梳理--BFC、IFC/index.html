@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="css,笔记," />
+  <meta name="keywords" content="css," />
 
 
 
@@ -79,22 +79,22 @@
 
 
 
-<meta name="description" content="什么是BFC（Block Formatting Context）  BFC:块级格式化上下文。它是一个独立的渲染区域，只有Block-level box参与，它规定了内部的Block-level Box如何布局，并且与这个区域外部毫不相干。  文档流：定位流、浮动流和普通流三种。而普通流其实就是指BFC中的FC。 FC：格式化上下文，它是页面中的一块渲染区域，有一套渲染规则，决定了其子元素如何布局">
-<meta name="keywords" content="css,笔记">
+<meta name="description" content="什么是BFC BFC（Block Formatting Context）即 块级格式化上下文。BFC是页面上一个隔离的渲染区域，容器内的元素不会在布局上影响容器外的元素。  通常所说的文档流包括定位流、浮动流和普通流三种。而普通流其实就是指BFC中的FC。  FC 即 格式化上下文，它是页面中的一块渲染区域，有一套渲染规则，决定了其子元素如何布局，以及和其他元素之间的关系和作用。  BFC对布局的">
+<meta name="keywords" content="css">
 <meta property="og:type" content="article">
-<meta property="og:title" content="BFC">
-<meta property="og:url" content="/2018/01/10/BFC/index.html">
+<meta property="og:title" content="CSS知识梳理--BFC&#x2F;IFC">
+<meta property="og:url" content="/2018/01/05/CSS知识梳理--BFC、IFC/index.html">
 <meta property="og:site_name" content="Aishlily&#39;s Blog">
-<meta property="og:description" content="什么是BFC（Block Formatting Context）  BFC:块级格式化上下文。它是一个独立的渲染区域，只有Block-level box参与，它规定了内部的Block-level Box如何布局，并且与这个区域外部毫不相干。  文档流：定位流、浮动流和普通流三种。而普通流其实就是指BFC中的FC。 FC：格式化上下文，它是页面中的一块渲染区域，有一套渲染规则，决定了其子元素如何布局">
+<meta property="og:description" content="什么是BFC BFC（Block Formatting Context）即 块级格式化上下文。BFC是页面上一个隔离的渲染区域，容器内的元素不会在布局上影响容器外的元素。  通常所说的文档流包括定位流、浮动流和普通流三种。而普通流其实就是指BFC中的FC。  FC 即 格式化上下文，它是页面中的一块渲染区域，有一套渲染规则，决定了其子元素如何布局，以及和其他元素之间的关系和作用。  BFC对布局的">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="data:image/png;base64,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">
 <meta property="og:image" content="data:image/png;base64,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">
 <meta property="og:image" content="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUMAAACACAYAAACROAupAAAAAXNSR0IArs4c6QAABJ9JREFUeAHt2jFOG0EAhlGMKFDK3CQciIKahpOkSU2RA8FNKBEd+RQakLYYITEe1o8qQYbdffPnkyXn8NrXmS8CBAicuMD5iT+/xydAgMB/ATE0BAIECCQghmZAgACBBC7eK7w8Prz/qz8TIEDg2wtc/roaegbvDIeYvIgAgb0LiOHeT9jzESAwJCCGQ0xeRIDA3gXEcO8n7PkIEBgS+PABytZPPP+93/q27xEg8AUCP65vvuC3+pUjAt4Zjih5DQECuxcQw90fsQckQGBEQAxHlLyGAIHdC4jh7o/YAxIgMCLw4QOUrf+pvfUBys/ff0Z+t9dMEni6ux26knMbYpr2oq1z2/o3OO2GTvxC3hme+AA8PgECbwJiaAkECBBIQAzNgAABAgmIoRkQIEAgATE0AwIECCQghmZAgACBBMTQDAgQIJCAGJoBAQIEEhBDMyBAgEACYmgGBAgQSEAMzYAAAQIJiKEZECBAIAExNAMCBAgkIIZmQIAAgQTE0AwIECCQgBiaAQECBBIQQzMgQIBAAmJoBgQIEEhADM2AAAECCYihGRAgQCABMTQDAgQIJCCGZkCAAIEExNAMCBAgkIAYmgEBAgQSEEMzIECAQAJiaAYECBBIQAzNgAABAgmIoRkQIEAgATE0AwIECCQghmZAgACBBMTQDAgQIJCAGJoBAQIEEhBDMyBAgEACYmgGBAgQSEAMzYAAAQIJiKEZECBAIAExNAMCBAgkIIZmQIAAgQTE0AwIECCQgBiaAQECBBIQQzMgQIBAAmJoBgQIEEhADM2AAAECCYihGRAgQCABMTQDAgQIJCCGZkCAAIEExNAMCBAgkIAYmgEBAgQSEEMzIECAQAJiaAYECBBIQAzNgAABAgmIoRkQIEAgATE0AwIECCQghmZAgACBBMTQDAgQIJCAGJoBAQIEEhBDMyBAgEACYmgGBAgQSEAMzYAAAQIJiKEZECBAIAExNAMCBAgkIIZmQIAAgQTE0AwIECCQgBiaAQECBBIQQzMgQIBAAmJoBgQIEEhADM2AAAECCYihGRAgQCABMTQDAgQIJCCGZkCAAIEExNAMCBAgkIAYmgEBAgQSEEMzIECAQAJiaAYECBBIQAzNgAABAgmIoRkQIEAgATE0AwIECCQghmZAgACBBMTQDAgQIJCAGJoBAQIEEhBDMyBAgEACYmgGBAgQSEAMzYAAAQIJiKEZECBAIAExNAMCBAgkIIZmQIAAgQTE0AwIECCQgBiaAQECBBIQQzMgQIBAAmJoBgQIEEhADM2AAAECCYihGRAgQCABMTQDAgQIJCCGZkCAAIEExNAMCBAgkIAYmgEBAgQSEEMzIECAQAJiaAYECBBIQAzNgAABAglcfEbh6e72Mz/mZ44s4NyOfAAuv7SAd4ZLH4+bI0BgloAYzpJ2HQIElhYQw6WPx80RIDBLQAxnSbsOAQJLCxxe+1r6Dt0cAQIEJgh4ZzgB2SUIEFhfQAzXPyN3SIDABAExnIDsEgQIrC8ghuufkTskQGCCgBhOQHYJAgTWFxDD9c/IHRIgMEFADCcguwQBAusLiOH6Z+QOCRCYIPAPrpAboRFuj2IAAAAASUVORK5CYII=">
 <meta property="og:image" content="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAATgAAAB5CAYAAACtDD0XAAAAAXNSR0IArs4c6QAABCpJREFUeAHt2zFOI1EURFGMHBCzE1gXBLAQCCAmmP0M7MThDBkgxy3kgP6N7j+EluWmTj2VLCF2H18/Z34IECAQFNi/v70GY4lEgMDMAhdX18f45zMjyE6AQFvAwLX7lY7A1AIGbur6hSfQFjBw7X6lIzC1wH4p/b8/L0sve40AgZ8W2O3OLh+efvpTp/q87/5Q6hvcVKcgLIG5BAzcXH1LS2AqAQM3Vd3CEphLwMDN1be0BKYSWPwjw5LA5ePz0ste20jgcHdz0pP1dhLTmDd9/Vfk4f52zLM85SjgG5xDIEAgK2DgstUKRoCAgXMDBAhkBQxctlrBCBAwcG6AAIGsgIHLVisYAQIGzg0QIJAVMHDZagUjQMDAuQECBLICBi5brWAECBg4N0CAQFbAwGWrFYwAAQPnBggQyAoYuGy1ghEgYODcAAECWQEDl61WMAIEDJwbIEAgK2DgstUKRoCAgXMDBAhkBQxctlrBCBAwcG6AAIGsgIHLVisYAQIGzg0QIJAVMHDZagUjQMDAuQECBLICBi5brWAECBg4N0CAQFbAwGWrFYwAAQPnBggQyAoYuGy1ghEgYODcAAECWQEDl61WMAIEDJwbIEAgK2DgstUKRoCAgXMDBAhkBQxctlrBCBAwcG6AAIGsgIHLVisYAQIGzg0QIJAVMHDZagUjQMDAuQECBLICBi5brWAECBg4N0CAQFbAwGWrFYwAAQPnBggQyAoYuGy1ghEgYODcAAECWQEDl61WMAIEDJwbIEAgK2DgstUKRoCAgXMDBAhkBQxctlrBCBAwcG6AAIGsgIHLVisYAQIGzg0QIJAVMHDZagUjQMDAuQECBLICBi5brWAECBg4N0CAQFbAwGWrFYwAAQPnBggQyAoYuGy1ghEgYODcAAECWQEDl61WMAIEDJwbIEAgK2DgstUKRoCAgXMDBAhkBQxctlrBCBAwcG6AAIGsgIHLVisYAQIGzg0QIJAVMHDZagUjQMDAuQECBLICBi5brWAECBg4N0CAQFbAwGWrFYwAAQPnBggQyAoYuGy1ghEgYODcAAECWQEDl61WMAIEDJwbIEAgK2DgstUKRoCAgXMDBAhkBQxctlrBCBAwcG6AAIGsgIHLVisYAQIGzg0QIJAVMHDZagUjQMDAuQECBLICBi5brWAECBg4N0CAQFbAwGWrFYwAAQPnBggQyAoYuGy1ghEgYODcAAECWQEDl61WMAIEDJwbIEAgK2DgstUKRoCAgXMDBAhkBfanJjvc3Zz6Vu/7RQJ6+0Vl+FWGC/gGN5zcAwkQGCVg4EZJew4BAsMFDNxwcg8kQGCUgIEbJe05BAgMF9j9f/37MfypHkiAAIEVBS6uro+f7hvcisg+mgCBbQUM3Lb+nk6AwIoCBm5FXB9NgMC2AgZuW39PJ0BgRYFPANwdh/rQYHkAAAAASUVORK5CYII=">
-<meta property="og:updated_time" content="2018-04-15T07:39:02.000Z">
+<meta property="og:updated_time" content="2018-04-26T08:18:48.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="BFC">
-<meta name="twitter:description" content="什么是BFC（Block Formatting Context）  BFC:块级格式化上下文。它是一个独立的渲染区域，只有Block-level box参与，它规定了内部的Block-level Box如何布局，并且与这个区域外部毫不相干。  文档流：定位流、浮动流和普通流三种。而普通流其实就是指BFC中的FC。 FC：格式化上下文，它是页面中的一块渲染区域，有一套渲染规则，决定了其子元素如何布局">
+<meta name="twitter:title" content="CSS知识梳理--BFC&#x2F;IFC">
+<meta name="twitter:description" content="什么是BFC BFC（Block Formatting Context）即 块级格式化上下文。BFC是页面上一个隔离的渲染区域，容器内的元素不会在布局上影响容器外的元素。  通常所说的文档流包括定位流、浮动流和普通流三种。而普通流其实就是指BFC中的FC。  FC 即 格式化上下文，它是页面中的一块渲染区域，有一套渲染规则，决定了其子元素如何布局，以及和其他元素之间的关系和作用。  BFC对布局的">
 <meta name="twitter:image" content="data:image/png;base64,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">
 
 
@@ -125,13 +125,13 @@
 
 
 
-  <link rel="canonical" href="/2018/01/10/BFC/"/>
+  <link rel="canonical" href="/2018/01/05/CSS知识梳理--BFC、IFC/"/>
 
 
 
 
 
-  <title>BFC | Aishlily's Blog</title>
+  <title>CSS知识梳理--BFC/IFC | Aishlily's Blog</title>
   
 
 
@@ -298,7 +298,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="/2018/01/10/BFC/">
+    <link itemprop="mainEntityOfPage" href="/2018/01/05/CSS知识梳理--BFC、IFC/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Aishlily">
@@ -315,7 +315,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">BFC</h1>
+          <h1 class="post-title" itemprop="name headline">CSS知识梳理--BFC/IFC</h1>
         
 
         <div class="post-meta">
@@ -327,8 +327,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-10T15:55:45+08:00">
-                2018-01-10
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-05T15:55:45+08:00">
+                2018-01-05
               </time>
             
 
@@ -387,19 +387,20 @@
       
 
       
-        <p>什么是BFC（Block Formatting Context）</p>
-<blockquote>
-<p>BFC:块级格式化上下文。它是一个独立的渲染区域，只有<code>Block-level box</code>参与，它规定了内部的<code>Block-level Box</code>如何布局，并且与这个区域外部毫不相干。</p>
+        <h2 id="什么是BFC"><a href="#什么是BFC" class="headerlink" title="什么是BFC"></a>什么是BFC</h2><blockquote>
+<p>BFC（Block Formatting Context）即 块级格式化上下文。BFC是页面上一个隔离的渲染区域，容器内的元素不会在布局上影响容器外的元素。</p>
 </blockquote>
-<p>文档流：定位流、浮动流和普通流三种。而普通流其实就是指BFC中的FC。</p>
-<p>FC：格式化上下文，它是页面中的一块渲染区域，有一套渲染规则，决定了其子元素如何布局，以及和其他元素之间的关系和作用。</p>
-<p>BFC对布局的影响主要体现在对<code>float</code>和<code>margin</code>两个属性的处理。BFC让<code>float</code>和<code>margin</code>这两个属性的表现更加符合我们的直觉。<br>根据BFC对其内部元素和外部元素的表现特性，将BFC的特性总结为对内部元素的包裹性及对外部元素的独立性。</p>
+<p>通常所说的文档流包括定位流、浮动流和普通流三种。而普通流其实就是指BFC中的FC。</p>
+<blockquote>
+<p>FC 即 格式化上下文，它是页面中的一块渲染区域，有一套渲染规则，决定了其子元素如何布局，以及和其他元素之间的关系和作用。</p>
+</blockquote>
+<p>BFC对布局的影响主要体现在对<code>float</code>和<code>margin</code>两个属性的处理。BFC让<code>float</code>和<code>margin</code>这两个属性的表现更加符合我们的直觉。<br>根据BFC对其内部元素和外部元素的表现特性，可以将BFC的特性总结为对内部元素的包裹性及对外部元素的独立性。</p>
 <h2 id="如何触发BFC"><a href="#如何触发BFC" class="headerlink" title="如何触发BFC"></a>如何触发BFC</h2><p>满足以下条件之一即可触发BFC：</p>
 <ul>
 <li>根元素，即HTML元素</li>
 <li><code>float</code>的值不为<code>none</code></li>
 <li><code>overflow</code>的值不为<code>visible</code></li>
-<li><code>display</code>的值为<code>inline-block</code>、<code>table-cell</code>、<code>table-caption</code></li>
+<li><code>display</code>的值为<code>inline-block</code>、<code>table-cell</code>、<code>table-caption</code>、<code>flex</code>、<code>inline-flex</code></li>
 <li><code>position</code>的值为<code>absolute</code>或<code>fixed</code></li>
 </ul>
 <h2 id="BFC布局规则"><a href="#BFC布局规则" class="headerlink" title="BFC布局规则"></a>BFC布局规则</h2><ul>
@@ -422,7 +423,7 @@
 <blockquote>
 <p>BFC的区域不会与<code>float box</code>重叠</p>
 </blockquote>
-<p>可以通过出发<code>main</code>生成BFC，来实现自适应两栏布局<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.main &#123;</span><br><span class="line">  overflow: hidden;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>可以通过触发<code>main</code>生成BFC，来实现自适应两栏布局<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.main &#123;</span><br><span class="line">  overflow: hidden;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p><img src="data:image/png;base64,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" alt="name"></p>
 <ol start="2">
 <li>可以阻止元素被浮动元素覆盖</li>
@@ -438,6 +439,29 @@
 <ol start="4">
 <li>分属于不同的BFC时可以阻止<code>margin</code>重叠<br>属于同一个BFC的两个相邻Box的<code>margin</code>会发生重叠<br>我们可以在p外面包裹一层容器，并触发该容器生产一个BFC。那么两个P便不属于同一个BFC，就不会发生<code>margin</code>重叠。</li>
 </ol>
+<p>推荐阅读：<a href="https://www.w3.org/TR/CSS2/visuren.html#bfc-next-to-float" target="_blank" rel="noopener">Visual formatting model</a></p>
+<h2 id="什么是IFC"><a href="#什么是IFC" class="headerlink" title="什么是IFC"></a>什么是IFC</h2><p>IFC(Inline Formatting Contexts)即内联排版上下文，也可称为内联格式化上下文。用来规定内联级盒子的格式化规则。</p>
+<h2 id="何时会生成IFC"><a href="#何时会生成IFC" class="headerlink" title="何时会生成IFC"></a>何时会生成IFC</h2><p>和BFC可以被元素属性触发而被创建（triggered）不同，IFC只有在一个块元素中仅包含内联级别元素时才会生成。</p>
+<h2 id="IFC布局规则"><a href="#IFC布局规则" class="headerlink" title="IFC布局规则"></a>IFC布局规则</h2><ul>
+<li>内部的Boxes会在水平方向，一个接一个地放置。</li>
+<li>这些Boxes垂直方向的起点从包含块盒子的顶部开始。</li>
+<li>摆放这些Boxes的时候，它们在水平方向上的外边距、边框、内边距所占用的空间都会被考虑在内。</li>
+<li>在垂直方向上，这些框可能会以不同形式来对齐（<code>vertical-align</code>）：它们可能会使用底部或顶部对齐，也可能通过其内部的文本基线（<code>baseline</code>）对齐。</li>
+<li>能把在一行上的框都完全包含进去的一个矩形区域，被称为该行的行框（line box）。行框的宽度是由包含块（containing box）和存在的浮动来决定。</li>
+<li>IFC中的line box一般左右边都贴紧其包含块，但是会因为<code>float</code>元素的存在发生变化。<code>float</code>元素会位于IFC与与line box之间，使得line box宽度缩短。</li>
+<li>IFC中的line box高度由CSS行高计算规则来确定，同个IFC下的多个line box高度可能会不同（比如一行包含了较高的图片，而另一行只有文本）。</li>
+<li>当inline-level boxes的总宽度少于包含它们的line box时，其水平渲染规则由<code>text-align</code>属性来确定，如果取值为<code>justify</code>，那么浏览器会对inline-boxes（注意不是inline-table 和 inline-block boxes）中的文字和空格做出拉伸。</li>
+<li>当一个inline box超过line box的宽度时，它会被分割成多个boxes，这些boxes被分布在多个line box里。如果一个inline box不能被分割（比如只包含单个字符，或<code>word-breaking</code>机制被禁用，或该行内框受<code>white-space</code>属性值为<code>nowrap</code>或<code>pre</code>的影响），那么这个inline box将溢出这个line box。<blockquote>
+<p>line box是行框，inline box是行内框（或称为内联框）：行内框是包含在行框内（或多个行框内，当出现换行时）的。</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="IFC作用"><a href="#IFC作用" class="headerlink" title="IFC作用"></a>IFC作用</h2><p>使用IFC规则可以实现文本垂直和水平居中</p>
+<ul>
+<li>使用一个块元素来包含一个内联元素，这样会生成一个IFC来规定如何渲染行内元素。按照IFC行内框的布局规则，其水平位置将由<code>text-align</code>属性来确定，所以设置<code>text-align:center</code>将把行内框居中。</li>
+<li>外部块元素的行高为内部行框设定了最小高度，好比在渲染时以一个隐藏的0宽度字符开始，具备该块元素所设置的行高和字体属性，我们称之为是一个支架（strut），作用是把外部块元素撑起来。参考阅读W3规范：<a href="https://www.w3.org/TR/CSS2/visudet.html#strut" target="_blank" rel="noopener">Strut</a>。</li>
+<li>然后设置内联（或内联块）元素的垂直对齐属性为中间，它将参照前述的隐藏支架的<code>baseline</code>来对齐。如果我们把块元素的字体设置为0，实际效果就是内联元素被垂直居中放置在块元素中。</li>
+</ul>
 
       
     </div>
@@ -457,8 +481,6 @@
           
             <a href="/tags/css/" rel="tag"># css</a>
           
-            <a href="/tags/笔记/" rel="tag"># 笔记</a>
-          
         </div>
       
 
@@ -470,8 +492,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/01/10/勿忘我花雨效果实现/" rel="next" title="勿忘我花雨效果实现">
-                <i class="fa fa-chevron-left"></i> 勿忘我花雨效果实现
+              <a href="/2018/01/04/CSS知识梳理--定位浮动/" rel="next" title="CSS知识梳理--定位浮动">
+                <i class="fa fa-chevron-left"></i> CSS知识梳理--定位浮动
               </a>
             
           </div>
@@ -480,8 +502,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/01/10/canvas/" rel="prev" title="Canvas最佳实践（性能篇）">
-                Canvas最佳实践（性能篇） <i class="fa fa-chevron-right"></i>
+              <a href="/2018/01/06/JavaScript知识梳理--BOM、DOM/" rel="prev" title="JavaScript知识梳理--BOM/DOM">
+                JavaScript知识梳理--BOM/DOM <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -563,7 +585,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">60</span>
+                  <span class="site-state-item-count">66</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -634,7 +656,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#如何触发BFC"><span class="nav-number">1.</span> <span class="nav-text">如何触发BFC</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BFC布局规则"><span class="nav-number">2.</span> <span class="nav-text">BFC布局规则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BFC作用"><span class="nav-number">3.</span> <span class="nav-text">BFC作用</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是BFC"><span class="nav-number">1.</span> <span class="nav-text">什么是BFC</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何触发BFC"><span class="nav-number">2.</span> <span class="nav-text">如何触发BFC</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BFC布局规则"><span class="nav-number">3.</span> <span class="nav-text">BFC布局规则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BFC作用"><span class="nav-number">4.</span> <span class="nav-text">BFC作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是IFC"><span class="nav-number">5.</span> <span class="nav-text">什么是IFC</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#何时会生成IFC"><span class="nav-number">6.</span> <span class="nav-text">何时会生成IFC</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IFC布局规则"><span class="nav-number">7.</span> <span class="nav-text">IFC布局规则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IFC作用"><span class="nav-number">8.</span> <span class="nav-text">IFC作用</span></a></li></ol></div>
             
 
           </div>
