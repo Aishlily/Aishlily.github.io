@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Aishlily&#39;s Blog">
 <meta property="og:description" content="BOMBOM（浏览器对象模型）是浏览器本身的一些信息的设置和获取。BOM提供了独立于内容而与浏览器窗口进行交互的对象，主要处理浏览器窗口和框架，不过通常浏览器特定的 JavaScript 扩展都被看做 BOM 的一部分。这些扩展包括：  弹出新的浏览器窗口 移动、关闭浏览器窗口以及调整窗口大小 提供 Web 浏览器详细信息的定位对象 提供用户屏幕分辨率详细信息的屏幕对象 对 cookie 的支持">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-26T09:26:50.000Z">
+<meta property="og:updated_time" content="2018-04-27T02:37:04.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript知识梳理--BOM&#x2F;DOM">
 <meta name="twitter:description" content="BOMBOM（浏览器对象模型）是浏览器本身的一些信息的设置和获取。BOM提供了独立于内容而与浏览器窗口进行交互的对象，主要处理浏览器窗口和框架，不过通常浏览器特定的 JavaScript 扩展都被看做 BOM 的一部分。这些扩展包括：  弹出新的浏览器窗口 移动、关闭浏览器窗口以及调整窗口大小 提供 Web 浏览器详细信息的定位对象 提供用户屏幕分辨率详细信息的屏幕对象 对 cookie 的支持">
@@ -394,33 +394,60 @@
 <h3 id="window对象"><a href="#window对象" class="headerlink" title="window对象"></a><code>window</code>对象</h3><p><code>window</code>对象是BOM的核心。它具有双重角色，既是通过js访问浏览器窗口的一个接口，又是一个<code>Global</code>（全局）对象。<br><code>windows</code>子对象: </p>
 <ul>
 <li><code>document</code> 对象</li>
-<li>`frames 对象</li>
-<li><code>history</code> 对象<blockquote>
-<p><code>history.go()</code> 函数可加载历史列表中的某个具体的页面<br><code>history.back()</code> 函数可加载历史列表中的前一个 URL（如果存在）<br><code>history.forward()</code> 函数可加载历史列表中的下一个 URL<br><code>history.length</code> 属性声明了浏览器历史列表中的元素数量</p>
-</blockquote>
+<li><code>frames</code> 对象</li>
+<li><code>history</code> 对象<ul>
+<li><code>history.go()</code> 函数可加载历史列表中的某个具体的页面</li>
+<li><code>history.back()</code> 函数可加载历史列表中的前一个 URL（如果存在）</li>
+<li><code>history.forward()</code> 函数可加载历史列表中的下一个 URL</li>
+<li><code>history.length</code> 属性声明了浏览器历史列表中的元素数量</li>
+</ul>
 </li>
-<li><p><code>location</code> 对象</p>
-<blockquote>
-<p><code>location.assign()</code> 函数加载一个新的文档<br><code>location.replace()</code> 函数可用一个新文档取代当前文档<br><code>location.reload()</code> 函数用于刷新当前文档<br><code>location.hash</code> 属性是一个可读可写的字符串，该字符串是 URL 的锚部分（从 # 号开始的部分）<br><code>location.host</code> 属性是一个可读可写的字符串，可设置或返回当前 URL 的主机名称和端口号<br><code>location.hostname</code> 属性是一个可读可写的字符串，可设置或返回当前 URL 的主机名<br><code>location.href</code> 属性是一个可读可写的字符串，可设置或返回当前显示的文档的完整 URL<br><code>location.pathname</code> 属性是一个可读可写的字符串，可设置或返回当前 URL 的路径部分<br><code>location.port</code> 属性是一个可读可写的字符串，可设置或返回当前 URL 的端口部分<br><code>location.protocol</code>属性是一个可读可写的字符串，可设置或返回当前 URL 的协议<br><code>location.search</code> 属性是一个可读可写的字符串，可设置或返回当前 URL 的查询部分（问号 ? 之后的部分</p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"> // 例如当前网址是 https://juejin.im/timeline/frontend?a=10&amp;b=10<span class="comment">#some</span></span><br><span class="line">console.log(location.href)  // https://juejin.im/timeline/frontend?a=10&amp;b=10<span class="comment">#some</span></span><br><span class="line">console.log(location.protocol) // https:</span><br><span class="line">console.log(location.pathname) // /timeline/frontend</span><br><span class="line">console.log(location.search) // ?a=10&amp;b=10</span><br><span class="line">console.log(location.hash) // <span class="comment">#some</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p><code>navigator</code> 对象</p>
-<blockquote>
-<p><code>navigator.taintEnabled()</code> 函数可返回一个布尔值，该值声明了当前浏览器是否启用了 data tainting<br><code>navigator.appCodeName</code> 属性是一个只读字符串，声明了浏览器的代码名<br><code>navigator.appName</code> 属性可返回浏览器的名称<br><code>navigator.appVersion</code> 属性可返回浏览器的平台和版本信息。该属性是一个只读的字符串<br><code>navigator.cookieEnabled</code> 属性可返回一个布尔值，如果浏览器启用了 cookie，该属性值为 true。如果禁用了 cookie，则值为 false<br><code>navigator.platform</code> 属性是一个只读的字符串，声明了运行浏览器的操作系统和（或）硬件平台<br><code>navigator.userAgent</code> 属性是一个只读的字符串，声明了浏览器用于 HTTP 请求的用户代理头的值<br><code>navigator.javaEnabled()</code> 函数可返回一个布尔值，该值指示浏览器是否支持并启用了 Java。如果是，则返回 true，否则返回 false</p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> 获取浏览器特性（即俗称的UA）然后识别客户端，例如判断是不是 Chrome 浏览器</span><br><span class="line"></span><br><span class="line">var ua = navigator.userAgent</span><br><span class="line">var isChrome = ua.indexOf(<span class="string">'Chrome'</span>)</span><br><span class="line">console.log(isChrome)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><code>screen</code> 对象</p>
-<blockquote>
-<p><code>screen.width</code> 属性声明了显示浏览器的屏幕的宽度，以像素计<br><code>screen.height</code> 属性声明了显示浏览器的屏幕的高度，以像素计<br><code>screen.availWidth</code> 属性声明了显示浏览器的屏幕的可用宽度，以像素计。在 Windows 这样的操作系统中，这个可用高度不包括分配给半永久特性（如屏幕底部的任务栏）的垂直空间<br><code>screen.availHeight</code> 属性声明了显示浏览器的屏幕的可用高度，以像素计。在 Windows 这样的操作系统中，这个可用高度不包括分配给半永久特性（如屏幕底部的任务栏）的垂直空间<br><code>screen.colorDepth</code> 属性返回目标设备或缓冲器上的调色板的比特深度<br><code>screen.pixelDepth</code> 属性返回显示屏幕的颜色分辨率（比特每像素）</p>
-</blockquote>
+<li><code>location</code> 对象<ul>
+<li><code>location.assign()</code> 函数加载一个新的文档</li>
+<li><code>location.replace()</code> 函数可用一个新文档取代当前文档</li>
+<li><code>location.reload()</code> 函数用于刷新当前文档</li>
+<li><code>location.hash</code> 属性是一个可读可写的字符串，该字符串是 URL 的锚部分（从 # 号开始的部分）</li>
+<li><code>location.host</code> 属性是一个可读可写的字符串，可设置或返回当前 URL 的主机名称和端口号</li>
+<li><code>location.hostname</code> 属性是一个可读可写的字符串，可设置或返回当前 URL 的主机名</li>
+<li><code>location.href</code> 属性是一个可读可写的字符串，可设置或返回当前显示的文档的完整 URL</li>
+<li><code>location.pathname</code> 属性是一个可读可写的字符串，可设置或返回当前 URL 的路径部分</li>
+<li><code>location.port</code> 属性是一个可读可写的字符串，可设置或返回当前 URL 的端口部分</li>
+<li><code>location.protocol</code>属性是一个可读可写的字符串，可设置或返回当前 URL 的协议</li>
+<li><code>location.search</code> 属性是一个可读可写的字符串，可设置或返回当前 URL 的查询部分（问号 ? 之后的部分)</li>
+</ul>
 </li>
 </ul>
-<h2 id="DOM"><a href="#DOM" class="headerlink" title="DOM"></a>DOM</h2><p>DOM定义了访问 HTML 和 XML 文档的标准，是HTML和XML的应用程序接口（API），它允许程序和脚本动态地访问和更新文档的内容、结构和样式。Dom技术使得用户页面可以动态地变化，如可以动态地显示或隐藏一个元素，改变它们的属性，增加一个元素等，Dom技术使得页面的交互性大大地增强。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// 例如当前网址是 https://juejin.im/timeline/frontend?a=10&amp;b=10<span class="comment">#some</span></span><br><span class="line">console.log(location.href)  // https://juejin.im/timeline/frontend?a=10&amp;b=10<span class="comment">#some</span></span><br><span class="line">console.log(location.protocol) // https:</span><br><span class="line">console.log(location.pathname) // /timeline/frontend</span><br><span class="line">console.log(location.search) // ?a=10&amp;b=10</span><br><span class="line">console.log(location.hash) // <span class="comment">#some</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>navigator</code> 对象<ul>
+<li><code>navigator.taintEnabled()</code> 函数可返回一个布尔值，该值声明了当前浏览器是否启用了 <code>data tainting</code></li>
+<li><code>navigator.appCodeName</code> 属性是一个只读字符串，声明了浏览器的代码名</li>
+<li><code>navigator.appName</code> 属性可返回浏览器的名称</li>
+<li><code>navigator.appVersion</code> 属性可返回浏览器的平台和版本信息。该属性是一个只读的字符串</li>
+<li><code>navigator.cookieEnabled</code> 属性可返回一个布尔值，如果浏览器启用了 <code>cookie</code>，该属性值为 <code>true</code>。如果禁用了 <code>cookie</code>，则值为 <code>false</code></li>
+<li><code>navigator.platform</code> 属性是一个只读的字符串，声明了运行浏览器的操作系统和（或）硬件平台</li>
+<li><code>navigator.userAgent</code> 属性是一个只读的字符串，声明了浏览器用于 HTTP 请求的用户代理头的值</li>
+<li><code>navigator.javaEnabled()</code> 函数可返回一个布尔值，该值指示浏览器是否支持并启用了 Java。如果是，则返回 <code>true</code>，否则返回 <code>false</code></li>
+</ul>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">获取浏览器特性（即俗称的UA）然后识别客户端，例如判断是不是 Chrome 浏览器</span><br><span class="line"></span><br><span class="line">var ua = navigator.userAgent</span><br><span class="line">var isChrome = ua.indexOf(<span class="string">'Chrome'</span>)</span><br><span class="line">console.log(isChrome)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>screen</code> 对象<ul>
+<li><code>screen.width</code> 属性声明了显示浏览器的屏幕的宽度，以像素计</li>
+<li><code>screen.height</code> 属性声明了显示浏览器的屏幕的高度，以像素计</li>
+<li><code>screen.availWidth</code> 属性声明了显示浏览器的屏幕的可用宽度，以像素计。在 Windows 这样的操作系统中，这个可用高度不包括分配给半永久特性（如屏幕底部的任务栏）的垂直空间</li>
+<li><code>screen.availHeight</code> 属性声明了显示浏览器的屏幕的可用高度，以像素计。在 Windows 这样的操作系统中，这个可用高度不包括分配给半永久特性（如屏幕底部的任务栏）的垂直空间</li>
+<li><code>screen.colorDepth</code> 属性返回目标设备或缓冲器上的调色板的比特深度</li>
+<li><code>screen.pixelDepth</code> 属性返回显示屏幕的颜色分辨率（比特每像素）</li>
+</ul>
+</li>
+</ul>
+<h2 id="DOM"><a href="#DOM" class="headerlink" title="DOM"></a>DOM</h2><p>DOM定义了访问 HTML 和 XML 文档的标准，是HTML和XML的应用程序接口（API），它允许程序和脚本动态地访问和更新文档的内容、结构和样式。DOM技术使得用户页面可以动态地变化，如可以动态地显示或隐藏一个元素，改变它们的属性，增加一个元素等，DOM技术使得页面的交互性大大地增强。</p>
 <p>当网页被加载时，浏览器会创建页面的文档对象模型（Document Object Model）。HTML DOM 模型被构造为对象的树，这种结构被称为节点树。</p>
 <h3 id="doucment对象"><a href="#doucment对象" class="headerlink" title="doucment对象"></a>doucment对象</h3><p>当浏览器载入 HTML 文档, 它就会成为 document 对象。document 对象是HTML文档的根节点与所有其他节点（元素节点，文本节点，属性节点, 注释节点）。document 对象使我们可以从脚本中对 HTML 页面中的所有元素进行访问。document 对象是 Window 对象的一部分，可通过 <code>window.document</code> 属性对其进行访问。</p>
-<p>常用方法：</p>
+<ul>
+<li><p>常用方法：</p>
 <ul>
 <li><code>document.addEventListener()</code> 函数用于向文档添加事件句柄</li>
 <li><code>document.querySelector()</code> 函数返回文档中匹配指定 CSS 选择器的一个元素</li>
@@ -430,34 +457,36 @@
 <li><code>document.removeEventListener()</code> 函数用于移除由 <code>document.addEventListener()</code> 方法添加的事件句柄</li>
 <li><code>document.write()</code> 函数可向文档写入 HTML 表达式或 JavaScript 代码</li>
 <li><code>document.writeln()</code> 函数与 <code>write()</code> 方法作用相同，外加可在每个表达式后写一个换行符</li>
-<li><code>document.createAttribute()</code> 函数用于创建一个指定名称的属性，并返回Attr 对象属性</li>
+<li><code>document.createAttribute()</code> 函数用于创建一个指定名称的属性，并返回<code>Attr</code> 对象属性</li>
 <li><code>document.createComment()</code> 函数可创建注释节点</li>
 <li><code>document.createDocumentFragment()</code> 函数创建了一虚拟的节点对象，节点对象包含所有属性和方法</li>
 <li><code>document.createElement()</code> 函数通过指定名称创建一个元素</li>
 <li><code>document.createTextNode()</code> 函数可创建文本节点</li>
-<li><code>document.getElementsByClassName()</code> 函数返回文档中所有指定类名的元素集合，作为 NodeList 对象</li>
+<li><code>document.getElementsByClassName()</code> 函数返回文档中所有指定类名的元素集合，作为 <code>NodeList</code>对象</li>
 <li><code>document.getElementById()</code> 函数可返回对拥有指定 ID 的第一个对象的引用</li>
 <li><code>document.getElementsByName()</code> 函数可返回带有指定名称的对象的集合</li>
 <li><code>document.getElementsByTagName()</code> 函数可返回带有指定标签名的对象的集合</li>
 </ul>
-<blockquote>
-<p>获取DOM节点<br>最常用的 DOM API 就是获取节点，其中常用的获取方法如下面代码示例：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">// 通过 id 获取</span><br><span class="line">var div1 = document.getElementById(<span class="string">'div1'</span>) // 元素</span><br><span class="line"></span><br><span class="line">// 通过 tagname 获取</span><br><span class="line">var divList = document.getElementsByTagName(<span class="string">'div'</span>)  // 集合</span><br><span class="line">console.log(divList.length)</span><br><span class="line">console.log(divList[0])</span><br><span class="line"></span><br><span class="line">// 通过 class 获取</span><br><span class="line">var containerList = document.getElementsByClassName(<span class="string">'container'</span>) // 集合</span><br><span class="line"></span><br><span class="line">// 通过 CSS 选择器获取</span><br><span class="line">var pList = document.querySelectorAll(<span class="string">'p'</span>) // 集合</span><br></pre></td></tr></table></figure></p>
-</blockquote>
-<blockquote>
-<p>新增节点<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 添加新节点</span><br><span class="line">var p1 = document.createElement(<span class="string">'p'</span>)</span><br><span class="line">p1.innerHTML = <span class="string">'this is p1'</span></span><br><span class="line">div1.appendChild(p1) // 添加新创建的元素</span><br></pre></td></tr></table></figure></p>
-</blockquote>
-<blockquote>
-<p>移动节点<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">// 移动已有节点。注意，这里是“移动”，并不是拷贝</span><br><span class="line">var p2 = document.getElementById(<span class="string">'p2'</span>)</span><br><span class="line">div1.appendChild(p2)</span><br></pre></td></tr></table></figure></p>
-</blockquote>
-<blockquote>
-<p>获取父元素<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var div1 = document.getElementById(<span class="string">'div1'</span>)</span><br><span class="line">var parent = div1.parentElement</span><br></pre></td></tr></table></figure></p>
-</blockquote>
-<blockquote>
-<p>获取子元素<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var div1 = document.getElementById(<span class="string">'div1'</span>)</span><br><span class="line">var child = div1.childNodes</span><br></pre></td></tr></table></figure></p>
-</blockquote>
-<blockquote>
-<p>删除节点<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var div1 = document.getElementById(<span class="string">'div1'</span>)</span><br><span class="line">var child = div1.childNodes</span><br><span class="line">div1.removeChild(child[0])</span><br></pre></td></tr></table></figure></p>
-</blockquote>
+</li>
+<li><p>获取DOM节点<br>最常用的 DOM API 就是获取节点，其中常用的获取方法如下面代码示例：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">// 通过 id 获取</span><br><span class="line">var div1 = document.getElementById(<span class="string">'div1'</span>) // 元素</span><br><span class="line"></span><br><span class="line">// 通过 tagname 获取</span><br><span class="line">var divList = document.getElementsByTagName(<span class="string">'div'</span>)  // 集合</span><br><span class="line">console.log(divList.length)</span><br><span class="line">console.log(divList[0])</span><br><span class="line"></span><br><span class="line">// 通过 class 获取</span><br><span class="line">var containerList = document.getElementsByClassName(<span class="string">'container'</span>) // 集合</span><br><span class="line"></span><br><span class="line">// 通过 CSS 选择器获取</span><br><span class="line">var pList = document.querySelectorAll(<span class="string">'p'</span>) // 集合</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>新增节点</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 添加新节点</span><br><span class="line">var p1 = document.createElement(<span class="string">'p'</span>)</span><br><span class="line">p1.innerHTML = <span class="string">'this is p1'</span></span><br><span class="line">div1.appendChild(p1) // 添加新创建的元素</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>移动节点</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">// 移动已有节点。注意，这里是“移动”，并不是拷贝</span><br><span class="line">var p2 = document.getElementById(<span class="string">'p2'</span>)</span><br><span class="line">div1.appendChild(p2)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>获取父元素</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var div1 = document.getElementById(<span class="string">'div1'</span>)</span><br><span class="line">var parent = div1.parentElement</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>获取子元素</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var div1 = document.getElementById(<span class="string">'div1'</span>)</span><br><span class="line">var child = div1.childNodes</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>删除节点</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var div1 = document.getElementById(<span class="string">'div1'</span>)</span><br><span class="line">var child = div1.childNodes</span><br><span class="line">div1.removeChild(child[0])</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
 <p>还有其他操作的API，例如获取前一个节点、获取后一个节点等。</p>
 <blockquote>
 <p>题目：<code>property</code> 和 <code>attribute</code> 的区别是什么？</p>
@@ -560,6 +589,16 @@
 </ul>
 </li>
 </ul>
+<h3 id="重绘和回流"><a href="#重绘和回流" class="headerlink" title="重绘和回流"></a>重绘和回流</h3><ul>
+<li>重绘：指的是当页面中的元素不脱离文档流，而简单地进行样式的变化，比如修改颜色、背景等，浏览器重新绘制样式</li>
+<li>回流：指的是处于文档流中 DOM 的尺寸大小、位置或者某些属性发生变化时，导致浏览器重新渲染部分或全部文档的情况</li>
+</ul>
+<p>相比之下，<strong>回流要比重绘消耗性能开支更大</strong>。另外，一些属性的读取也会引起回流，比如读取某个 DOM 的高度和宽度，或者使用<code>getComputedStyle</code>方法。在写代码的时候要避免回流和重绘。比如在笔试中可能会遇见下面的题目：</p>
+<blockquote>
+<p>题目：找出下面代码的优化点，并且优化它</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var data = [<span class="string">'string1'</span>, <span class="string">'string2'</span>, <span class="string">'string3'</span>];</span><br><span class="line"><span class="keyword">for</span>(var i = 0; i &lt; data.length; i++)&#123;</span><br><span class="line">    var dom = document.getElementById(<span class="string">'list'</span>);</span><br><span class="line">    dom.innerHTML += <span class="string">'&lt;li&gt;'</span> + data[i] + <span class="string">'&lt;/li&gt;'</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面的代码在循环中每次都获取dom，然后对其内部的 HTML 进行累加li，每次都会操作 DOM 结构，可以改成使用documentFragment或者先遍历组成 HTML 的字符串，最后操作一次innerHTML。</p>
 
       
     </div>
@@ -590,8 +629,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/01/05/CSS知识梳理--BFC、IFC/" rel="next" title="CSS知识梳理--BFC/IFC">
-                <i class="fa fa-chevron-left"></i> CSS知识梳理--BFC/IFC
+              <a href="/2018/01/05/CSS知识梳理--布局/" rel="next" title="CSS知识梳理--布局">
+                <i class="fa fa-chevron-left"></i> CSS知识梳理--布局
               </a>
             
           </div>
@@ -683,7 +722,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">66</span>
+                  <span class="site-state-item-count">59</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -694,7 +733,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -754,7 +793,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#BOM"><span class="nav-number">1.</span> <span class="nav-text">BOM</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#window对象"><span class="nav-number">1.1.</span> <span class="nav-text">window对象</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DOM"><span class="nav-number">2.</span> <span class="nav-text">DOM</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#doucment对象"><span class="nav-number">2.1.</span> <span class="nav-text">doucment对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DOM事件对象event"><span class="nav-number">2.2.</span> <span class="nav-text">DOM事件对象event</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#BOM"><span class="nav-number">1.</span> <span class="nav-text">BOM</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#window对象"><span class="nav-number">1.1.</span> <span class="nav-text">window对象</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DOM"><span class="nav-number">2.</span> <span class="nav-text">DOM</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#doucment对象"><span class="nav-number">2.1.</span> <span class="nav-text">doucment对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DOM事件对象event"><span class="nav-number">2.2.</span> <span class="nav-text">DOM事件对象event</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重绘和回流"><span class="nav-number">2.3.</span> <span class="nav-text">重绘和回流</span></a></li></ol></li></ol></div>
             
 
           </div>

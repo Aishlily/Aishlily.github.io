@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="Ajax实际就是XMLHttpRequest对象和DOM、(X)HTML和CSS的简称，用于概括异步加载页面内容的技术  题目：手写 XMLHttpRequest 不借助任何库1234567891011var xhr = new XMLHttpRequest()xhr.onreadystatechange = function () &amp;#123;    // 这里的函数异步执行，可参考之前 JS">
+<meta name="description" content="Ajax实际就是XMLHttpRequest对象和DOM、(X)HTML和CSS的简称，用于概括异步加载页面内容的技术  题目：手写 XMLHttpRequest 不借助任何库  1234567891011var xhr = new XMLHttpRequest()xhr.onreadystatechange = function () &amp;#123;    // 这里的函数异步执行，可参考之前 J">
 <meta name="keywords" content="JavaScript">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JavaScript知识梳理--AJAX">
 <meta property="og:url" content="/2018/01/08/JavaScript知识梳理--AJAX/index.html">
 <meta property="og:site_name" content="Aishlily&#39;s Blog">
-<meta property="og:description" content="Ajax实际就是XMLHttpRequest对象和DOM、(X)HTML和CSS的简称，用于概括异步加载页面内容的技术  题目：手写 XMLHttpRequest 不借助任何库1234567891011var xhr = new XMLHttpRequest()xhr.onreadystatechange = function () &amp;#123;    // 这里的函数异步执行，可参考之前 JS">
+<meta property="og:description" content="Ajax实际就是XMLHttpRequest对象和DOM、(X)HTML和CSS的简称，用于概括异步加载页面内容的技术  题目：手写 XMLHttpRequest 不借助任何库  1234567891011var xhr = new XMLHttpRequest()xhr.onreadystatechange = function () &amp;#123;    // 这里的函数异步执行，可参考之前 J">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-26T09:39:44.000Z">
+<meta property="og:updated_time" content="2018-04-27T03:07:52.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript知识梳理--AJAX">
-<meta name="twitter:description" content="Ajax实际就是XMLHttpRequest对象和DOM、(X)HTML和CSS的简称，用于概括异步加载页面内容的技术  题目：手写 XMLHttpRequest 不借助任何库1234567891011var xhr = new XMLHttpRequest()xhr.onreadystatechange = function () &amp;#123;    // 这里的函数异步执行，可参考之前 JS">
+<meta name="twitter:description" content="Ajax实际就是XMLHttpRequest对象和DOM、(X)HTML和CSS的简称，用于概括异步加载页面内容的技术  题目：手写 XMLHttpRequest 不借助任何库  1234567891011var xhr = new XMLHttpRequest()xhr.onreadystatechange = function () &amp;#123;    // 这里的函数异步执行，可参考之前 J">
 
 
 
@@ -384,8 +384,9 @@
       
         <p>Ajax实际就是<code>XMLHttpRequest</code>对象和DOM、(X)HTML和CSS的简称，用于概括异步加载页面内容的技术</p>
 <blockquote>
-<p>题目：手写 <code>XMLHttpRequest</code> 不借助任何库<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var xhr = new XMLHttpRequest()</span><br><span class="line">xhr.onreadystatechange = <span class="function"><span class="title">function</span></span> () &#123;</span><br><span class="line">    // 这里的函数异步执行，可参考之前 JS 基础中的异步模块</span><br><span class="line">    <span class="keyword">if</span> (xhr.readyState == 4) &#123;</span><br><span class="line">        <span class="keyword">if</span> (xhr.status == 200) &#123;</span><br><span class="line">            alert(xhr.responseText)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">xhr.open(<span class="string">"GET"</span>, <span class="string">"/api"</span>, <span class="literal">false</span>)</span><br><span class="line">xhr.send(null)</span><br></pre></td></tr></table></figure></p>
+<p>题目：手写 <code>XMLHttpRequest</code> 不借助任何库</p>
 </blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var xhr = new XMLHttpRequest()</span><br><span class="line">xhr.onreadystatechange = <span class="function"><span class="title">function</span></span> () &#123;</span><br><span class="line">    // 这里的函数异步执行，可参考之前 JS 基础中的异步模块</span><br><span class="line">    <span class="keyword">if</span> (xhr.readyState == 4) &#123;</span><br><span class="line">        <span class="keyword">if</span> (xhr.status == 200) &#123;</span><br><span class="line">            alert(xhr.responseText)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">xhr.open(<span class="string">"GET"</span>, <span class="string">"/api"</span>, <span class="literal">false</span>)</span><br><span class="line">xhr.send(null)</span><br></pre></td></tr></table></figure>
 <p>当然，使用 jQuery、Zepto 或 Fetch 等库来写就更加简单了，这里不再赘述。</p>
 <h2 id="创建XMLHttpRequest"><a href="#创建XMLHttpRequest" class="headerlink" title="创建XMLHttpRequest"></a>创建<code>XMLHttpRequest</code></h2><p>为了应对所有的现代浏览器，包括 IE5 和 IE6，请检查浏览器是否支持<code>XMLHttpRequest</code>对象。如果支持，则创建<code>XMLHttpRequest</code>对象。如果不支持，则创建<code>ActiveXObject</code>：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var xmlhttp;</span><br><span class="line"><span class="keyword">if</span> (window.XMLHttpRequest)&#123; 	// code <span class="keyword">for</span> IE7+, Firefox, Chrome, Opera, Safari</span><br><span class="line">    xmlhttp=new XMLHttpRequest()</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;							// code <span class="keyword">for</span> IE6, IE5</span><br><span class="line">    xmlhttp=new ActiveXObject(<span class="string">"Microsoft.XMLHTTP"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h2 id="Ajax请求"><a href="#Ajax请求" class="headerlink" title="Ajax请求"></a>Ajax请求</h2><p>如需将请求发送到服务器，使用 <code>XMLHttpRequest</code> 对象的 <code>open()</code> 和 <code>send()</code> 方法：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">xmlhttp.open(<span class="string">"GET"</span>,<span class="string">"test1.txt"</span>,<span class="literal">true</span>)</span><br><span class="line">xmlhttp.send()</span><br></pre></td></tr></table></figure></p>
@@ -399,21 +400,22 @@
 </li>
 </ul>
 </li>
-<li><code>send(string)</code> <ul>
+<li><p><code>send(string)</code> </p>
+<ul>
 <li><code>string</code>：仅用于 <code>POST</code> 请求</li>
 </ul>
-</li>
-</ul>
 <blockquote>
-<p>题目： <code>GET</code>还是<code>POST</code>？<br>在以下情况中，请使用 <code>POST</code> 请求：</p>
+<p>题目： <code>GET</code>还是<code>POST</code>？</p>
+</blockquote>
+<p>在以下情况中，请使用 <code>POST</code> 请求：</p>
 <ul>
 <li>无法使用缓存文件（必须需要更新服务器上的文件或数据库）</li>
 <li>向服务器发送大量数据（<code>POST</code> 没有数据量限制）</li>
 <li>发送包含未知字符的用户输入时，<code>POST</code> 比 <code>GET</code> 更稳定也更可靠</li>
 </ul>
-</blockquote>
-<ul>
-<li><code>setRequestHeader(header,value)</code> 添加 HTTP 头</li>
+</li>
+<li><p><code>setRequestHeader(header,value)</code> 添加 HTTP 头</p>
+</li>
 </ul>
 <h2 id="服务器应答"><a href="#服务器应答" class="headerlink" title="服务器应答"></a>服务器应答</h2><p>如需获得来自服务器的响应，请使用<code>XMLHttpRequest</code>对象的<code>responseText</code>或<code>responseXML</code>属性。<br>其中<code>responseText</code>用于获取文本或<code>json</code>格式(字符串形式)的数据，而<code>responseXML</code>用于获取<code>XML</code>文档。</p>
 <h2 id="状态码说明"><a href="#状态码说明" class="headerlink" title="状态码说明"></a>状态码说明</h2><p>上述代码中，有两处状态码需要说明。<code>xhr.readyState</code>是浏览器判断请求过程中各个阶段的，<code>xhr.status</code>是 HTTP 协议中规定的不同结果的返回状态说明。</p>
@@ -441,7 +443,7 @@
 <li><code>5xx</code> 服务器端出错了<br>看完要明白，为何上述代码中要同时满足<code>xhr.readyState == 4</code>和<code>xhr.status == 200</code>。</li>
 </ul>
 <h2 id="Fetch-API"><a href="#Fetch-API" class="headerlink" title="Fetch API"></a>Fetch API</h2><p>目前已经有一个获取 HTTP 请求更加方便的 API：Fetch，通过Fetch提供的<code>fetch()</code>这个全局函数方法可以很简单地发起异步请求，并且支持<code>Promise</code>的回调。但是 Fetch API 是比较新的 API，具体使用的时候还需要查查 <code>caniuse</code>，看下其浏览器兼容情况。</p>
-<p>看一个简单的例子：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">fetch(<span class="string">'some/api/data.json'</span>, &#123;</span><br><span class="line">  method:<span class="string">'POST'</span>, 	//请求类型 GET、POST</span><br><span class="line">  headers:&#123;&#125;, 		// 请求的头信息，形式为 Headers 对象或 ByteString</span><br><span class="line">  body:&#123;&#125;, 			//请求发送的数据 blob、BufferSource、FormData、URLSearchParams（get 或head 方法中不能包含 body）</span><br><span class="line">  mode:<span class="string">''</span>, 			//请求的模式，是否跨域等，如 cors、 no-cors 或 same-origin</span><br><span class="line">  credentials:<span class="string">''</span>, 	//cookie 的跨域策略，如 omit、same-origin 或 include</span><br><span class="line">  cache:<span class="string">''</span>, 		//请求的 cache 模式: default、no-store、reload、no-cache、 force-cache 或 only-if-cached</span><br><span class="line">&#125;).<span class="keyword">then</span>(<span class="keyword">function</span>(response) &#123; ... &#125;);</span><br></pre></td></tr></table></figure></p>
+<p>看一个简单的例子：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">fetch(<span class="string">'some/api/data.json'</span>, &#123;</span><br><span class="line">  method:<span class="string">'POST'</span>, 	//请求类型 GET、POST</span><br><span class="line">  headers:&#123;&#125;, 		// 请求的头信息，形式为 Headers 对象或 ByteString</span><br><span class="line">  body:&#123;&#125;,  //请求发送的数据 blob、BufferSource、FormData、URLSearchParams（get 或head 方法中不能包含 body）</span><br><span class="line">  mode:<span class="string">''</span>,  //请求的模式，是否跨域等，如 cors、 no-cors 或 same-origin</span><br><span class="line">  credentials:<span class="string">''</span>, 	//cookie 的跨域策略，如 omit、same-origin 或 include</span><br><span class="line">  cache:<span class="string">''</span>, 		//请求的 cache 模式: default、no-store、reload、no-cache、 force-cache 或 only-if-cached</span><br><span class="line">&#125;).<span class="keyword">then</span>(<span class="keyword">function</span>(response) &#123; ... &#125;);</span><br></pre></td></tr></table></figure></p>
 <p>Fetch 支持<code>headers</code>定义，通过<code>headers</code>自定义可以方便地实现多种请求方法（ <code>PUT</code>、<code>GET</code>、<code>POST</code> 等）、请求头（包括跨域）和<code>cache</code>策略等；除此之外还支持 <code>response</code>（返回数据）多种类型，比如支持二进制文件、字符串和<code>formData</code>等。</p>
 <h2 id="跨域"><a href="#跨域" class="headerlink" title="跨域"></a>跨域</h2><blockquote>
 <p>题目：如何实现跨域</p>
@@ -463,10 +465,16 @@
 <h2 id="解决跨域-JSONP"><a href="#解决跨域-JSONP" class="headerlink" title="解决跨域 - JSONP"></a>解决跨域 - JSONP</h2><blockquote>
 <p>题目：手写 JSONP </p>
 </blockquote>
-<p>首先，有一个概念你要明白，例如访问<code>http://coding.m.juejin.com/classindex.html</code>的时候，服务器端就一定有一个<code>classindex.html</code>文件吗？—— 不一定，服务器可以拿到这个请求，动态生成一个文件，然后返回。 同理，<code>&lt;script src=&quot;http://coding.m.juejin.com/api.js&quot;&gt;</code>也不一定加载一个服务器端的静态文件，服务器也可以动态生成文件并返回。</p>
-<p>例如github和掘金网，肯定不是一个域。我们需要掘金网提供一个接口，供我们来获取。首先，我们在自己的页面这样定义<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">window.callback = <span class="keyword">function</span> (data) &#123;</span><br><span class="line">    // 这是我们跨域得到信息</span><br><span class="line">    console.log(data)</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
-<p>然后掘金网给我提供了一个<code>http://coding.m.juejin.com/api.js</code>，内容如下:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">callback(&#123;x:100, y:200&#125;)</span><br></pre></td></tr></table></figure></p>
-<p>最后我们在页面中加入<code>&lt;script src=&quot;http://coding.m.juejin.com/api.js&quot;&gt;&lt;/script&gt;</code>，那么这个js加载之后，就会执行内容，我们就得到内容了。</p>
+<h3 id="JSONP原理"><a href="#JSONP原理" class="headerlink" title="JSONP原理"></a>JSONP原理</h3><p>动态生成一个JavaScript标签，其<code>src</code>由接口<code>url</code>、请求参数、<code>callback</code>函数名拼接而成，利用js标签没有跨域限制的特性实现跨域请求</p>
+<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><ol>
+<li><code>callback</code>函数要绑定在<code>window</code>对象上</li>
+<li>服务端返回数据有特定格式要求：<code>callback函数名+’(‘+JSON.stringify(返回数据)’)’</code></li>
+<li>不支持<code>post</code>，因为js标签本身就是一个<code>get</code>请求</li>
+</ol>
+<h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">const jsonp = <span class="keyword">function</span>(url, data) &#123;</span><br><span class="line">  <span class="built_in">return</span> new Promise((resolve, reject) =&gt; &#123;</span><br><span class="line">     //初始化url</span><br><span class="line">     <span class="built_in">let</span> dataString = url.indexOf(<span class="string">'?'</span>) === -1 ? <span class="string">'?'</span> : <span class="string">'&amp;'</span></span><br><span class="line">     <span class="built_in">let</span> callbackName = `jsonpCB_<span class="variable">$&#123;Date.now()&#125;</span>`</span><br><span class="line">     url += `<span class="variable">$&#123;dataString&#125;</span>callback=&amp;&#123;callbackName&#125;`</span><br><span class="line">     <span class="keyword">if</span>(data)&#123;</span><br><span class="line">           //有请求参数，依次添加到url</span><br><span class="line">           <span class="keyword">for</span>(<span class="built_in">let</span> k <span class="keyword">in</span> data)&#123;</span><br><span class="line">              url += `&amp;<span class="variable">$&#123;k&#125;</span>=<span class="variable">$&#123;data[k]&#125;</span>`</span><br><span class="line">           &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">let</span> jsNode = document.createElement(<span class="string">'script'</span>)</span><br><span class="line">    jsNode.src = url</span><br><span class="line">    //触发callback，触发后删除js标签和绑定在window上的callback</span><br><span class="line">    window[callbackName] = result =&gt; &#123;</span><br><span class="line">           delete window[callbackName]</span><br><span class="line">           document.body.removeChild(jsNode)</span><br><span class="line">           <span class="keyword">if</span>(result)&#123;</span><br><span class="line">               resolve(result)</span><br><span class="line">           &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">               reject(<span class="string">'没有返回数据'</span>)</span><br><span class="line">           &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      //js加载异常的情况</span><br><span class="line">      jsNode.addEventListener(<span class="string">'error'</span>,() =&gt; &#123;</span><br><span class="line">         delete window[callbackName]</span><br><span class="line">         document.body.removeChild(jsNode)</span><br><span class="line">         reject(<span class="string">'JavaScript资源加载失败'</span>)</span><br><span class="line">      &#125;,<span class="literal">false</span>)</span><br><span class="line">      //添加js节点到document上时，开始请求</span><br><span class="line">      document.body.appendChild(jsNode)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line">jsonp(<span class="string">'http://192.168.0.103:8081/jsonp'</span>,&#123;a:1, b:<span class="string">'heiheihei'</span>&#125;)</span><br><span class="line">.<span class="keyword">then</span>(result =&gt; &#123;console.log(result)&#125;)</span><br><span class="line">.catch(err =&gt; &#123;console.log(err)&#125;)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>个人感觉JSONP用的情况还是比较少吧，如果已经是需要服务端配合来进行跨域的情况，为什么不直接用CORS呢</p>
+</blockquote>
 <p><strong> 解决跨域 - 服务器端设置 http header </strong><br>这是需要在服务器端设置的，作为前端工程师我们不用详细掌握，但是要知道有这么个解决方案。而且，现在推崇的跨域解决方案是这一种，比 JSONP 简单许多。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">response.setHeader(<span class="string">"Access-Control-Allow-Origin"</span>, <span class="string">"http://m.juejin.com/"</span>);  // 第二个参数填写允许跨域的域名称，不建议直接写 <span class="string">"*"</span></span><br><span class="line">response.setHeader(<span class="string">"Access-Control-Allow-Headers"</span>, <span class="string">"X-Requested-With"</span>);</span><br><span class="line">response.setHeader(<span class="string">"Access-Control-Allow-Methods"</span>, <span class="string">"PUT,POST,GET,DELETE,OPTIONS"</span>);</span><br><span class="line"></span><br><span class="line">// 接收跨域的cookie</span><br><span class="line">response.setHeader(<span class="string">"Access-Control-Allow-Credentials"</span>, <span class="string">"true"</span>);</span><br></pre></td></tr></table></figure></p>
 
       
@@ -498,8 +506,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/01/08/JavaScript基础/" rel="next" title="JavaScript 基础">
-                <i class="fa fa-chevron-left"></i> JavaScript 基础
+              <a href="/2018/01/07/JavaScript知识梳理--事件机制/" rel="next" title="JavaScript知识梳理--事件机制">
+                <i class="fa fa-chevron-left"></i> JavaScript知识梳理--事件机制
               </a>
             
           </div>
@@ -508,8 +516,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/01/09/JavaScript知识梳理--存储/" rel="prev" title="JavaScript知识梳理--存储">
-                JavaScript知识梳理--存储 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/01/09/JavaScript知识梳理--缓存机制/" rel="prev" title="JavaScript知识梳理--缓存机制">
+                JavaScript知识梳理--缓存机制 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -591,7 +599,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">66</span>
+                  <span class="site-state-item-count">59</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -602,7 +610,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -662,7 +670,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#创建XMLHttpRequest"><span class="nav-number">1.</span> <span class="nav-text">创建XMLHttpRequest</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ajax请求"><span class="nav-number">2.</span> <span class="nav-text">Ajax请求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#服务器应答"><span class="nav-number">3.</span> <span class="nav-text">服务器应答</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#状态码说明"><span class="nav-number">4.</span> <span class="nav-text">状态码说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Fetch-API"><span class="nav-number">5.</span> <span class="nav-text">Fetch API</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#跨域"><span class="nav-number">6.</span> <span class="nav-text">跨域</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决跨域-JSONP"><span class="nav-number">7.</span> <span class="nav-text">解决跨域 - JSONP</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#创建XMLHttpRequest"><span class="nav-number">1.</span> <span class="nav-text">创建XMLHttpRequest</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ajax请求"><span class="nav-number">2.</span> <span class="nav-text">Ajax请求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#服务器应答"><span class="nav-number">3.</span> <span class="nav-text">服务器应答</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#状态码说明"><span class="nav-number">4.</span> <span class="nav-text">状态码说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Fetch-API"><span class="nav-number">5.</span> <span class="nav-text">Fetch API</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#跨域"><span class="nav-number">6.</span> <span class="nav-text">跨域</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决跨域-JSONP"><span class="nav-number">7.</span> <span class="nav-text">解决跨域 - JSONP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#JSONP原理"><span class="nav-number">7.1.</span> <span class="nav-text">JSONP原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注意事项"><span class="nav-number">7.2.</span> <span class="nav-text">注意事项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码实现"><span class="nav-number">7.3.</span> <span class="nav-text">代码实现</span></a></li></ol></li></ol></div>
             
 
           </div>
