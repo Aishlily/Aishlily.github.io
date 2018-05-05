@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/love.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/love.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="JavaScript,zepto," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="zepto.init 函数先来看看zepto.init 函数1234567891011121314151617181920var Zepto = (function()&amp;#123;  var $,      zepto = &amp;#123;&amp;#125;  //内部定义的zepto，非外部的Zepto    // ...省略N行代码...    zepto.init = function(selecto">
+<meta name="keywords" content="JavaScript,zepto">
+<meta property="og:type" content="article">
+<meta property="og:title" content="zepto源码解读之典型函数">
+<meta property="og:url" content="/2018/01/25/zepto源码解读之典型函数/index.html">
+<meta property="og:site_name" content="Aishlily&#39;s Blog">
+<meta property="og:description" content="zepto.init 函数先来看看zepto.init 函数1234567891011121314151617181920var Zepto = (function()&amp;#123;  var $,      zepto = &amp;#123;&amp;#125;  //内部定义的zepto，非外部的Zepto    // ...省略N行代码...    zepto.init = function(selecto">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-04-28T06:24:36.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="zepto源码解读之典型函数">
+<meta name="twitter:description" content="zepto.init 函数先来看看zepto.init 函数1234567891011121314151617181920var Zepto = (function()&amp;#123;  var $,      zepto = &amp;#123;&amp;#125;  //内部定义的zepto，非外部的Zepto    // ...省略N行代码...    zepto.init = function(selecto">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="/2018/01/25/zepto源码解读之典型函数/"/>
+
+
+
+
+
+  <title>zepto源码解读之典型函数 | Aishlily's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Aishlily's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'urw61T1LFFwLwttU72jp','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="/2018/01/25/zepto源码解读之典型函数/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Aishlily">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/my.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Aishlily's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">zepto源码解读之典型函数</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-25T15:55:45+08:00">
+                2018-01-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/zepto技术/" itemprop="url" rel="index">
+                    <span itemprop="name">zepto技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="zepto-init-函数"><a href="#zepto-init-函数" class="headerlink" title="zepto.init 函数"></a>zepto.init 函数</h2><p>先来看看zepto.init 函数<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">var Zepto = (<span class="function"><span class="title">function</span></span>()&#123;</span><br><span class="line">  var $,</span><br><span class="line">      zepto = &#123;&#125;  //内部定义的zepto，非外部的Zepto</span><br><span class="line">  </span><br><span class="line">  // ...省略N行代码...</span><br><span class="line">  </span><br><span class="line">  zepto.init = <span class="keyword">function</span>(selector, context) &#123;</span><br><span class="line">      // 函数内容</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  $ = <span class="keyword">function</span>(selector, context)&#123;</span><br><span class="line">      <span class="built_in">return</span> zepto.init(selector, context)</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  // ...省略N行代码...</span><br><span class="line">  </span><br><span class="line">  <span class="built_in">return</span> $</span><br><span class="line">&#125;)()</span><br><span class="line">window.Zepto = Zepto</span><br><span class="line">window.$ === undefined &amp;&amp; (window.$ = Zepto)</span><br></pre></td></tr></table></figure></p>
+<p>从上面代码中我们可以知道让我们使用$()时候，首先定义一个zepto，然后在$里面将zepto.init的结果return出去，这时就要来讲解下zepto.init的具体内容<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">// `$.zepto.init` is Zepto<span class="string">'s counterpart to jQuery'</span>s `$.fn.init` and</span><br><span class="line">// takes a CSS selector and an optional context (and handles various</span><br><span class="line">// special cases).</span><br><span class="line">// This method can be overridden <span class="keyword">in</span> plugins.</span><br><span class="line">zepto.init = <span class="keyword">function</span> (selector, context) &#123;</span><br><span class="line">  var dom</span><br><span class="line">// 比如$()，这个时候需要返回给一个空的zepto对象</span><br><span class="line">  <span class="keyword">if</span> (!selector) <span class="built_in">return</span> zepto.Z()</span><br><span class="line">// 如果这个参数是字符串，涉及到$(<span class="string">'&lt;div&gt;&lt;/div&gt;'</span>), $(<span class="string">'p'</span>), $(<span class="string">"#id"</span>), $(<span class="string">".class"</span>)...</span><br><span class="line">  <span class="keyword">else</span> <span class="keyword">if</span> (typeof selector === <span class="string">'string'</span>) &#123;</span><br><span class="line">    selector = selector.trim()</span><br><span class="line">  // If it<span class="string">'s a html fragment, create nodes from it</span></span><br><span class="line"><span class="string">  // Note: In both Chrome 21 and Firefox 15, DOM error 12</span></span><br><span class="line"><span class="string">  // is thrown if the fragment doesn'</span>t begin with &lt;</span><br><span class="line">  // 如果是以&lt;开头的比如说是$(<span class="string">'&lt;div&gt;'</span>)，$(<span class="string">'&lt;p&gt;'</span>)这种标签形式的，就直接用document.createElement(这个标签)</span><br><span class="line">    <span class="keyword">if</span> (selector[0] == <span class="string">'&lt;'</span> &amp;&amp; fragmentRE.test(selector)) &#123; dom = zepto.fragment(selector, RegExp.<span class="variable">$1</span>, context), selector = null &#125;</span><br><span class="line">  // If there<span class="string">'s a context, create a collection on that context first, and select</span></span><br><span class="line"><span class="string">  // nodes from there</span></span><br><span class="line"><span class="string">  // 如果是$(".chlidname", "#parentname")就根据parentname生成zepto对象，然后通过find寻找childname</span></span><br><span class="line"><span class="string">    else if (context !== undefined) return $(context).find(selector)</span></span><br><span class="line"><span class="string">  // If it'</span>s a CSS selector, use it to select nodes.</span><br><span class="line">  // 如果不是上面的两种情况，那么只剩下css选择器$(<span class="string">".name"</span>), $(<span class="string">"#name"</span>)这种，这个时候使用querySelectAll函数查找</span><br><span class="line">    <span class="keyword">else</span> dom = zepto.qsa(document, selector)</span><br><span class="line">  &#125;</span><br><span class="line">// If a <span class="keyword">function</span> is given, call it when the DOM is ready</span><br><span class="line">// 如果$(<span class="function"><span class="title">function</span></span>()&#123;...&#125;)，那么就等DOM元素加载完成的时候运行这个函数</span><br><span class="line">  <span class="keyword">else</span> <span class="keyword">if</span> (isFunction(selector)) <span class="built_in">return</span> $(document).ready(selector)</span><br><span class="line">// If a Zepto collection is given, just <span class="built_in">return</span> it</span><br><span class="line">// 如果selector本身就是一个zepto对象，直接<span class="built_in">return</span>出去</span><br><span class="line">  <span class="keyword">else</span> <span class="keyword">if</span> (zepto.isZ(selector)) <span class="built_in">return</span> selector</span><br><span class="line">  // 当selector即不是空对象，也不是字符串、函数或者zepto对象，那么</span><br><span class="line">  <span class="keyword">else</span> &#123;</span><br><span class="line">  // normalize array <span class="keyword">if</span> an array of nodes is given</span><br><span class="line">  // 如果selector是个数组，那么将数组祛除空的项以后赋值给dom</span><br><span class="line">    <span class="keyword">if</span> (isArray(selector)) dom = compact(selector)</span><br><span class="line">  // Wrap DOM nodes.</span><br><span class="line">  // 如果数组是对象，那么将对象转为数组赋值给dom</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (isObject(selector)) &#123; dom = [selector], selector = null &#125;</span><br><span class="line">  // If it<span class="string">'s a html fragment, create nodes from it</span></span><br><span class="line"><span class="string">    else if (fragmentRE.test(selector)) &#123; dom = zepto.fragment(selector.trim(), RegExp.$1, context), selector = null &#125;</span></span><br><span class="line"><span class="string">  // If there'</span>s a context, create a collection on that context first, and select</span><br><span class="line">  // nodes from there</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (context !== undefined) <span class="built_in">return</span> $(context).find(selector)</span><br><span class="line">  // And last but no least, <span class="keyword">if</span> it<span class="string">'s a CSS selector, use it to select nodes.</span></span><br><span class="line"><span class="string">    else dom = zepto.qsa(document, selector)</span></span><br><span class="line"><span class="string">  &#125;</span></span><br><span class="line"><span class="string">// create a new Zepto collection from the nodes found</span></span><br><span class="line"><span class="string">// 注意，dom是数组</span></span><br><span class="line"><span class="string">  return zepto.Z(dom, selector)</span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure></p>
+<p>上面的总体来说呢就是<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">zepto.init = <span class="keyword">function</span>(selector, context) &#123;</span><br><span class="line">    var dom</span><br><span class="line">    </span><br><span class="line">    // 分情况对dom赋值：</span><br><span class="line">    // 1. selector 为空</span><br><span class="line">    // 2. selector 是字符串，其中又分好几种情况</span><br><span class="line">    // 3. selector 是函数</span><br><span class="line">    // 4. 其他情况，例如 selector 是数组、对象等</span><br><span class="line">    </span><br><span class="line">    // 最后去调用zepto.Z</span><br><span class="line">    <span class="built_in">return</span> zepto.Z(dom, selector)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="zepto-Z-函数"><a href="#zepto-Z-函数" class="headerlink" title="zepto.Z 函数"></a>zepto.Z 函数</h2><p>下面来看下zepto.Z的最初的一版源码，主要是比较好理解<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">// `$.zepto.Z` swaps out the prototype of the given `dom` array</span><br><span class="line">// of nodes with `$.fn` and thus supplying all the Zepto <span class="built_in">functions</span></span><br><span class="line">// to the array. Note that `__proto__` is not supported on Internet</span><br><span class="line">// Explorer. This method can be overriden <span class="keyword">in</span> plugins.</span><br><span class="line">zepto.Z = <span class="keyword">function</span>(dom, selector) &#123;</span><br><span class="line">  //dom是个数组，将dom数组的隐式原型与$.fn连在一起，$.fn就是一个看似很吓人，其实就是一个普通的对象罢了</span><br><span class="line">  dom = dom || []</span><br><span class="line">  dom.__proto__ = $.fn</span><br><span class="line">  dom.selector = selector || <span class="string">''</span></span><br><span class="line">  <span class="built_in">return</span> dom</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>好了，为了看懂$.fn，我们去找下$.fn的源码<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">$.fn = &#123;</span><br><span class="line">  // Because a collection acts like an array</span><br><span class="line">  // copy over these useful array <span class="built_in">functions</span>.</span><br><span class="line">  forEach: emptyArray.forEach,</span><br><span class="line">  reduce: emptyArray.reduce,</span><br><span class="line">  push: emptyArray.push,</span><br><span class="line">  sort: emptyArray.sort,</span><br><span class="line">  splice: emptyArray.splice,</span><br><span class="line">  indexOf: emptyArray.indexOf,</span><br><span class="line">  concat: <span class="function"><span class="title">function</span></span>()&#123;</span><br><span class="line">    var i, value, args = []</span><br><span class="line">    <span class="keyword">for</span> (i = 0; i &lt; arguments.length; i++) &#123;</span><br><span class="line">      value = arguments[i]</span><br><span class="line">      args[i] = zepto.isZ(value) ? value.toArray() : value</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">return</span> concat.apply(zepto.isZ(this) ? this.toArray() : this, args)</span><br><span class="line">  &#125;,</span><br><span class="line">  // `map` and `slice` <span class="keyword">in</span> the jQuery API work differently</span><br><span class="line">  // from their array counterparts</span><br><span class="line">  map: <span class="keyword">function</span>(fn)&#123;</span><br><span class="line">    <span class="built_in">return</span> $($.map(this, <span class="keyword">function</span>(el, i)&#123; <span class="built_in">return</span> fn.call(el, i, el) &#125;))</span><br><span class="line">  &#125;,</span><br><span class="line">  slice: <span class="function"><span class="title">function</span></span>()&#123;</span><br><span class="line">    <span class="built_in">return</span> $(slice.apply(this, arguments))</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>上面只截取了一部分，但是可以显而易见的发现$.fn就是一个很普通的对象，上面挂着一堆键值对，其实就是我们介绍的原型</p>
+<p>但是后来zepto改版了，升级了zepto.Z的写法<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">//将数组写成对象形式&#123;0:xx, 1:xx, 2:xx&#125;</span><br><span class="line"><span class="keyword">function</span> Z(dom, selector) &#123;</span><br><span class="line">  var i, len = dom ? dom.length : 0</span><br><span class="line">  <span class="keyword">for</span> (i = 0; i &lt; len; i++) this[i] = dom[i]</span><br><span class="line">  this.length = len</span><br><span class="line">  this.selector = selector || <span class="string">''</span></span><br><span class="line">&#125;</span><br><span class="line">// `$.zepto.Z` swaps out the prototype of the given `dom` array</span><br><span class="line">// of nodes with `$.fn` and thus supplying all the Zepto <span class="built_in">functions</span></span><br><span class="line">// to the array. This method can be overridden <span class="keyword">in</span> plugins.</span><br><span class="line">zepto.Z = <span class="keyword">function</span>(dom, selector) &#123;</span><br><span class="line">  <span class="built_in">return</span> new Z(dom, selector)</span><br><span class="line">&#125;</span><br><span class="line">$.fn = &#123;</span><br><span class="line">  // ...很多属性...</span><br><span class="line">&#125;</span><br><span class="line">//注意这里，原型的继承</span><br><span class="line">zepto.Z.prototype = Z.prototype = $.fn</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+            <a href="/tags/zepto/" rel="tag"># zepto</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/01/22/从零构建JavaScript的对象系统/" rel="next" title="从零构建JavaScript的对象系统">
+                <i class="fa fa-chevron-left"></i> 从零构建JavaScript的对象系统
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/01/25/Vue中class与style绑定/" rel="prev" title="Vue中class与style绑定">
+                Vue中class与style绑定 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/my.jpg"
+                alt="Aishlily" />
+            
+              <p class="site-author-name" itemprop="name">Aishlily</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/Aishlily" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:mali_job@yeah.net" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#zepto-init-函数"><span class="nav-number">1.</span> <span class="nav-text">zepto.init 函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#zepto-Z-函数"><span class="nav-number">2.</span> <span class="nav-text">zepto.Z 函数</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Aishlily</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+  <script type="text/javascript" src="/js/src/exturl.js?v=5.1.4"></script>
+
+
+</body>
+</html>
+<script type="text/javascript" src="/js/src/love.js"></script>>

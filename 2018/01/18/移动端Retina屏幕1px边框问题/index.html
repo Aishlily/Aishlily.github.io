@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/love.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/love.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="css," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="0.5px边框在2014年的 WWDC，“设计响应的Web体验” 一讲中，Ted O’Connor 讲到关于“retinahairlines”（retina 极细的线）：在retina屏上仅仅显示1物理像素的边框，开发者应该如何处理呢。他们曾介绍到 iOS 8 和 OS X Yosemite 即将支持 0.5px 的边框： 问题是 retina 屏的浏览器可能不认识0.5px的边框，将会把它解释成">
+<meta name="keywords" content="css">
+<meta property="og:type" content="article">
+<meta property="og:title" content="移动端Retina屏幕1px边框问题">
+<meta property="og:url" content="/2018/01/18/移动端Retina屏幕1px边框问题/index.html">
+<meta property="og:site_name" content="Aishlily&#39;s Blog">
+<meta property="og:description" content="0.5px边框在2014年的 WWDC，“设计响应的Web体验” 一讲中，Ted O’Connor 讲到关于“retinahairlines”（retina 极细的线）：在retina屏上仅仅显示1物理像素的边框，开发者应该如何处理呢。他们曾介绍到 iOS 8 和 OS X Yosemite 即将支持 0.5px 的边框： 问题是 retina 屏的浏览器可能不认识0.5px的边框，将会把它解释成">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="data:image/jpeg;base64,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">
+<meta property="og:image" content="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCABEAKcDASIAAhEBAxEB/8QAGgABAAIDAQAAAAAAAAAAAAAAAAECAwUGCP/EAC0QAAICAgAFAgMJAQAAAAAAAAABAhEDUQQSMUGREyFhcrEUMjM0UlNxgZIi/8QAGQEBAQEBAQEAAAAAAAAAAAAAAAIDAQQF/8QAJBEAAQMDBAIDAQAAAAAAAAAAAAECURESkQMTITEEFCJSYUH/2gAMAwEAAhEDEQA/AOFtroxb2wCbGwbJ5GqiURy5FvbFvbAFjYO+zrfdci3ti3tgCxsD2db7rkW9sW9vyALGwPY1fsuT1fgwY+Fw48GHHGGKEVGMIKlFLokuyNPzS/U/Il95/wAs6IowBz0Zy5lUn1XcqdGAeRgAAAAAAAAAAAAAAAAAAAAAAAAAAeuTnC0ovnf/AC+r7HQgA52P3l/KI5Zafg6MA8jAAHbXAAA7Y4AADbcAABY4AAEgAAAAAAAAAAAG34jic64nKlnypKcqXO9sw+vm/dn/AKYzfj5Pmf1KAGX7VxH7+X/bJxZcsssIynJxckmnK00YTJw35rF88fqgOuTW29sW9vyATa2DTddK5FvbLx5u9/2RjSlJJq7EYpxbcq966GOojeuj6Xio/wCL0+Xf9p1TupDcluiLe35L+n25unX4Ip3K00Y5JMvK3dNarVqL+i3ti3tgGljYPFuulci3d99gAqiE3OXkAU32Yp6ZNzZKTScqVRqgCnpinp+Bc2RtOhcACnpinp+Bc2RtOhcACnpinpi5sjadC4NlxP5nL88vqzEWyzi802pJpybTTKcy/UvIubI2nwuCxfD+Pj+ZfUxWtryZeHnGPE425JJTTbbpJewubI2nwuDXAU9PwKemLmyNp0LgmEuWSdXRaLSg7V+/QpT0y8ebva6mOqrez6Hh3otvKV/OOaSPU7116/Eo3/SJal8a+JFPTK01YiQR5W7qLatXIn4AKemKen4NL2yeLadC4AIp3Ve+gVVCbXJwSAAagAA7UAACoAAFTHLFBttr3K+jDQAFR6MNExxxTtL3AAqZQABUAAHaqAABVQAAcqAADzn/2Q==">
+<meta property="og:image" content="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAACRCAMAAABdcmKFAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAYUExURUVFRVNTU////93d3f8AAHR0dMMhIY80NClcuX4AAAIKSURBVHja7dzhboMwDATgpA3O+7/xQmB/JhVHpAe+cdamUk1C3zLXMdHklBQKhUJBEiV4nPqdjn+85MNYpm4+8XfAoU+uo7/O5Xg5ZtDuzc+a9y8E2r/5jJsup4X+WGepVjoxpgcT2orRoa0QonOyFW3VzGqq7bq21/A53dGtarQ1z7Utu5VEg64pd7GVSoO2/er7KQ5GFzZ0S4ravltyEKVH/yDu7hwfXWvPjLxWun7NUPK2O+N2GC70WPc4ga453RQxuzwMGvIQ0GrRWO0M9LjVWoJahmpnsGfEXvTd7jHYEcKK9rvHYIc1q9LvHmMdi3Wl3z2GyultZf3ucTmOS49692zwu8fXHu89/rx/XbhltHrXy4bfPTro95Vosw3tdo+B0OONmNBfSpNMiPYjGHqsXMZcaae4f8L+vhdaaKGFFvpeNOXmIrTQQgv9ILR2RKG50P65d8SVds+9Q6aHd9bK2Zreg548845zPk17LCa00EILjYyYO6LQQgsttNDaEYUWWmih1U8LLbTQQker04zoSP/0PY4OOVYAiQbN94CiQfM9oGjgfA/lNDcaX9ZwK50Y04MJDZ/vAUDj53sA0Pj5HpCcRs/3QKJh8z2AaNx8DzC6sKFx8z3QH0TIfA8IGj3fA9hP37bDPA2t+R56CNAzoo4QHnRYw3ksNpEb/3GUs0KhUCgUg/ED6IQw2WZkukMAAAAASUVORK5CYII=">
+<meta property="og:updated_time" content="2018-04-27T05:31:52.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="移动端Retina屏幕1px边框问题">
+<meta name="twitter:description" content="0.5px边框在2014年的 WWDC，“设计响应的Web体验” 一讲中，Ted O’Connor 讲到关于“retinahairlines”（retina 极细的线）：在retina屏上仅仅显示1物理像素的边框，开发者应该如何处理呢。他们曾介绍到 iOS 8 和 OS X Yosemite 即将支持 0.5px 的边框： 问题是 retina 屏的浏览器可能不认识0.5px的边框，将会把它解释成">
+<meta name="twitter:image" content="data:image/jpeg;base64,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">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="/2018/01/18/移动端Retina屏幕1px边框问题/"/>
+
+
+
+
+
+  <title>移动端Retina屏幕1px边框问题 | Aishlily's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Aishlily's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'urw61T1LFFwLwttU72jp','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="/2018/01/18/移动端Retina屏幕1px边框问题/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Aishlily">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/my.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Aishlily's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">移动端Retina屏幕1px边框问题</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-18T14:45:45+08:00">
+                2018-01-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/css技术/" itemprop="url" rel="index">
+                    <span itemprop="name">css技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="0-5px边框"><a href="#0-5px边框" class="headerlink" title="0.5px边框"></a><code>0.5px</code>边框</h2><p>在2014年的 WWDC，“设计响应的Web体验” 一讲中，Ted O’Connor 讲到关于“retina<br>hairlines”（retina 极细的线）：在retina屏上仅仅显示1物理像素的边框，开发者应该如何处理呢。<br>他们曾介绍到 iOS 8 和 OS X Yosemite 即将支持 <code>0.5px</code> 的边框：<br><img src="data:image/jpeg;base64,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" alt="name"></p>
+<p>问题是 retina 屏的浏览器可能不认识<code>0.5px</code>的边框，将会把它解释成<code>0px</code>，没有边框。包括 iOS 7 和之前版本，OS X Mavericks 及以前版本，还有 Android 设备。</p>
+<ul>
+<li>解决方案：<br>通过 JavaScript 检测浏览器能否处理<code>0.5px</code>的边框，如果可以，给html标签元素添加个class。<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (window.devicePixelRatio &amp;&amp; devicePixelRatio &gt;= 2) &#123;</span><br><span class="line">  var testElem = document.createElement(<span class="string">'div'</span>);</span><br><span class="line">  testElem.style.border = <span class="string">'.5px solid transparent'</span>;</span><br><span class="line">  document.body.appendChild(testElem);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (testElem.offsetHeight == 1) &#123;</span><br><span class="line">  document.querySelector(<span class="string">'html'</span>).classList.add(<span class="string">'hairlines'</span>);</span><br><span class="line">&#125;</span><br><span class="line">  document.body.removeChild(testElem);</span><br><span class="line">&#125;</span><br><span class="line">// 脚本应该放在内，如果在里面运行，需要包装 $(document).ready(<span class="function"><span class="title">function</span></span>() &#123;&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>然后，极细的边框样式就容易了：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">div &#123;</span><br><span class="line">  border: 1px solid <span class="comment">#bbb;</span></span><br><span class="line">&#125;</span><br><span class="line">.hairlines div &#123;</span><br><span class="line">  border-width: 0.5px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>优点：简单，不需要过多代码。</li>
+<li>缺点：无法兼容安卓设备、 iOS 8 以下设备。</li>
+</ul>
+<h2 id="使用border-image实现"><a href="#使用border-image实现" class="headerlink" title="使用border-image实现"></a>使用border-image实现</h2><p>准备一张符合你要求的<code>border-image</code>：<br><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCABEAKcDASIAAhEBAxEB/8QAGgABAAIDAQAAAAAAAAAAAAAAAAECAwUGCP/EAC0QAAICAgAFAgMJAQAAAAAAAAABAhEDUQQSMUGREyFhcrEUMjM0UlNxgZIi/8QAGQEBAQEBAQEAAAAAAAAAAAAAAAIDAQQF/8QAJBEAAQMDBAIDAQAAAAAAAAAAAAECURESkQMTITEEFCJSYUH/2gAMAwEAAhEDEQA/AOFtroxb2wCbGwbJ5GqiURy5FvbFvbAFjYO+zrfdci3ti3tgCxsD2db7rkW9sW9vyALGwPY1fsuT1fgwY+Fw48GHHGGKEVGMIKlFLokuyNPzS/U/Il95/wAs6IowBz0Zy5lUn1XcqdGAeRgAAAAAAAAAAAAAAAAAAAAAAAAAAeuTnC0ovnf/AC+r7HQgA52P3l/KI5Zafg6MA8jAAHbXAAA7Y4AADbcAABY4AAEgAAAAAAAAAAAG34jic64nKlnypKcqXO9sw+vm/dn/AKYzfj5Pmf1KAGX7VxH7+X/bJxZcsssIynJxckmnK00YTJw35rF88fqgOuTW29sW9vyATa2DTddK5FvbLx5u9/2RjSlJJq7EYpxbcq966GOojeuj6Xio/wCL0+Xf9p1TupDcluiLe35L+n25unX4Ip3K00Y5JMvK3dNarVqL+i3ti3tgGljYPFuulci3d99gAqiE3OXkAU32Yp6ZNzZKTScqVRqgCnpinp+Bc2RtOhcACnpinp+Bc2RtOhcACnpinpi5sjadC4NlxP5nL88vqzEWyzi802pJpybTTKcy/UvIubI2nwuCxfD+Pj+ZfUxWtryZeHnGPE425JJTTbbpJewubI2nwuDXAU9PwKemLmyNp0LgmEuWSdXRaLSg7V+/QpT0y8ebva6mOqrez6Hh3otvKV/OOaSPU7116/Eo3/SJal8a+JFPTK01YiQR5W7qLatXIn4AKemKen4NL2yeLadC4AIp3Ve+gVVCbXJwSAAagAA7UAACoAAFTHLFBttr3K+jDQAFR6MNExxxTtL3AAqZQABUAAHaqAABVQAAcqAADzn/2Q==" alt="name"></p>
+<p>样式设置：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.border-bottom-1px &#123;</span><br><span class="line">  border-width: 0 0 1px 0;</span><br><span class="line">  -webkit-border-image: url(linenew.png) 0 0 2 0 stretch;</span><br><span class="line">  border-image: url(linenew.png) 0 0 2 0 stretch;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>上文是把<code>border</code>设置在边框的底部，所以使用的图片是<code>2px</code>高，上部的<code>1px</code>颜色为透明，下部的<code>1px</code>使用视觉规定的<code>border</code>的颜色。如果边框底部和顶部同时需要<code>border</code>，可以使用下面的<code>border-image</code>：<br><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAACRCAMAAABdcmKFAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAYUExURUVFRVNTU////93d3f8AAHR0dMMhIY80NClcuX4AAAIKSURBVHja7dzhboMwDATgpA3O+7/xQmB/JhVHpAe+cdamUk1C3zLXMdHklBQKhUJBEiV4nPqdjn+85MNYpm4+8XfAoU+uo7/O5Xg5ZtDuzc+a9y8E2r/5jJsup4X+WGepVjoxpgcT2orRoa0QonOyFW3VzGqq7bq21/A53dGtarQ1z7Utu5VEg64pd7GVSoO2/er7KQ5GFzZ0S4ravltyEKVH/yDu7hwfXWvPjLxWun7NUPK2O+N2GC70WPc4ga453RQxuzwMGvIQ0GrRWO0M9LjVWoJahmpnsGfEXvTd7jHYEcKK9rvHYIc1q9LvHmMdi3Wl3z2GyultZf3ucTmOS49692zwu8fXHu89/rx/XbhltHrXy4bfPTro95Vosw3tdo+B0OONmNBfSpNMiPYjGHqsXMZcaae4f8L+vhdaaKGFFvpeNOXmIrTQQgv9ILR2RKG50P65d8SVds+9Q6aHd9bK2Zreg548845zPk17LCa00EILjYyYO6LQQgsttNDaEYUWWmih1U8LLbTQQker04zoSP/0PY4OOVYAiQbN94CiQfM9oGjgfA/lNDcaX9ZwK50Y04MJDZ/vAUDj53sA0Pj5HpCcRs/3QKJh8z2AaNx8DzC6sKFx8z3QH0TIfA8IGj3fA9hP37bDPA2t+R56CNAzoo4QHnRYw3ksNpEb/3GUs0KhUCgUg/ED6IQw2WZkukMAAAAASUVORK5CYII=" alt="name"><br>样式设置：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.border-image-1px &#123;</span><br><span class="line">  border-width: 1px 0;</span><br><span class="line">  -webkit-border-image: url(linenew.png) 2 0 stretch;</span><br><span class="line">  border-image: url(linenew.png) 2 0 stretch;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>到目前为止，我们已经能在iphone上展现<code>1px border</code>的效果了。但是我们发现这样的方法在非视网膜屏上会出现<code>border</code>显示不出来的现象，于是使用Media Query做了一些兼容，样式设置如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">.border-image-1px &#123;</span><br><span class="line">  border-bottom: 1px solid <span class="comment">#666;</span></span><br><span class="line">&#125;</span><br><span class="line">@media only screen and (-webkit-min-device-pixel-ratio: 2) &#123;</span><br><span class="line">  .border-image-1px &#123;</span><br><span class="line">    border-bottom: none;</span><br><span class="line">    border-width: 0 0 1px 0;</span><br><span class="line">    -webkit-border-image: url(../img/linenew.png) 0 0 2 0 stretch;</span><br><span class="line">    border-image: url(../img/linenew.png) 0 0 2 0 stretch;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>优点：<ul>
+<li>可以设置单条,多条边框</li>
+<li>没有性能瓶颈的问题</li>
+</ul>
+</li>
+<li>缺点：<ul>
+<li>修改颜色麻烦, 需要替换图片</li>
+<li>圆角需要特殊处理，并且边缘会模糊</li>
+</ul>
+</li>
+</ul>
+<h2 id="使用background-image实现"><a href="#使用background-image实现" class="headerlink" title="使用background-image实现"></a>使用<code>background-image</code>实现</h2><p><code>background-image</code> 跟<code>border-image</code>的方法一样，你要先准备一张符合你要求的图片。然后将边框模拟在背景上。<br>样式设置：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.background-image-1px &#123;</span><br><span class="line">  background: url(../img/line.png) repeat-x left bottom;</span><br><span class="line">  -webkit-background-size: 100% 1px;</span><br><span class="line">  background-size: 100% 1px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>优点：<ul>
+<li>可以设置单条,多条边框</li>
+<li>没有性能瓶颈的问题</li>
+</ul>
+</li>
+<li>缺点：<ul>
+<li>修改颜色麻烦, 需要替换图片</li>
+<li>圆角需要特殊处理，并且边缘会模糊</li>
+</ul>
+</li>
+</ul>
+<h2 id="多背景渐变实现"><a href="#多背景渐变实现" class="headerlink" title="多背景渐变实现"></a>多背景渐变实现</h2><p>与<code>background-image</code>方案类似，只是将图片替换为css3渐变。设置<code>1px</code>的渐变背景，<code>50%</code>有颜色，<code>50%</code>透明。<br>样式设置：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">.background-gradient-1px &#123;</span><br><span class="line">  background:</span><br><span class="line">    linear-gradient(<span class="comment">#000, #000 100%, transparent 100%) left / 1px 100% no-repeat,</span></span><br><span class="line">    linear-gradient(<span class="comment">#000, #000 100%, transparent 100%) right / 1px 100% no-repeat,</span></span><br><span class="line">    linear-gradient(<span class="comment">#000,#000 100%, transparent 100%) top / 100% 1px no-repeat,</span></span><br><span class="line">    linear-gradient(<span class="comment">#000,#000 100%, transparent 100%) bottom / 100% 1px no-repeat</span></span><br><span class="line">&#125;</span><br><span class="line">/* 或者 */</span><br><span class="line">.background-gradient-1px&#123;</span><br><span class="line">  background:</span><br><span class="line">    -webkit-gradient(linear, left top, right bottom, color-stop(0, transparent), color-stop(0, <span class="comment">#000), to(#000)) left / 1px 100% no-repeat,</span></span><br><span class="line">    -webkit-gradient(linear, left top, right bottom, color-stop(0, transparent), color-stop(0, <span class="comment">#000), to(#000)) right / 1px 100% no-repeat,</span></span><br><span class="line">    -webkit-gradient(linear, left top, right bottom, color-stop(0, transparent), color-stop(0, <span class="comment">#000), to(#000)) top / 100% 1px no-repeat,</span></span><br><span class="line">    -webkit-gradient(linear, left top, right bottom, color-stop(0, transparent), color-stop(0, <span class="comment">#000), to(#000)) bottom / 100% 1px no-repeat</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>优点：<ul>
+<li>可以实现单条、多条边框</li>
+<li>边框的颜色随意设置</li>
+</ul>
+</li>
+<li>缺点：<ul>
+<li>代码量不少</li>
+<li>圆角没法实现</li>
+<li>多背景图片有兼容性问题</li>
+</ul>
+</li>
+</ul>
+<h2 id="使用box-shadow模拟边框"><a href="#使用box-shadow模拟边框" class="headerlink" title="使用box-shadow模拟边框"></a>使用<code>box-shadow</code>模拟边框</h2><p>利用css 对阴影处理的方式实现<code>0.5px</code>的效果<br>样式设置：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.box-shadow-1px &#123;</span><br><span class="line">  box-shadow: inset 0px -1px 1px -1px <span class="comment">#c8c7cc;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>优点：<ul>
+<li>代码量少</li>
+<li>可以满足所有场景</li>
+</ul>
+</li>
+<li>缺点：边框有阴影，颜色变浅</li>
+</ul>
+<h2 id="viewport-rem-实现"><a href="#viewport-rem-实现" class="headerlink" title="viewport + rem 实现"></a><code>viewport + rem</code> 实现</h2><p>同时通过设置对应<code>viewport</code>的<code>rem</code>基准值，这种方式就可以像以前一样轻松愉快的写<code>1px</code>了。</p>
+<p>在<code>devicePixelRatio = 2</code> 时，输出<code>viewport</code>：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta name=<span class="string">"viewport"</span> content=<span class="string">"initial-scale=0.5, maximum-scale=0.5, minimum-scale=0.5, user-scalable=no"</span>&gt;</span><br></pre></td></tr></table></figure></p>
+<p>在<code>devicePixelRatio = 3</code> 时，输出<code>viewport</code>：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta name=<span class="string">"viewport"</span> content=<span class="string">"initial-scale=0.3333333333333333, maximum-scale=0.3333333333333333, minimum-scale=0.3333333333333333, user-scalable=no"</span>&gt;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>优点：<ul>
+<li>所有场景都能满足</li>
+<li>一套代码，可以兼容基本所有布局</li>
+</ul>
+</li>
+<li>缺点：<ul>
+<li>老项目修改代价过大，只适用于新项目</li>
+</ul>
+</li>
+</ul>
+<h2 id="伪类-transform-实现"><a href="#伪类-transform-实现" class="headerlink" title="伪类 + transform 实现"></a>伪类 + <code>transform</code> 实现</h2><p>把原先元素的 <code>border</code>去掉，然后利用 <code>:before</code> 或者 <code>:after</code> 重做 <code>border</code> ，并 <code>transform</code> 的 <code>scale</code> 缩小一半，原先的元素相对定位，新做的 <code>border</code>绝对定位。<br>单条<code>border</code>样式设置：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">.scale-1px&#123;</span><br><span class="line">  position: relative;</span><br><span class="line">  border:none;</span><br><span class="line">&#125;</span><br><span class="line">.scale-1px:after&#123;</span><br><span class="line">  content: <span class="string">''</span>;</span><br><span class="line">  position: absolute;</span><br><span class="line">  bottom: 0;</span><br><span class="line">  background: <span class="comment">#000;</span></span><br><span class="line">  width: 100%;</span><br><span class="line">  height: 1px;</span><br><span class="line">  -webkit-transform: scaleY(0.5);</span><br><span class="line">  transform: scaleY(0.5);</span><br><span class="line">  -webkit-transform-origin: 0 0;</span><br><span class="line">  transform-origin: 0 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>四条<code>boder</code>样式设置:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">.scale-1px&#123;</span><br><span class="line">  position: relative;</span><br><span class="line">  margin-bottom: 20px;</span><br><span class="line">  border:none;</span><br><span class="line">&#125;</span><br><span class="line">.scale-1px:after&#123;</span><br><span class="line">  content: <span class="string">''</span>;</span><br><span class="line">  position: absolute;</span><br><span class="line">  top: 0;</span><br><span class="line">  left: 0;</span><br><span class="line">  border: 1px solid <span class="comment">#000;</span></span><br><span class="line">  -webkit-box-sizing: border-box;</span><br><span class="line">  box-sizing: border-box;</span><br><span class="line">  width: 200%;</span><br><span class="line">  height: 200%;</span><br><span class="line">  -webkit-transform: scale(0.5);</span><br><span class="line">  transform: scale(0.5);</span><br><span class="line">  -webkit-transform-origin: left top;</span><br><span class="line">  transform-origin: left top;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>最好在使用前也判断一下，结合 JS 代码，判断是否 Retina 屏：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(window.devicePixelRatio &amp;&amp; devicePixelRatio &gt;= 2)&#123;</span><br><span class="line">  document.querySelector(<span class="string">'ul'</span>).className = <span class="string">'scale-1px'</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>优点：<ul>
+<li>所有场景都能满足</li>
+<li>支持圆角(伪类和本体类都需要加<code>border-radius</code>)</li>
+</ul>
+</li>
+<li>缺点：对于已经使用伪类的元素(例如<code>clearfix</code>)，可能需要多层嵌套</li>
+</ul>
+<p>参考：<br><a href="http://efe.baidu.com/blog/1px-on-retina/" target="_blank" rel="noopener">《1px on retina》</a><br><a href="http://www.ghugo.com/css-retina-hairline/" target="_blank" rel="noopener">《再谈mobile web retina 下 1px 边框解决方案》</a><br><a href="http://jinlong.github.io/2015/05/24/css-retina-hairlines/" target="_blank" rel="noopener">《Retina屏的移动设备如何实现真正1px的线？》</a><br><a href="http://jinlong.github.io/2015/05/24/css-retina-hairlines/" target="_blank" rel="noopener">《在retina屏中实现1px border效果》</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/css/" rel="tag"># css</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/01/14/文件处理/" rel="next" title="文件处理">
+                <i class="fa fa-chevron-left"></i> 文件处理
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/01/18/webpack入门指南/" rel="prev" title="webpack--入门指南">
+                webpack--入门指南 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/my.jpg"
+                alt="Aishlily" />
+            
+              <p class="site-author-name" itemprop="name">Aishlily</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/Aishlily" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:mali_job@yeah.net" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#0-5px边框"><span class="nav-number">1.</span> <span class="nav-text">0.5px边框</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用border-image实现"><span class="nav-number">2.</span> <span class="nav-text">使用border-image实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用background-image实现"><span class="nav-number">3.</span> <span class="nav-text">使用background-image实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多背景渐变实现"><span class="nav-number">4.</span> <span class="nav-text">多背景渐变实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用box-shadow模拟边框"><span class="nav-number">5.</span> <span class="nav-text">使用box-shadow模拟边框</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#viewport-rem-实现"><span class="nav-number">6.</span> <span class="nav-text">viewport + rem 实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#伪类-transform-实现"><span class="nav-number">7.</span> <span class="nav-text">伪类 + transform 实现</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Aishlily</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+  <script type="text/javascript" src="/js/src/exturl.js?v=5.1.4"></script>
+
+
+</body>
+</html>
+<script type="text/javascript" src="/js/src/love.js"></script>>
