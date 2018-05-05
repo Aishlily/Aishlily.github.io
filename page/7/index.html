@@ -289,7 +289,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="/2018/01/22/vue实现/">
+    <link itemprop="mainEntityOfPage" href="/2018/01/22/vue与MVVM模型/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Aishlily">
@@ -308,7 +308,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/01/22/vue实现/" itemprop="url">vue实现</a></h1>
+                <a class="post-title-link" href="/2018/01/22/vue与MVVM模型/" itemprop="url">vue与MVVM模型</a></h1>
         
 
         <div class="post-meta">
@@ -382,12 +382,12 @@
       
         
           
-          源码阅读：究竟怎样才算是读懂了？
-一个经过无数次版本迭代的框架源码并不适合初学者直接阅读，因为里面有太多细节，太多噪点，太多枝枝蔓蔓。要想真正理解框架的核心逻辑，必须剥茧抽丝，还原出一个纯净的雏形。如同 jQuery 最早的版本只有六百多行，我相信 Vue 的核心功能也只需要几百行就能实现。所以，读
+          Vue.js 可以说是MVVM 架构的最佳实践，专注于 MVVM 中的 ViewModel，不仅做到了数据双向绑定，而且也是一款相对比较轻量级的JS 库，API 简洁，很容易上手。
+实现双向绑定的做法目前集中主流的mvc(vm)框架都实现了单向数据绑定，双向数据绑定无非就是在单向绑定的基础上给可输入
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/01/22/vue实现/#more" rel="contents">
+            <a class="btn" href="/2018/01/22/vue与MVVM模型/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -438,7 +438,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="/2018/01/22/vue运行概览/">
+    <link itemprop="mainEntityOfPage" href="/2018/01/22/vue响应式数组/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Aishlily">
@@ -457,7 +457,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/01/22/vue运行概览/" itemprop="url">vue运行概览</a></h1>
+                <a class="post-title-link" href="/2018/01/22/vue响应式数组/" itemprop="url">vue响应式--数组变异方法</a></h1>
         
 
         <div class="post-meta">
@@ -531,12 +531,19 @@
       
         
           
-          全局概览首先看一下内部流程图。
-初始化及挂载new Vue() ==&gt; _init函数进行初始化 init过程: 会初始化生命周期、事件、props、methods、data、computed与watch等。其中最重要的是通过Object.defineProperty设置setter与gett
+          vue官方文档对数组更新的描述包含如下内容:Vue包含一组观察数组的变异方法，它们会触发视图更新：
+
+push()
+pop()
+shift()
+unshift()
+splice()
+sort()
+reverse()非变异方法：不会改变原始数组，返回新数组。如filter()、concat()、sli
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/01/22/vue运行概览/#more" rel="contents">
+            <a class="btn" href="/2018/01/22/vue响应式数组/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1640,7 +1647,7 @@ async函数是Generator的语法糖。而await命令就是内部then命令的语
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="/2018/01/20/MVC vs MVP vs MVVM/">
+    <link itemprop="mainEntityOfPage" href="/2018/01/20/grunt配置/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Aishlily">
@@ -1659,7 +1666,7 @@ async函数是Generator的语法糖。而await命令就是内部then命令的语
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/01/20/MVC vs MVP vs MVVM/" itemprop="url">MVC vs MVP vs MVVM</a></h1>
+                <a class="post-title-link" href="/2018/01/20/grunt配置/" itemprop="url">grunt配置</a></h1>
         
 
         <div class="post-meta">
@@ -1694,8 +1701,8 @@ async函数是Generator的语法糖。而await命令就是内部then命令的语
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/设计模式/" itemprop="url" rel="index">
-                    <span itemprop="name">设计模式</span>
+                  <a href="/categories/grunt技术/" itemprop="url" rel="index">
+                    <span itemprop="name">grunt技术</span>
                   </a>
                 </span>
 
@@ -1733,17 +1740,11 @@ async函数是Generator的语法糖。而await命令就是内部then命令的语
       
         
           
-          MVCMVC模式的意思是，软件可以分成三个部分。解释如下：
-
-视图（View）：用户界面。
-控制器（Controller）：业务逻辑
-模型（Model）：数据保存各部分之间的通信方式如下。解释如下：
-View 传送指令到 Controller
-Controller 完成业务逻辑后，要求 Model 
+          任务配置假设我需要创建concat和uglify两个JSON格式的任务以及my_property字符串格式任务和my_src_files数组格式的任务直接举个例子：1234567891011grunt.initConfig(&#123;  concat: &#123;    // 这里是concat
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/01/20/MVC vs MVP vs MVVM/#more" rel="contents">
+            <a class="btn" href="/2018/01/20/grunt配置/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
