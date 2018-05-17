@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/love.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/love.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="webpack," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="第一步在空白的文件夹正确的安装webpack，这一步webpack入门指南已经讲过了。然后创建源文件夹src,在src下面创建app.js，然后创建个目标文件夹dist,用来盛放打包生成的文件. 第二步在根目录下面创建index.html,内容是:123456789&amp;lt;!DOCTYPE html&amp;gt;&amp;lt;html&amp;gt;	&amp;lt;head&amp;gt;		&amp;lt;meta charset=&quot;U">
+<meta name="keywords" content="webpack">
+<meta property="og:type" content="article">
+<meta property="og:title" content="webpack--babel-loader">
+<meta property="og:url" content="/2018/01/18/webpack--babel-loader/index.html">
+<meta property="og:site_name" content="Aishlily&#39;s Blog">
+<meta property="og:description" content="第一步在空白的文件夹正确的安装webpack，这一步webpack入门指南已经讲过了。然后创建源文件夹src,在src下面创建app.js，然后创建个目标文件夹dist,用来盛放打包生成的文件. 第二步在根目录下面创建index.html,内容是:123456789&amp;lt;!DOCTYPE html&amp;gt;&amp;lt;html&amp;gt;	&amp;lt;head&amp;gt;		&amp;lt;meta charset=&quot;U">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAM4AAACECAIAAABXvoOZAAASqklEQVR4Ae1dfVAbxxVf8WkMxk4EOKmJiEhwLKtNmn9KMRAZmnE7Y0Kd0sQOjkNcO4h20vTDraeY4CQmoNYznjRMJkGUhDAuTJ00rU31Tz0pRhGQoZOZTps4YEghULmOwXia1gHzqb7d0x130p0kQCfdSathpL13e2/fvvdjd+/uvX0al+sDRD9UA/JrIEb+JmgLVANYAxRqFAch0gCFWogUTZuhUKMYCJEGKNRCpGjaDIUaxUCINEChFiJF02bigqsC60tnOIYpG9bv/o5p062pHCWAwlB9yeBOW2l+AFVpFXVpIMhQ43f+xv+mz73V9eDuvA2pKXw6lFM3JntQwncI4H7nPG4+w9x0qDyTCOLsO1xlHybFXbXVNbmkRL/WpgH/UHO5XBqNht+KN4V/ll++OTNr+303n8KUzT/Z600MB2Wq45l3Risq7Y9oUX+nqaozCw+oQ/VVdn1tdQsgDIh1nXSUDYpp/EDtzTf/NDj46Ysv/iAuLpZpb2Fh8dlnXzUY9BUVJaISJKckPf5UqegpxRGdl7pGjAcbtViw3HxzdnN3f2k+HsOMO5mRLHfbLuQYc6J8ZrRTXAfUJJAvqC0uLgHO+vs/AmwxaGNwBhToIpyNjRW5q9h8O7FcEJTATW0op6KyBQYehMbffv1A2wThbWwgSzpvCoJhyT0nQkV3NUJ06CvSrW0XgepmePnacNE2dl2ozcpCXeNTKHfrgQrHiben8vFQN3i+qNBOcUY0vsYvX1ADJNXVfb+29jUGbc89V/nCC81Qzs39MiBPFGcgzebb065emTr7u3f9Sgag3LPvQYlqABeHvqmamBmmueZ6XXXNlr4TbekNtkMsOBByelEIztxzIrCGGbCkkwElQhPW8UK7rRSuOlx1tiPvUMH4JELbRAUYbms2teEzORXLrYnWpMQANSAyLPGvjI+PA1QBtgBhjz76Cw5n3HzKr8yUAWof/+MTb7o3Zfu9d3sT3RQYTgAZVRZTCfw1W0fQKIw3mWl6dPFYyesdTvY6bwpcmG06ToZAXAlPixe7+5n6Gea9W3Ep857ibPyr06XjH48Phi8yA8pt8Femb2uud1/uUY8erkwDvkY1hhOgCtAGc2ggOIuJjVmfvO6TS+N+pVifnHT3PTpf1bJNpxt3CGtoa2zVNQgGOYtphLlh3OpJEeGYod8iQnWTxq6No62klamxMaQv0I6/PzBcVNjinjS37ixCrXhWDdaqQFqSSD/jZ1Rjus+g7eDBUphPfYxnUDk949ahgU+XFpf86s3wlWzApWQ1WI+P2E+zw0nvqc5eqOrs68AUbXljpTl7YvSyGIVcCCstN+f+XisyFEgttmDMQ2wruKbpQC7S5RlyLjjYgXOo+wLS6yjOJA0V+An/oxrDCxD2xBO7/fJN37zp43/80281ANn2e+/yWW1rTZPpMEygpBJ+uAWFzB1ZZyymOkIqKrPjm0RvCoxzZfUl7pUWuS3wGBrJ5e4vbflRrhW4gSA1M3e01F4zVVmspA59rsbX11rKmuB64f65s+fTf8Jo4+eTY7iz+FvM4wQ/NenpiNGA9BS2qi5OXr0eyHXG+6RvCAK5ntZRoQaCPKqpUANU5BBpIMijWoikps2oUAMUaio0mjpFplBTp91UKDWFmgqNpk6RKdTUaTcVSk2hpkKjqVNkCjV12k2FUgf6Ykrurq05KEEoIPgOtafht/XYX2igmPPkFtaiR6HUgFKgxu+zSoIS+CLTsn8NKBFqIHXQghLg3blth4QasMfl6H4apSKhnmCTFQQ1NQUlBNsM0cBPQVBbc1ACP6QAoWzif4TXatcOikQhbOtm4g/qLOC16+WDGQ2mD3UfFQW1tQQlYJyh2mrixIZ6T1mOjQlV6RWFkG+r1NMJVKgkWY8U9LBjTUEJJKQAfGiZT36B0VNr3lEInjXosbwaUArUghmUIK4xHIVgt+1BJyEuhhcII16ZUoOvAaVAba1BCYJYhKmOdhzsKfh4xyUITtMD2TWglLXamoMSttbUGk2wxscayzBXGJFDqDuRuARtQWGGld4WCPUk35FSvHBpUIJ8NlYIZ6VMoDQoQSGAkE8MpYxq8vWQclaIBpQyqilEHVQM+TRAoSafbilngQYo1ATqoAfyaYBCTT7dUs4CDVCoCdRBD+TTAIWafLqlnAUaoFATqIMeyKcBpbyYCnJsgXwKo5xXqwGlQI0vP40t4GsjYsoyQs07vYE3RUqPQYstkGqA0kOuAbmgFuEJD0JupwhoUBaohSXhgVcCAyYgqgzVvcNGDywHH3CJECLAhGrpgixQC0PCA6/QAcYA5+sGG/Cm4PDBOFvOZ6AW+0SQnHI97Ah1wgOJ0IFdtWwSPo98BhFkQrV0RS6oQf+ZLeghvcaNG9NMAhcfG9GvObaAhg4oHXIyQo1DWygSHvgNHRAEHwx1cIkNlG6gyJFPlrUaXz0hSnggEjrAlwLK/EQIOMeZx2l6KLcGlOKFS2ML5LZ02PnLO4EG3j0aWxC4rlRaUymjmkrVR8UOXANKGdUCl5jWVKkGKNRUajj1iU2hpj6bqVRiCjWVGk59YlOoqc9mKpWYQk2lhlOf2LK/LQiNSiwH/h0Tq0EaF9OcBp7huGJiNGhpCT35QlqGLk6j0YRGEtqKlAYiBGozN5ZO/FEkQ/uzpc7Gpz97+uXbNt8ZHxOCEZymSZACGkIhUL904/KfiU/U1P/pjld+9Nn1z+ZhoJO/QdqCpAYiHGoLc67nv+uE2fOVZ67Oz8kPNZwm4VC5yPAqaYDoOREhE6iUwerOuc3+fJlzfm4pITHC/7Wk9KAEeqRB7ZUfXX365c0L865fPnElLgHFJ2ger9Vu1iUgDZKcQPECyz5MrLGrlknOwotLCIjOmlIyTQLrDMxWjMLfSIPa5OU5sOLFvpnFBdczr9wGy7PE9b7vPac6zqDjtmodXAZJ0Oo6d5J8GnC0HJcQGF2AHolYB0GdKDuIzAklljzcgOcbKZti1q333Udt+ZEd6O3XTSUWU51gX/DluITcfHP2xe5+NzSk6ALkSMQ6COpE2YFvM6hRGXgMM+Suy/92yqmnrlz6YHZ2ZslXN2DKK7GcQHvskNWgyZTjq+qKztFYB091RRrUmMkSRrWifRsrnk/vfO362Md4SpX8XL42nG06/ogWKoy/P8Cs2JjK53uGmML422etI8adbKoXETrGqzDtht9YB0mBIvZERK3Vrnw6i8gDjYnx+YV5lJCkiYlFN7/wOarB5NjefKDEDhbOKTLyR7VdaNAEeavwB8ci5JMSfEnR2fPk13+sg6B6NBxEDtRajk1eGZnDr6cQmpt1nfnVdSg8WL4pa3uiT0Nqyxury7kaR7gSQgWl9iNi0S7edC7rqHP58vwj1XY+t+UzUVqKHKgdbkjnbJiZk3Ck5TbuMGQFPAVnG+4IWXuqaihSoOZCNQ/9y4fm4QFbfIKcC1P8QARuYGGq3YGfm9CPlwZoGIuXSihBHg3I+Y8uj8SUq0o1QKGmUsOpT2wKNfXZTKUSU6ip1HDqE5tCTX02U6nECnrYcXMWPfnGtG4TBAgwr5ew4w+odUmj+XxmqW7Pus2bYmiEgEpxBmIrCGoQexIbozn5WJK3Nh99dfq5ztnnHkq8/RYJtGFHsYHipsA8YOEZWHva6cZVPACDXU4d+gBb8e4GpgCHQc5PSbxKhFLVMYHC2yZrRdKLttnJ//p8oRmhRoqMbqkDaksu9Nhr01M3XD/93c2FBbEQgXA69YPLrqWe9WaLDFjI0QsFTaA+unfmB+uZs+bWmcUljTqE9tGfqDylMqvdmHOJ3xksO/WT5VRFurUNu9Ty8hPgzeTPczbONrHFZTpTmeQ/SGe8hnpPWY6hMvuRrWxl8vt+p4kwR0VwCrnZ1llIdoS007CYqzV01eFgBRypgJh3o3xJBMyi50AdE+gK7TFhHd/GeNWitrMdTrga4wnVVmOirbqhiONHcNnE0CuLHc0wD+oeOdRQdLEV9mXu7zw2ZjrtgTO0zDzngqPDCd62leZsjCq7+z5jwtqOgxXstcbzdRZTDydJby/XbFQWlDiqLS6idz9aOPf3+V8/ljS76Ppx+0z51xJ3GiHxRoAmyjDvJeNQ5j3F2QP4GpK04DTrRptfYERjhBXQ0QSqslhZxjnjUyhXm3+krLuk2YQyzE2lXm4aXszZa9nfDPNRcm8Le4qjSb1bkjQ9GhhzovwoDhFVHNRg1d8zuNTaN/dkfkJsLIpHmgcM8a19swlxCXk5MkibbVrVUw8WV/Q3YA0EOlAEzHCtFa/+B1kdN79hjCs2xMEwti4ePXx/3E5DXJN9dvJzsXvPQBoUJC2Y6mhnI6MEdNR7qpOZ43pP4RRBpyuQ9WTfOPD3Dh0IpFFaR6gBGcYJYQMrPbolWfPQvQm2D+fz7ozdnhm76EJ/HV20D85/c3v8xmT3W4SV8sRJC2qNJli54yszzBVG5GB48JMZMKt4AJyFLNG0OrTH7Gg+cCrNvtd3g9qCwgwre1vgu2o0n1WQa+TsnOt7rTfbzUlfzKA/fDD/l0tzv6lI/mLe9cPfThfelfDY1+M3JKP91unW761PiI9mk6m178oa1TaSl1LJSeiRr8WX3h8fF4dSYzWN+5LXJaCkdWpVMZWb0YCioKb5z7Rr76vTUraB6RMWa2TrjVXPpFK8KV12DShoApW9r7SBsGpAcXegYdUGbVxGDVCoyahcypqvAQo1vjZoWUYNUKjJqFzKmq8BCjW+NmhZRg0o6mEHoukHZDR1uFkrC2ohTD/A7HbL7HwbRCPIxJaTEPO3jqBdFabRtsBiKVYUdcG1I0NBHRMoTT/AmB5vKphVBi53NXkyYEFmlsoa1aQ6y08/cKz9SwmJUfq24F/jEzk6vMEl4nZ0k1IZRw+8JneJPAV1QI2mH5DH+iHlqlCorTT9AHj+tOoqW/CWtm7f7hrwuV2O9/QMIGB1vEz3l7GAeK15pjcANsscSGgCyxh+8SLJPozjD/ihCR713QKzQQ/cTqhQzaEXRkhg76YLwLfZ1GZsaEprrbp20L1tKscT/KPSrQ5hiOty1AUiYRMTRESuIZ7AMhcVCrWVph+4Q5cxDL7aSAu+3aPZGYj4bff2XMwprNRhNECccLUdO1vjZXW9zn03sJLMBKLpDbCNwYnSTnZtJpYCGcgH7+w3aW6qbhF4eHvXF1LgqpJOdt9dCGIotNtKCWTPduQdKj9S3YDY/yhnX6u7JcwBh01gd3bcO4RM7jMeP+FOpaDo24LA0w/o8gw5FwbBh7a3Z7L4aKHecWkcTY2NZRTnYfBBAIG1yoIzE5Tg27dRDEr8kcpAIEYXS29AQhaY3cEZhu7vHsAZavBONuVd34MiSJDAD2IQsBccEA4H3GET2vL9RsFZ/kG4UykodFRDZNsOLv3Aoz9Pu+u+hMQk6X8MErEy5hwaHTMcyIRZydHTj7qQ4TgMKpcREgkgYIcfvjF8lMlsiGAAs2nJMHPNR93zY5M5CK02aCVDv8UH77WcwqkUavDIZzGNQIROYJtOrKVB4bXSxhPWC/ERc4e5gvQDCLyuUddJx/msNB1Tbh9AhffgeCeJAAI4I5KBgPRThC6a3kDAeagD4vnIZ9f+Qy1Nhq4qNuQdYMpkNfCuTygn2AtRf68VGQoEcy7DUvpbwJMXNsE1yl0a7lQKShzVVpN+ACGYQ1Gbfdd+vAYn5YHio+S5AAQWNJkOwwRKlE7CgN3ql8pAIEIXT2/A54wX2rBacrPGjxjS6mHKho2Ym9LcRIEkTH1tja2sHgIB25gqQFzppjV8GfhhE2yb3G+4UykoyzXy+MNOnSER0g+4ltDxt7Y4h+eY9ANF+1Lv+mrixrRYSO75szc2p6TKF1yAV9aj+4P+FoEzuMyF5ZtutiHeHShLCs+v4kY1JaQfCI8pVtkq/G/0ZjUyyWKG6usuwjMXfpi0clIpKAxqYU8/sEp7h/EybfnRNMjIdoyIwNujhMk5qaBUCsqaQMNoMdq03BpQ6B2o3N2m/EOvAQq10Os8SlukUItSw4e+2xRqodd5lLZIoRalhg99tynUQq/zKG0xyM/VrC+d4RSZsmH97u+YNt2aylECKIBLTJRu6x+ActRdJVCowaYsGvENjyX7f+N/0+fe6npwd96G1BSPSqkbkz0o4TvE/l7ufdc4ZwfixwH7JuPN2Dhi+ESMjJYDgtqHH34yNfX5Aw/cHxOzsgn35sys7ffd3poy/8TP7njel8hDgbc6rG8jvD2s6szCfq1D9VV2fW11C+PHe7KvYDV5W+SRV81c/UMNxjPA2ZUr195772+BoC05Jenxp8DHQQ0f56WuEePBRuIAgt0Sm7v7AWqDeFt4xtkQO3Sc7XHuKF+RY48auh56Gf8Pa0Mwb4Y9WzoAAAAASUVORK5CYII=">
+<meta property="og:updated_time" content="2018-04-28T03:26:26.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="webpack--babel-loader">
+<meta name="twitter:description" content="第一步在空白的文件夹正确的安装webpack，这一步webpack入门指南已经讲过了。然后创建源文件夹src,在src下面创建app.js，然后创建个目标文件夹dist,用来盛放打包生成的文件. 第二步在根目录下面创建index.html,内容是:123456789&amp;lt;!DOCTYPE html&amp;gt;&amp;lt;html&amp;gt;	&amp;lt;head&amp;gt;		&amp;lt;meta charset=&quot;U">
+<meta name="twitter:image" content="data:image/png;base64,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">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="/2018/01/18/webpack--babel-loader/"/>
+
+
+
+
+
+  <title>webpack--babel-loader | Aishlily's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Aishlily's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'urw61T1LFFwLwttU72jp','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="/2018/01/18/webpack--babel-loader/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Aishlily">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/my.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Aishlily's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">webpack--babel-loader</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-18T15:55:45+08:00">
+                2018-01-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/webpack技术/" itemprop="url" rel="index">
+                    <span itemprop="name">webpack技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="第一步"><a href="#第一步" class="headerlink" title="第一步"></a>第一步</h2><p>在空白的文件夹正确的安装webpack，这一步webpack入门指南已经讲过了。<br>然后创建源文件夹src,在src下面创建app.js，然后创建个目标文件夹dist,用来盛放打包生成的文件.</p>
+<h2 id="第二步"><a href="#第二步" class="headerlink" title="第二步"></a>第二步</h2><p>在根目录下面创建index.html,内容是:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">	&lt;head&gt;</span><br><span class="line">		&lt;meta charset=<span class="string">"UTF-8"</span>&gt;</span><br><span class="line">		&lt;title&gt;&lt;%= htmlWebpackPlugin.options.title %&gt;&lt;/title&gt;</span><br><span class="line">	&lt;/head&gt;</span><br><span class="line">	&lt;body&gt;</span><br><span class="line">	&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+<p>为了测试，我们将app.js用ES6的语言来写，内容是:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const App = () =&gt; &#123;</span><br><span class="line">	console.log(<span class="string">"测试"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="第三步"><a href="#第三步" class="headerlink" title="第三步"></a>第三步</h2><p>配置webpack的打包配置文件webpack.config.js,内容如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">//用babel-loader将js文件转义为浏览器可识别的js</span><br><span class="line">var path = require(<span class="string">"path"</span>); //webpack升级到2.0以后，路径需要引用这个模块</span><br><span class="line">var htmlWebpackPlugin = require(<span class="string">'html-webpack-plugin'</span>);</span><br><span class="line">module.exports = &#123;</span><br><span class="line">	entry: &#123;</span><br><span class="line">		app: <span class="string">'./src/app.js'</span>,</span><br><span class="line">	&#125;,</span><br><span class="line">	output: &#123;</span><br><span class="line">		path: path.resolve(__dirname, <span class="string">'./dist'</span>),</span><br><span class="line">		filename: <span class="string">'js/[name].bundle.js'</span>    //区分文件有[name], [<span class="built_in">hash</span>], [chunkhash]</span><br><span class="line">	&#125;,</span><br><span class="line">	module: &#123;</span><br><span class="line">		rules: [</span><br><span class="line">		    &#123;</span><br><span class="line">		      <span class="built_in">test</span>: /\.js$/,   //用正则匹配找到所有的js文件</span><br><span class="line">		      exclude: /node_modules/,  //排除node_modules文件下js</span><br><span class="line">		      use: &#123;</span><br><span class="line">		        loader: <span class="string">'babel-loader'</span>,  //使用babel-loader处理找到js文件</span><br><span class="line">		        options: &#123;      //采用babel-loader的<span class="string">"es2015"</span>规则将找的js为浏览器可识别的js</span><br><span class="line">		          presets: [<span class="string">"es2015"</span>],</span><br><span class="line">		          plugins: [<span class="string">"transform-remove-strict-mode"</span>]</span><br><span class="line">		        &#125;</span><br><span class="line">		      &#125;</span><br><span class="line">		    &#125;</span><br><span class="line">		]</span><br><span class="line">	&#125;,</span><br><span class="line">	plugins: [</span><br><span class="line">		new htmlWebpackPlugin(&#123;</span><br><span class="line">			filename: <span class="string">'index.html'</span>, //生成的文件名字</span><br><span class="line">			template: <span class="string">'index.html'</span>,  //生成文件的 模板</span><br><span class="line">			inject: <span class="string">'body'</span>,    //打包生成的js,css和其他东西插入的位置</span><br><span class="line">			title: <span class="string">'i am girl'</span></span><br><span class="line">		&#125;)</span><br><span class="line">	]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>上面的module配置意思是配置loaders，然后定义loaders使用的规则rules，请注意使用loaders之前必须先安装对应的loaders,比如上面用到了babel-loader，需要我们去babel官网找到webpack的安装方式:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev babel-loader babel-core</span><br></pre></td></tr></table></figure></p>
+<p>babel的官网将webpack的使用方法都写的很详细:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">module: &#123;</span><br><span class="line">  rules: [</span><br><span class="line">    &#123; <span class="built_in">test</span>: /\.js$/, exclude: /node_modules/, loader: <span class="string">"babel-loader"</span> &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>当然关于使用babel-loader转义的options,我们可以使用的配置:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">module: &#123;</span><br><span class="line">	rules: [</span><br><span class="line">	    &#123;</span><br><span class="line">	      <span class="built_in">test</span>: /\.js$/,   //用正则匹配找到所有的js文件</span><br><span class="line">	      exclude: /node_modules/,  //排除node_modules文件下js</span><br><span class="line">	      use: &#123;</span><br><span class="line">	        loader: <span class="string">'babel-loader'</span>,  //使用babel-loader处理找到js文件</span><br><span class="line">	        options: &#123;      //采用babel-loader的<span class="string">"es2015"</span>规则将找的js为浏览器可识别的js</span><br><span class="line">	          presets: [<span class="string">"es2015"</span>],</span><br><span class="line">	          plugins: [<span class="string">"transform-remove-strict-mode"</span>]</span><br><span class="line">	        &#125;</span><br><span class="line">	      &#125;</span><br><span class="line">	    &#125;</span><br><span class="line">	]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这里还有个坑，我们使用的babel-loader转义的options，比如es2015， transform-remove-strict-mode都需要先安装再使用，可以在npm官网上查找安装方法，这里我直接贴出它们的安装语法如下:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev babel-cli babel-preset-es2015</span><br><span class="line">npm install --save-dev babel-plugin-transform-remove-strict-mode</span><br></pre></td></tr></table></figure></p>
+<p>接下来来看下我们的文件夹组成<br><img src="data:image/png;base64,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" alt="name"></p>
+<h2 id="第四步"><a href="#第四步" class="headerlink" title="第四步"></a>第四步</h2><p>在根目录下打开命名行输入<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">webpack</span><br></pre></td></tr></table></figure></p>
+<p>打包后发现dist/js下面生成的app.bundle.js内容是:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">/******/ ([</span><br><span class="line">/* 0 */</span><br><span class="line">/***/ (<span class="keyword">function</span>(module, exports) &#123;</span><br><span class="line">var App = <span class="keyword">function</span> <span class="function"><span class="title">App</span></span>() &#123;</span><br><span class="line">	console.log(<span class="string">"测试"</span>);</span><br><span class="line">&#125;;</span><br><span class="line">/***/ &#125;)</span><br><span class="line">/******/ ]);</span><br></pre></td></tr></table></figure></p>
+<p>上面我们可以看出生成的app.bundle.js中没有”use strict”,说明plugins: [“transform-remove-strict-mode”]起了效果。</p>
+<h2 id="第五步"><a href="#第五步" class="headerlink" title="第五步"></a>第五步</h2><p>将上面的用loaders打包换一种方法实现如下,就是将babel的参数移到package.json里面,下面来看package.json关于babel的内容配置<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"name"</span>: <span class="string">"webpack_learn"</span>,</span><br><span class="line">  <span class="string">"version"</span>: <span class="string">"1.0.0"</span>,</span><br><span class="line">  <span class="string">"description"</span>: <span class="string">""</span>,</span><br><span class="line">  <span class="string">"main"</span>: <span class="string">"index.js"</span>,</span><br><span class="line">  <span class="string">"babel"</span>: &#123;</span><br><span class="line">		<span class="string">"presets"</span>: [<span class="string">"es2015"</span>],</span><br><span class="line">		<span class="string">"plugins"</span>: [<span class="string">"transform-remove-strict-mode"</span>]</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">"scripts"</span>: &#123;</span><br><span class="line">    <span class="string">"test"</span>: <span class="string">"echo \"Error: no test specified\" &amp;&amp; exit 1"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">"repository"</span>: &#123;</span><br><span class="line">    <span class="string">"type"</span>: <span class="string">"git"</span>,</span><br><span class="line">    <span class="string">"url"</span>: <span class="string">"git+https://github.com/manlili/webpack_learn.git"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">"author"</span>: <span class="string">""</span>,</span><br><span class="line">  <span class="string">"license"</span>: <span class="string">"ISC"</span>,</span><br><span class="line">  <span class="string">"bugs"</span>: &#123;</span><br><span class="line">    <span class="string">"url"</span>: <span class="string">"https://github.com/manlili/webpack_learn/issues"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">"homepage"</span>: <span class="string">"https://github.com/manlili/webpack_learn#readme"</span>,</span><br><span class="line">  <span class="string">"devDependencies"</span>: &#123;</span><br><span class="line">    <span class="string">"babel-cli"</span>: <span class="string">"^6.24.1"</span>,</span><br><span class="line">    <span class="string">"babel-core"</span>: <span class="string">"^6.24.1"</span>,</span><br><span class="line">    <span class="string">"babel-loader"</span>: <span class="string">"^7.0.0"</span>,</span><br><span class="line">    <span class="string">"babel-plugin-transform-remove-strict-mode"</span>: <span class="string">"0.0.2"</span>,</span><br><span class="line">    <span class="string">"babel-preset-es2015"</span>: <span class="string">"^6.24.1"</span>,</span><br><span class="line">    <span class="string">"html-webpack-plugin"</span>: <span class="string">"^2.28.0"</span>,</span><br><span class="line">    <span class="string">"webpack"</span>: <span class="string">"^2.6.1"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">"dependencies"</span>: &#123;</span><br><span class="line">    <span class="string">"babel-plugin-config-export"</span>: <span class="string">"^1.0.0"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在根目录下打开命名行输入<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">webpack</span><br></pre></td></tr></table></figure></p>
+<p>打包后发现dist/js下面生成的app.bundle.js内容是:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">/******/ ([</span><br><span class="line">/* 0 */</span><br><span class="line">/***/ (<span class="keyword">function</span>(module, exports) &#123;</span><br><span class="line">var App = <span class="keyword">function</span> <span class="function"><span class="title">App</span></span>() &#123;</span><br><span class="line">	console.log(<span class="string">"测试"</span>);</span><br><span class="line">&#125;;</span><br><span class="line">/***/ &#125;)</span><br><span class="line">/******/ ]);</span><br></pre></td></tr></table></figure></p>
+<p>上面我们可以看出生成的app.bundle.js中没有”use strict”,而且app.bundle.js内容和上面的直接配置plugins: [“transform-remove-strict-mode”]一模一样，说明起了效果。</p>
+<h2 id="第六步"><a href="#第六步" class="headerlink" title="第六步"></a>第六步</h2><p>将上面的用loaders打包换第三种方法实现如下，其实也可以像babel官网介绍的那样创建一个.babelrc结尾的文件写上<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"presets"</span>: [</span><br><span class="line">    <span class="string">'es2015'</span></span><br><span class="line">  ],</span><br><span class="line">  <span class="string">"plugins"</span>: [</span><br><span class="line">    <span class="string">"transform-remove-strict-mode"</span></span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>接着修改webpack的打包配置文件webpack.config.js,内容如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">//用.babelrc结尾的文件配置后打包</span><br><span class="line">var path = require(<span class="string">"path"</span>); //webpack升级到2.0以后，路径需要引用这个模块</span><br><span class="line">var htmlWebpackPlugin = require(<span class="string">'html-webpack-plugin'</span>);</span><br><span class="line">module.exports = &#123;</span><br><span class="line">	entry: &#123;</span><br><span class="line">		app: <span class="string">'./src/app.js'</span>,</span><br><span class="line">	&#125;,</span><br><span class="line">	output: &#123;</span><br><span class="line">		path: path.resolve(__dirname, <span class="string">'./dist'</span>),</span><br><span class="line">		filename: <span class="string">'js/[name].bundle.js'</span>    //区分文件有[name], [<span class="built_in">hash</span>], [chunkhash]</span><br><span class="line">	&#125;,</span><br><span class="line">	module: &#123;</span><br><span class="line">		rules: [</span><br><span class="line">		    &#123;</span><br><span class="line">		      <span class="built_in">test</span>: /\.js$/,   //用正则匹配找到所有的js文件</span><br><span class="line">		      exclude: /node_modules/,  //排除node_modules文件下js</span><br><span class="line">		      use: &#123;</span><br><span class="line">		        loader: <span class="string">'babel-loader'</span></span><br><span class="line">		      &#125;</span><br><span class="line">		    &#125;</span><br><span class="line">		]</span><br><span class="line">	&#125;,</span><br><span class="line">	plugins: [</span><br><span class="line">		new htmlWebpackPlugin(&#123;</span><br><span class="line">			filename: <span class="string">'index.html'</span>, //生成的文件名字</span><br><span class="line">			template: <span class="string">'index.html'</span>,  //生成文件的 模板</span><br><span class="line">			inject: <span class="string">'body'</span>,    //打包生成的js,css和其他东西插入的位置</span><br><span class="line">			title: <span class="string">'i am girl'</span></span><br><span class="line">		&#125;)</span><br><span class="line">	]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在根目录下打开命名行输入<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">webpack</span><br></pre></td></tr></table></figure></p>
+<p>打包后发现dist/js下面生成的app.bundle.js内容是:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">/******/ ([</span><br><span class="line">/* 0 */</span><br><span class="line">/***/ (<span class="keyword">function</span>(module, exports) &#123;</span><br><span class="line">var App = <span class="keyword">function</span> <span class="function"><span class="title">App</span></span>() &#123;</span><br><span class="line">	console.log(<span class="string">"测试"</span>);</span><br><span class="line">&#125;;</span><br><span class="line">/***/ &#125;)</span><br><span class="line">/******/ ]);</span><br></pre></td></tr></table></figure></p>
+<p>上面我们可以看出生成的app.bundle.js中也没有”use strict”,而且app.bundle.js内容和上面的直接配置plugins: [“transform-remove-strict-mode”]结果一模一样，说明这种方法挺好,官网上比较推荐这种用法。</p>
+<h2 id="第七步"><a href="#第七步" class="headerlink" title="第七步"></a>第七步</h2><p>上面打包都说过了，但是我们也发现了运行完打包命令后，很长时间才能看到打包的结果，这是因为我们没有给babel-loaders指定待打包的文件路径，导致它需要在整个目录下一个一个寻找，下面我们来优化下打包的时间,修改webpack的打包配置文件webpack.config.js,内容如下:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">var path = require(<span class="string">"path"</span>); //webpack升级到2.0以后，路径需要引用这个模块</span><br><span class="line">var htmlWebpackPlugin = require(<span class="string">'html-webpack-plugin'</span>);</span><br><span class="line">module.exports = &#123;</span><br><span class="line">	entry: &#123;</span><br><span class="line">		app: <span class="string">'./src/app.js'</span>,</span><br><span class="line">	&#125;,</span><br><span class="line">	output: &#123;</span><br><span class="line">		path: path.resolve(__dirname, <span class="string">'./dist'</span>),</span><br><span class="line">		filename: <span class="string">'js/[name].bundle.js'</span>    //区分文件有[name], [<span class="built_in">hash</span>], [chunkhash]</span><br><span class="line">	&#125;,</span><br><span class="line">	module: &#123;</span><br><span class="line">		rules: [</span><br><span class="line">		    &#123;</span><br><span class="line">		      <span class="built_in">test</span>: /\.js$/,   //用正则匹配找到所有的js文件</span><br><span class="line">		      include: path.resolve(__dirname, <span class="string">'src'</span>), //指定babel-loaders寻找的文件路径，注意需是绝对路径</span><br><span class="line">		      exclude: path.resolve(__dirname, <span class="string">'node_modules'</span>),  //排除node_modules文件下js，注意需是绝对路径</span><br><span class="line">		      use: &#123;</span><br><span class="line">		        loader: <span class="string">'babel-loader'</span></span><br><span class="line">		      &#125;</span><br><span class="line">		    &#125;</span><br><span class="line">		]</span><br><span class="line">	&#125;,</span><br><span class="line">	plugins: [</span><br><span class="line">		new htmlWebpackPlugin(&#123;</span><br><span class="line">			filename: <span class="string">'index.html'</span>, //生成的文件名字</span><br><span class="line">			template: <span class="string">'index.html'</span>,  //生成文件的 模板</span><br><span class="line">			inject: <span class="string">'body'</span>,    //打包生成的js,css和其他东西插入的位置</span><br><span class="line">			title: <span class="string">'i am girl'</span></span><br><span class="line">		&#125;)</span><br><span class="line">	]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在根目录下打开命名行输入<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">webpack</span><br></pre></td></tr></table></figure></p>
+<p>发现命令行打包的命令里面时间比以前稍微少一点，主要是我们的测试打包的文件太少，等到打包一个大项目的时候就会发现节约很多时间。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/webpack/" rel="tag"># webpack</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/01/18/webpack--模板和图片/" rel="next" title="webpack--模板和图片">
+                <i class="fa fa-chevron-left"></i> webpack--模板和图片
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/01/18/Object对象相关方法/" rel="prev" title="Object对象的相关方法">
+                Object对象的相关方法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/my.jpg"
+                alt="Aishlily" />
+            
+              <p class="site-author-name" itemprop="name">Aishlily</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">115</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/Aishlily" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:mali_job@yeah.net" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#第一步"><span class="nav-number">1.</span> <span class="nav-text">第一步</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第二步"><span class="nav-number">2.</span> <span class="nav-text">第二步</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第三步"><span class="nav-number">3.</span> <span class="nav-text">第三步</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第四步"><span class="nav-number">4.</span> <span class="nav-text">第四步</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第五步"><span class="nav-number">5.</span> <span class="nav-text">第五步</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第六步"><span class="nav-number">6.</span> <span class="nav-text">第六步</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第七步"><span class="nav-number">7.</span> <span class="nav-text">第七步</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Aishlily</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+  <script type="text/javascript" src="/js/src/exturl.js?v=5.1.4"></script>
+
+
+</body>
+</html>
+<script type="text/javascript" src="/js/src/love.js"></script>>
