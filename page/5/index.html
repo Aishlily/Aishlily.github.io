@@ -289,7 +289,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="/2018/01/22/Node.js--入门/">
+    <link itemprop="mainEntityOfPage" href="/2018/01/22/Node.js--模块/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Aishlily">
@@ -308,7 +308,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/01/22/Node.js--入门/" itemprop="url">Node.js--入门</a></h1>
+                <a class="post-title-link" href="/2018/01/22/Node.js--模块/" itemprop="url">Node.js--模块</a></h1>
         
 
         <div class="post-meta">
@@ -382,162 +382,12 @@
       
         
           
-          定位简单的说 Node.js 就是运行在服务端的 JavaScript。
-
-Node.js 是一个基于Chrome JavaScript 运行时建立的一个平台。
-Node.js是一个事件驱动I/O服务端JavaScript环境，基于Google的V8引擎，V8引擎执行Javascript的速度非常快
+          由于js从初始诞生时就存在命名空间问题，nodejs通过加载不同的包，将变量取值范围固定在包内，加载进来后不会产生命名空间冲突，这样的包也称为模块，为了让Node.js的文件可以相互调用，Node.js提供了一个简单的模块系统。
+接口方式创建模块先来看下目录Node.js 提供了exports 和 
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/01/22/Node.js--入门/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="/2018/01/22/Node.js--回调和事件/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Aishlily">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/my.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Aishlily's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/01/22/Node.js--回调和事件/" itemprop="url">Node.js--回调和事件</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-22T15:55:45+08:00">
-                2018-01-22
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Node-js技术/" itemprop="url" rel="index">
-                    <span itemprop="name">Node.js技术</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          回调函数Node.js 异步编程的直接体现就是回调。异步编程依托于回调来实现，但不能说使用了回调后程序就异步化了。回调函数在完成任务后就会被调用，Node 使用了大量的回调函数，Node 所有 API 都支持回调函数。举个很形象的例子：上图可以看出，同步模式很容易遭到卡死，一旦进程卡死，后面的进程也
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/01/22/Node.js--回调和事件/#more" rel="contents">
+            <a class="btn" href="/2018/01/22/Node.js--模块/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -739,7 +589,7 @@ HTTP是一个基于TCP/I
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="/2018/01/22/Node.js--模块/">
+    <link itemprop="mainEntityOfPage" href="/2018/01/22/Node.js--文件系统/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Aishlily">
@@ -758,7 +608,7 @@ HTTP是一个基于TCP/I
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/01/22/Node.js--模块/" itemprop="url">Node.js--模块</a></h1>
+                <a class="post-title-link" href="/2018/01/22/Node.js--文件系统/" itemprop="url">Node.js--文件系统</a></h1>
         
 
         <div class="post-meta">
@@ -832,12 +682,164 @@ HTTP是一个基于TCP/I
       
         
           
-          由于js从初始诞生时就存在命名空间问题，nodejs通过加载不同的包，将变量取值范围固定在包内，加载进来后不会产生命名空间冲突，这样的包也称为模块，为了让Node.js的文件可以相互调用，Node.js提供了一个简单的模块系统。
-接口方式创建模块先来看下目录Node.js 提供了exports 和 
+          一般用js没办法对本地盘中文件进行读取或者其他操作，但是node.js有文件系统，可以很方便的读取文件内容。
+同步和异步读取文件Node 导入文件系统模块(fs)语法如下所示：1var fs = require("fs")
+创建readfile.js，内容是123456789var fs = req
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/01/22/Node.js--模块/#more" rel="contents">
+            <a class="btn" href="/2018/01/22/Node.js--文件系统/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="/2018/01/22/Node.js--queryString讲解/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Aishlily">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/my.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Aishlily's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/22/Node.js--queryString讲解/" itemprop="url">Node.js--queryString讲解</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-22T15:55:45+08:00">
+                2018-01-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Node-js技术/" itemprop="url" rel="index">
+                    <span itemprop="name">Node.js技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          在nodejs中，提供了querystring这个模块，用来做url查询参数的解析。在做node服务端开发的时候基本都会用到，使用非常简单。
+parse方法作用是解析url查询参数，定义如下：1querystring.parse(str[, sep[, eq[, options]]])
+
+使用方法一
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/01/22/Node.js--queryString讲解/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1041,156 +1043,6 @@ source: 正则表达式的文本
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="/2018/01/22/Node.js搭建本地服务器/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Aishlily">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/my.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Aishlily's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/01/22/Node.js搭建本地服务器/" itemprop="url">Node.js搭建本地服务器</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-22T15:55:45+08:00">
-                2018-01-22
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Node-js技术/" itemprop="url" rel="index">
-                    <span itemprop="name">Node.js技术</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          今天项目发布完了，下午闲着有点时间，研究下老大用node搭建的服务器代码。
-目录结构先来看下目录假设我在server文件夹里面创建一个app.js用来搭本地服务器。
-第一步首先需要在app.js引进Node插件express和读文件的插件fs，代码如下：123var express = requir
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/01/22/Node.js搭建本地服务器/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="/2018/01/22/Node.js--npm使用/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1344,7 +1196,7 @@ source: 正则表达式的文本
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="/2018/01/22/Node.js--文件系统/">
+    <link itemprop="mainEntityOfPage" href="/2018/01/22/Node.js搭建本地服务器/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Aishlily">
@@ -1363,7 +1215,7 @@ source: 正则表达式的文本
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/01/22/Node.js--文件系统/" itemprop="url">Node.js--文件系统</a></h1>
+                <a class="post-title-link" href="/2018/01/22/Node.js搭建本地服务器/" itemprop="url">Node.js搭建本地服务器</a></h1>
         
 
         <div class="post-meta">
@@ -1437,13 +1289,13 @@ source: 正则表达式的文本
       
         
           
-          一般用js没办法对本地盘中文件进行读取或者其他操作，但是node.js有文件系统，可以很方便的读取文件内容。
-同步和异步读取文件Node 导入文件系统模块(fs)语法如下所示：1var fs = require("fs")
-创建readfile.js，内容是123456789var fs = req
+          今天项目发布完了，下午闲着有点时间，研究下老大用node搭建的服务器代码。
+目录结构先来看下目录假设我在server文件夹里面创建一个app.js用来搭本地服务器。
+第一步首先需要在app.js引进Node插件express和读文件的插件fs，代码如下：123var express = requir
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/01/22/Node.js--文件系统/#more" rel="contents">
+            <a class="btn" href="/2018/01/22/Node.js搭建本地服务器/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1494,7 +1346,7 @@ source: 正则表达式的文本
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="/2018/01/22/H5性能优化方案/">
+    <link itemprop="mainEntityOfPage" href="/2018/01/22/Node.js--URL/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Aishlily">
@@ -1513,7 +1365,7 @@ source: 正则表达式的文本
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/01/22/H5性能优化方案/" itemprop="url">H5性能优化方案</a></h1>
+                <a class="post-title-link" href="/2018/01/22/Node.js--URL/" itemprop="url">Node.js--URL</a></h1>
         
 
         <div class="post-meta">
@@ -1525,7 +1377,7 @@ source: 正则表达式的文本
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-22T12:55:45+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-22T15:55:45+08:00">
                 2018-01-22
               </time>
             
@@ -1548,8 +1400,8 @@ source: 正则表达式的文本
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JavaScript技术/" itemprop="url" rel="index">
-                    <span itemprop="name">JavaScript技术</span>
+                  <a href="/categories/Node-js技术/" itemprop="url" rel="index">
+                    <span itemprop="name">Node.js技术</span>
                   </a>
                 </span>
 
@@ -1587,12 +1439,12 @@ source: 正则表达式的文本
       
         
           
-          H5性能优化意义对于一个H5的产品，功能无疑很重要，但是性能同样是用户体验中不可或缺的一环。原本H5的渲染性能就不及native的app，如果不把性能优化做起来，将极大地影响用户使用产品的积极性。
-用户感受当用户能够在1-2秒内打开H5页面，看到信息的展示，或者能够开始进行下一步的操作，用户会感觉速
+          url是我们项目中最常用到的，页面间传值经常追加在url后面带过去，如果想要解析url还需要费点力气，但是node原生自带url的api，可以很方便的使用，文档地址在：https://nodejs.org/api/url.html；
+parse方法作用是解析网址，定义如下：1url.parse(ur
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/01/22/H5性能优化方案/#more" rel="contents">
+            <a class="btn" href="/2018/01/22/Node.js--URL/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1779,6 +1631,155 @@ source: 正则表达式的文本
 
 
     
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="/2018/01/22/vue自定义指令和用法与实例/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Aishlily">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/my.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Aishlily's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/22/vue自定义指令和用法与实例/" itemprop="url">vue自定义指令和用法与实例</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-22T12:55:45+08:00">
+                2018-01-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/vue/" itemprop="url" rel="index">
+                    <span itemprop="name">vue</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          自定义指令是用来操作DOM的。尽管Vue推崇数据驱动视图的理念，但并非所有情况都适合数据驱动。自定义指令就是一种有效的补充和扩展，不仅可用于定义任何的DOM操作，并且是可复用的。
+　　比如谷歌图片的加载做得非常优雅，在图片未完成加载前，用随机的背景色占位，图片加载完成后才直接渲染出来。用自定义指令可
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/01/22/vue自定义指令和用法与实例/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
   </section>
 
   
@@ -1833,7 +1834,7 @@ source: 正则表达式的文本
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">114</span>
+                  <span class="site-state-item-count">116</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

@@ -541,11 +541,10 @@
       
         
           
-          伪类/伪元素伪类CSS的3种主要的选择器：
+          伪类/伪元素渐变gradient渐变色彩实际上不是颜色（color），而是图像（image）对象，通常用来作为元素背景。这个特殊图像没有内在的尺寸和比例，它具体的大小将匹配其关联的HTML元素。CSS中有两种类型的渐变：
 
-通用标签：CSS代码中的p用来选择HTML元素&lt;p&gt;。
-类（classes）： CSS代码中的.intro用来选择带有属性class=&quot;intro&quot;的HTML元素。
-ids：CSS代码中的#logo用来选择带有属性id=&
+线性（linear）：颜色在直线方向从一个点到另一个点的变化。
+径向（rad
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -751,7 +750,7 @@ ids：CSS代码中的#logo用来选择带有属性id=&
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="/2018/01/09/JavaScript知识梳理--缓存机制/">
+    <link itemprop="mainEntityOfPage" href="/2018/01/09/JavaScript Event Loop/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Aishlily">
@@ -770,7 +769,7 @@ ids：CSS代码中的#logo用来选择带有属性id=&
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/01/09/JavaScript知识梳理--缓存机制/" itemprop="url">JavaScript知识梳理--缓存机制</a></h1>
+                <a class="post-title-link" href="/2018/01/09/JavaScript Event Loop/" itemprop="url">JavaScript Event Loop</a></h1>
         
 
         <div class="post-meta">
@@ -844,15 +843,12 @@ ids：CSS代码中的#logo用来选择带有属性id=&
       
         
           
-          缓存的作用  重用已获取的资源，减少延迟与网络阻塞，进而减少显示某个资源所用的事件，借助HTTP缓存，Web站点变得更具有响应性。
-缓存分类
-缓存应用场景
-每次都加载某个相同的静态文件 =&gt; 浪费带宽，重复请求 =&gt; 让浏览器使用本地缓存（协商缓存，返回304）
-协商缓存依然需要同服务器
+          JavaScript是单线程，意味着，所有任务需要排队，前一个任务结束，才会执行后一个任务。如果前一个任务耗时很长，后一个任务就不得不一直等着。
+“任务队列”中的事件，除了IO设备的事件以外，还包括一些用户产生的事件（比如鼠标点击、页面滚动等等）。只要指定过回调函数，这些事件发生时就会进入”任务队列
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/01/09/JavaScript知识梳理--缓存机制/#more" rel="contents">
+            <a class="btn" href="/2018/01/09/JavaScript Event Loop/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1065,7 +1061,7 @@ typeof
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="/2018/01/09/JavaScript Event Loop/">
+    <link itemprop="mainEntityOfPage" href="/2018/01/09/JavaScript知识梳理--缓存机制/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Aishlily">
@@ -1084,7 +1080,7 @@ typeof
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/01/09/JavaScript Event Loop/" itemprop="url">JavaScript Event Loop</a></h1>
+                <a class="post-title-link" href="/2018/01/09/JavaScript知识梳理--缓存机制/" itemprop="url">JavaScript知识梳理--缓存机制</a></h1>
         
 
         <div class="post-meta">
@@ -1158,12 +1154,15 @@ typeof
       
         
           
-          JavaScript是单线程，意味着，所有任务需要排队，前一个任务结束，才会执行后一个任务。如果前一个任务耗时很长，后一个任务就不得不一直等着。
-“任务队列”中的事件，除了IO设备的事件以外，还包括一些用户产生的事件（比如鼠标点击、页面滚动等等）。只要指定过回调函数，这些事件发生时就会进入”任务队列
+          缓存的作用  重用已获取的资源，减少延迟与网络阻塞，进而减少显示某个资源所用的事件，借助HTTP缓存，Web站点变得更具有响应性。
+缓存分类
+缓存应用场景
+每次都加载某个相同的静态文件 =&gt; 浪费带宽，重复请求 =&gt; 让浏览器使用本地缓存（协商缓存，返回304）
+协商缓存依然需要同服务器
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/01/09/JavaScript Event Loop/#more" rel="contents">
+            <a class="btn" href="/2018/01/09/JavaScript知识梳理--缓存机制/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1871,7 +1870,7 @@ FC 即 格式化上下文，它是页
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">114</span>
+                  <span class="site-state-item-count">116</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
