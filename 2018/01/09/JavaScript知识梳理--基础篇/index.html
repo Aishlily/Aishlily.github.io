@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Aishlily&#39;s Blog">
 <meta property="og:description" content="JavaScript是ECMAScript规范的一种实现，是一种弱类型脚本语言。 原始类型 Boolean String Number Null Undefined Symbol(ES6新定义) 注意： 原始类型不包含Object。   类型判断方法 typeof  返回值： undefined、 boolean、 number、 string、 object、 function、 symbol">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-06T09:17:46.513Z">
+<meta property="og:updated_time" content="2019-01-06T12:08:10.495Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript知识梳理--基础篇">
 <meta name="twitter:description" content="JavaScript是ECMAScript规范的一种实现，是一种弱类型脚本语言。 原始类型 Boolean String Number Null Undefined Symbol(ES6新定义) 注意： 原始类型不包含Object。   类型判断方法 typeof  返回值： undefined、 boolean、 number、 string、 object、 function、 symbol">
@@ -471,14 +471,19 @@
 <li><code>bind</code>是返回对应函数，便于稍后调用；<code>apply</code>、<code>call</code>则是立即调用</li>
 </ul>
 </li>
-<li>作用域<ul>
-<li>作用域是用来隔离变量的</li>
-<li>作用域中变量的值实在执行过程中产生的确定的，而作用域是在函数定义就创建的</li>
+<li><p>作用域</p>
+<ul>
 <li>ES6以前，JavaScript没有块级作用域，只有全局作用域和函数作用域，除了全局作用域，只有函数可以创建作用域</li>
 <li>ES6中使用<code>let</code>定义块级作用域变量</li>
+<li>作用域有上下级的关系，上下级关系的确定就看函数是在哪个作用域下创建的</li>
+<li>作用域最大的用处就是隔离变量，不同作用域下同名变量不会有冲突</li>
+<li>作用域在函数定义时就已经确定了。而不是在函数调用时确定。</li>
+<li>作用域只是一个“地盘”，一个抽象的概念，其中没有变量。要通过作用域对应的执行上下文环境来获取变量的值。同一个作用域下，不同的调用会产生不同的执行上下文环境，继而产生不同的变量的值。作用域中变量的值实在执行过程中产生的确定的</li>
+<li>一个作用域下可能包含若干个上下文执行环境，上下文执行环境是函数调用时创建的，函数完成后销毁</li>
 </ul>
 </li>
-<li>作用域链<ul>
+<li><p>作用域链</p>
+<ul>
 <li>获取变量值时，首先从当前作用域开始取值，如果没有找到，则到<strong>创建</strong>这个变量的作用域内取值，这就是作用域链</li>
 </ul>
 </li>
@@ -641,8 +646,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/01/10/勿忘我花雨效果实现/" rel="prev" title="勿忘我花雨效果实现">
-                勿忘我花雨效果实现 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/01/09/JavaScript知识梳理--缓存机制/" rel="prev" title="JavaScript知识梳理--缓存机制">
+                JavaScript知识梳理--缓存机制 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -724,7 +729,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">115</span>
+                  <span class="site-state-item-count">114</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
