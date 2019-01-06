@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Aishlily&#39;s Blog">
 <meta property="og:description" content="JavaScript是ECMAScript规范的一种实现，是一种弱类型脚本语言。 原始类型 Boolean String Number Null Undefined Symbol(ES6新定义) 注意： 原始类型不包含Object。   类型判断方法 typeof  返回值： undefined、 boolean、 number、 string、 object、 function、 symbol">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-06T12:08:10.495Z">
+<meta property="og:updated_time" content="2019-01-06T12:12:51.212Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript知识梳理--基础篇">
 <meta name="twitter:description" content="JavaScript是ECMAScript规范的一种实现，是一种弱类型脚本语言。 原始类型 Boolean String Number Null Undefined Symbol(ES6新定义) 注意： 原始类型不包含Object。   类型判断方法 typeof  返回值： undefined、 boolean、 number、 string、 object、 function、 symbol">
@@ -418,6 +418,9 @@
 </ol>
 <blockquote>
 <p>特殊数值<code>NaN</code><br><code>typeof NaN === &#39;number&#39;</code>, <code>NaN</code>是数值类型<br>使用<code>Number.isNaN()</code>检测<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(!Number.isNaN)&#123;</span><br><span class="line">  Number.isNaN = <span class="keyword">function</span>(n)&#123;</span><br><span class="line">    <span class="built_in">return</span> n !== n</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>判断一个变量是不是对象非常简单。用typeof来判断基本类型，instanceof判断引用类型</p>
 </blockquote>
 <h2 id="值类型-vs-引用类型"><a href="#值类型-vs-引用类型" class="headerlink" title="值类型 vs 引用类型"></a>值类型 vs 引用类型</h2><ol>
 <li><p>值类型</p>
