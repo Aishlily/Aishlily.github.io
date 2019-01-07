@@ -289,7 +289,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="/2018/01/22/vue响应式数组/">
+    <link itemprop="mainEntityOfPage" href="/2018/01/22/vue运行概览/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Aishlily">
@@ -308,7 +308,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/01/22/vue响应式数组/" itemprop="url">vue响应式--数组变异方法</a></h1>
+                <a class="post-title-link" href="/2018/01/22/vue运行概览/" itemprop="url">vue运行概览</a></h1>
         
 
         <div class="post-meta">
@@ -382,19 +382,12 @@
       
         
           
-          vue官方文档对数组更新的描述包含如下内容:Vue包含一组观察数组的变异方法，它们会触发视图更新：
-
-push()
-pop()
-shift()
-unshift()
-splice()
-sort()
-reverse()非变异方法：不会改变原始数组，返回新数组。如filter()、concat()、sli
+          全局概览首先看一下内部流程图。
+初始化及挂载new Vue() ==&gt; _init函数进行初始化 init过程: 会初始化生命周期、事件、props、methods、data、computed与watch等。其中最重要的是通过Object.defineProperty设置setter与gett
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/01/22/vue响应式数组/#more" rel="contents">
+            <a class="btn" href="/2018/01/22/vue运行概览/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -445,7 +438,7 @@ reverse()非变异方法：不会改变原始数组，返回新数组。如filte
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="/2018/01/22/Vue2.0介绍/">
+    <link itemprop="mainEntityOfPage" href="/2018/01/22/vue双向绑定的实现原理/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Aishlily">
@@ -464,7 +457,7 @@ reverse()非变异方法：不会改变原始数组，返回新数组。如filte
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/01/22/Vue2.0介绍/" itemprop="url">Vue2.0介绍</a></h1>
+                <a class="post-title-link" href="/2018/01/22/vue双向绑定的实现原理/" itemprop="url">vue双向绑定的实现原理</a></h1>
         
 
         <div class="post-meta">
@@ -538,15 +531,14 @@ reverse()非变异方法：不会改变原始数组，返回新数组。如filte
       
         
           
-          先对Vue 2.0的新特性做一个简单的介绍：
+          Vue.js 最核心的功能有两个，一是响应式的数据绑定系统，二是组件系统。本文仅探究双向绑定是怎样实现的。
+Object.defineProperty先简单看下MDN上的介绍Object.defineProperty() - JavaScript | MDN
 
-大小 &amp; 性能。Vue 2.0的线上包gzip后只有12Kb，而1.0需要22Kb，react需要44Kb。而且，Vue 2.0的性能在react等几个框架中，性能是最快的。
-
-VDOM。实现了Virtual DOM, 并且将静态子树进行了提取
+Object.defineProper
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/01/22/Vue2.0介绍/#more" rel="contents">
+            <a class="btn" href="/2018/01/22/vue双向绑定的实现原理/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -697,155 +689,6 @@ VDOM。实现了Virtual DOM, 并且将静态子树进行了提取
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/01/21/正则表达式入门/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="/2018/01/21/XMLHttpRequest及ajax/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Aishlily">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/my.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Aishlily's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/01/21/XMLHttpRequest及ajax/" itemprop="url">XMLHttpRequest及ajax</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-21T12:55:45+08:00">
-                2018-01-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JavaScript技术/" itemprop="url" rel="index">
-                    <span itemprop="name">JavaScript技术</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          ajax是一种技术方案，但并不是一种新技术。它依赖的是现有的CSS/HTML/Javascript，而其中最核心的依赖是浏览器提供的XMLHttpRequest对象，是这个对象使得浏览器可以发出HTTP请求与接收HTTP响应。
-一句话来总结两者的关系：使用XMLHttpRequest对象来发送一个A
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/01/21/XMLHttpRequest及ajax/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1200,6 +1043,305 @@ VDOM。实现了Virtual DOM, 并且将静态子树进行了提取
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="/2018/01/21/XMLHttpRequest及ajax/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Aishlily">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/my.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Aishlily's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/21/XMLHttpRequest及ajax/" itemprop="url">XMLHttpRequest及ajax</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-21T12:55:45+08:00">
+                2018-01-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript技术/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          ajax是一种技术方案，但并不是一种新技术。它依赖的是现有的CSS/HTML/Javascript，而其中最核心的依赖是浏览器提供的XMLHttpRequest对象，是这个对象使得浏览器可以发出HTTP请求与接收HTTP响应。
+一句话来总结两者的关系：使用XMLHttpRequest对象来发送一个A
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/01/21/XMLHttpRequest及ajax/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="/2018/01/20/JavaScript知识梳理--Promise/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Aishlily">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/my.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Aishlily's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/20/JavaScript知识梳理--Promise/" itemprop="url">JavaScript知识梳理--Promise</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-20T16:45:45+08:00">
+                2018-01-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript技术/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          Promise本质Promise所说的异步执行，只是将Promise构造函数中resolve，reject方法和注册的callback转化为eventLoop的microtask/Promise Job,并放到EventLoop队列中等待执行，也就是JavaScript单线程中的“异步执行”
+
+根据
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/01/20/JavaScript知识梳理--Promise/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="/2018/01/20/JavaScript知识梳理--async、wait/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1500,7 +1642,7 @@ async函数是Generator的语法糖。而await命令就是内部then命令的语
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="/2018/01/20/JavaScript知识梳理--Promise/">
+    <link itemprop="mainEntityOfPage" href="/2018/01/20/grunt入门/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Aishlily">
@@ -1519,157 +1661,7 @@ async函数是Generator的语法糖。而await命令就是内部then命令的语
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/01/20/JavaScript知识梳理--Promise/" itemprop="url">JavaScript知识梳理--Promise</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-20T16:45:45+08:00">
-                2018-01-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JavaScript技术/" itemprop="url" rel="index">
-                    <span itemprop="name">JavaScript技术</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          Promise本质Promise所说的异步执行，只是将Promise构造函数中resolve，reject方法和注册的callback转化为eventLoop的microtask/Promise Job,并放到EventLoop队列中等待执行，也就是JavaScript单线程中的“异步执行”
-
-根据
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/01/20/JavaScript知识梳理--Promise/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="/2018/01/20/grunt配置/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Aishlily">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/my.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Aishlily's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/01/20/grunt配置/" itemprop="url">grunt配置</a></h1>
+                <a class="post-title-link" href="/2018/01/20/grunt入门/" itemprop="url">grunt入门</a></h1>
         
 
         <div class="post-meta">
@@ -1743,11 +1735,12 @@ async函数是Generator的语法糖。而await命令就是内部then命令的语
       
         
           
-          任务配置假设我需要创建concat和uglify两个JSON格式的任务以及my_property字符串格式任务和my_src_files数组格式的任务直接举个例子：1234567891011grunt.initConfig(&#123;  concat: &#123;    // 这里是concat
+          为何要用构建工具实现自动化。对于需要反复重复的任务，例如压缩（minification）、编译、单元测试、linting等，自动化工具可以减轻你的劳动，简化你的工作。当你在 Gruntfile 文件正确配置好了任务，任务运行器就会自动帮你完成大部分无聊的工作。
+grunt与npm关系如果你想找到所需
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/01/20/grunt配置/#more" rel="contents">
+            <a class="btn" href="/2018/01/20/grunt入门/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1839,7 +1832,7 @@ async函数是Generator的语法糖。而await命令就是内部then命令的语
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">117</span>
+                  <span class="site-state-item-count">119</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
