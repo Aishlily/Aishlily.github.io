@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Aishlily&#39;s Blog">
 <meta property="og:description" content="HTML（HyperText Markup Language超文本标记语言）是用于构建web页面的标记语言和通用标准。 语义（semantic）　　　语义化标记，是指每种标记表示一种特定的内容形态，例如标题、列表、表格等。与之对应的概念，是样式标记（presentational markup）。 结构化标签 &amp;lt;header&amp;gt; 页头，通常包含网站标识(Logo)、口号(Slogan)">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-06T13:21:04.424Z">
+<meta property="og:updated_time" content="2019-01-07T06:08:46.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="HTML基础知识梳理">
 <meta name="twitter:description" content="HTML（HyperText Markup Language超文本标记语言）是用于构建web页面的标记语言和通用标准。 语义（semantic）　　　语义化标记，是指每种标记表示一种特定的内容形态，例如标题、列表、表格等。与之对应的概念，是样式标记（presentational markup）。 结构化标签 &amp;lt;header&amp;gt; 页头，通常包含网站标识(Logo)、口号(Slogan)">
@@ -460,19 +460,24 @@
 </li>
 </ol>
 </blockquote>
+<blockquote>
 <ol start="2">
-<li><p>给图片设置</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">img&#123;</span><br><span class="line">  <span class="built_in">float</span>:left;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>给图片设置</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">img &#123;</span><br><span class="line"> vertical-align:top; //middle也可以</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<li>给图片设置<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">img&#123;</span><br><span class="line">  <span class="built_in">float</span>:left;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
+</blockquote>
+<blockquote>
+<ol start="3">
+<li>给图片设置<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">img &#123;</span><br><span class="line"> vertical-align:top; //middle也可以</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</blockquote>
 <h3 id="表单元素"><a href="#表单元素" class="headerlink" title="表单元素"></a>表单元素</h3><ul>
 <li><p>表单 <code>&lt;form&gt;</code> </p>
-<blockquote>
-<p><code>action</code>属性，用来定义信息提交的目标<br><code>method</code>属性，用来定义信息提交的方式，<code>GET</code>或<code>POST</code></p>
-</blockquote>
+<ul>
+<li><code>action</code>属性，用来定义信息提交的目标</li>
+<li><code>method</code>属性，用来定义信息提交的方式，<code>GET</code>或<code>POST</code></li>
+</ul>
 </li>
 <li><p>输入表单 <code>&lt;input&gt;</code></p>
 <ul>
@@ -521,7 +526,10 @@
 </li>
 <li>字幕轨道 <code>&lt;track&gt;</code></li>
 <li>画布 <code>&lt;canvas&gt;</code></li>
-<li><p>视频 <code>&lt;video&gt;</code><br>支持 ogg，mpeg，webm格式<br>使用同<code>&lt;audio&gt;</code>标签，属性增加<code>width</code>和<code>height</code><br>方法：<br>   play()/pause()/load()/canPlayType()<br>事件：<br>   play,pause,progress,error,timeupdate,ended,abort,empty,emptied,waiting,loadedmetadata(当媒介元素的持续时间以及其他媒介数据已加载时运行脚本)<br>属性：加载后可用<br>  currentSrc, currentTime, videoWidth,videoHeight(立即可用),duration,ended,error,paused,muted,seeking,volume,height,width</p>
+<li><p>视频 <code>&lt;video&gt;</code><br>支持 ogg，mpeg，webm格式<br>使用同<code>&lt;audio&gt;</code>标签，属性增加<code>width</code>和<code>height</code></p>
+<blockquote>
+<p>方法：<br>   <code>play()</code><br>   <code>pause()</code><br>   <code>load()</code><br>   <code>canPlayType()</code><br>事件：<br>   <code>play</code><br>   <code>pause</code><br>   <code>progress</code><br>   <code>error</code><br>   <code>timeupdate</code><br>   <code>ended</code><br>   <code>abort</code><br>   <code>empty</code><br>   <code>emptied</code><br>   <code>waiting</code><br>   <code>loadedmetadata</code>(当媒介元素的持续时间以及其他媒介数据已加载时运行脚本)<br>属性：加载后可用<br>  <code>currentSrc</code><br>  <code>currentTime</code><br>  <code>videoWidth</code>/<code>videoHeight</code>(立即可用)<br>  <code>duration</code><br>  <code>ended</code><br>  <code>error</code><br>  <code>paused</code><br>  <code>muted</code><br>  <code>seeking</code><br>  <code>volume</code><br>  <code>height</code>/<code>width</code></p>
+</blockquote>
 </li>
 <li><p>插图 <code>&lt;figure&gt;</code></p>
 </li>
@@ -597,6 +605,11 @@
 <li><code>contenteditable</code>：规定内容是否可编辑，值为布尔值</li>
 <li><code>contextmenu</code>：与<code>menu</code>标签配合使用，用于自定义右键菜单，目前仅火狐实现</li>
 <li><code>data-*</code>：用于嵌入自定义数据</li>
+</ul>
+<blockquote>
+<p>JavaScript中可以通过getAttribute()和setAttribute()来获取和设置不同数据属性的<code>data-*</code>值，或者使用element.dataset.keyname/element.dataset[keyname]获取<code>data-*</code>值</p>
+</blockquote>
+<ul>
 <li><code>draggable</code>：用于规定元素是否可拖动，值为布尔值</li>
 <li><code>dropzone</code>：目前不支持。<code>copy</code> | <code>move</code> | <code>ink</code></li>
 <li><code>hidden</code>：没有值，单独使用。IE不支持</li>
@@ -701,6 +714,10 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2018/01/01/跨域前端解决方案/" rel="next" title="跨域前端解决方案">
+                <i class="fa fa-chevron-left"></i> 跨域前端解决方案
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
@@ -790,7 +807,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">116</span>
+                  <span class="site-state-item-count">117</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
