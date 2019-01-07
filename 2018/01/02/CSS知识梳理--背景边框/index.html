@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="背景 background-color 背景色  background-image 背景图片  可以使用颜色渐变作为背景图片    1body&amp;#123; background-image: linear-gradient(white, grey);&amp;#125;  background-position 背景位置，设置背景图像的起始（原点）位置可以使用如下3种坐标值：  xpos ypos：像素值">
+<meta name="description" content="边框 border属性：   border-color 使用颜色单位定义颜色 border-style 可以是实线（solid）、虚线（dashed）、点线（dotted）、double、outset等 border-width 使用尺寸单位定义宽度   border位置：   border-top border-bottom border-left border-right   三角形实例 12">
 <meta name="keywords" content="CSS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CSS知识梳理--边框背景">
 <meta property="og:url" content="/2018/01/02/CSS知识梳理--背景边框/index.html">
 <meta property="og:site_name" content="Aishlily&#39;s Blog">
-<meta property="og:description" content="背景 background-color 背景色  background-image 背景图片  可以使用颜色渐变作为背景图片    1body&amp;#123; background-image: linear-gradient(white, grey);&amp;#125;  background-position 背景位置，设置背景图像的起始（原点）位置可以使用如下3种坐标值：  xpos ypos：像素值">
+<meta property="og:description" content="边框 border属性：   border-color 使用颜色单位定义颜色 border-style 可以是实线（solid）、虚线（dashed）、点线（dotted）、double、outset等 border-width 使用尺寸单位定义宽度   border位置：   border-top border-bottom border-left border-right   三角形实例 12">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-06T14:37:16.489Z">
+<meta property="og:updated_time" content="2019-01-07T12:39:11.242Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CSS知识梳理--边框背景">
-<meta name="twitter:description" content="背景 background-color 背景色  background-image 背景图片  可以使用颜色渐变作为背景图片    1body&amp;#123; background-image: linear-gradient(white, grey);&amp;#125;  background-position 背景位置，设置背景图像的起始（原点）位置可以使用如下3种坐标值：  xpos ypos：像素值">
+<meta name="twitter:description" content="边框 border属性：   border-color 使用颜色单位定义颜色 border-style 可以是实线（solid）、虚线（dashed）、点线（dotted）、double、outset等 border-width 使用尺寸单位定义宽度   border位置：   border-top border-bottom border-left border-right   三角形实例 12">
 
 
 
@@ -382,59 +382,12 @@
       
 
       
-        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><ul>
-<li><p><code>background-color</code> 背景色</p>
-</li>
-<li><p><code>background-image</code> 背景图片</p>
-<blockquote>
-<p>可以使用颜色渐变作为背景图片</p>
-</blockquote>
-</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">body&#123; background-image: linear-gradient(white, grey);&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p><code>background-position</code> 背景位置，设置背景图像的起始（原点）位置<br>可以使用如下3种坐标值：</p>
-<ul>
-<li><code>xpos ypos</code>：像素值 <code>px</code>，左上角是 <code>0 0</code>。</li>
-<li><code>x% y%</code>：百分比，第一个值定义水平位置，第二个值定义垂直位置。左上角是 <code>0% 0%</code>。右下角是 <code>100% 100%</code>。如果您仅定义了一个值，另一个值将是 <code>50%</code>。</li>
-<li>位置关键词，如 <code>center</code>，<code>left</code>，<code>bottom</code>等，如果您仅规定了一个关键词，那么第二个值将是<code>center</code>。</li>
-</ul>
-</li>
-<li><p><code>background-repeat</code> 背景重复，缺省情况下，背景会被无限重复渲染，<code>repeat-x</code>、<code>repeat-y</code>、<code>no-repeat</code></p>
-</li>
-<li><p><code>background-size</code> 背景大小</p>
-</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">background-size: length|percentage|cover|contain;</span><br><span class="line"></span><br><span class="line">1. length: 设置背景图像的高度和宽度。第一个值设置宽度，第二个值设置高度。如果只设置一个值，则第二个值会被设置为 <span class="string">"auto"</span>。</span><br><span class="line">2. percentage: 以元素的百分比来设置背景图像的宽度和高度。第一个值设置宽度，第二个值设置高度。如果只设置一个值，则第二个值会被设置为 <span class="string">"auto"</span>。</span><br><span class="line">3. cover: 把背景图像扩展至足够大，以使背景图像完全覆盖背景区域。背景图像的某些部分也许无法显示在背景定位区域中。</span><br><span class="line">4. contain: 把背景图像按宽度或高度扩展至最大尺寸，使其完全适应内容区域。</span><br></pre></td></tr></table></figure>
-<ul>
-<li>可以把背景属性何在一起</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">background-size: &lt;background-color&gt; &lt;background-image&gt; &lt;background-repeat&gt; &lt;background-attachment&gt; &lt;background-position&gt; / &lt;background-size&gt; &lt;background-origin&gt; &lt;background-clip&gt;;</span><br></pre></td></tr></table></figure>
-<h2 id="display属性"><a href="#display属性" class="headerlink" title="display属性"></a>display属性</h2><ul>
-<li><code>block</code> 将占据整行宽度</li>
-<li><code>inline</code> 将被视为纯文本</li>
-<li><code>inline-block</code> 块和内联行为的结合</li>
-<li><code>list-item</code> 和 <code>block</code> 类似，不过会多显示一个列表符号（bullet point）。</li>
-<li><code>table</code>，<code>table-row</code> 和 <code>table-cell</code> 和表格相关的布局行为。<blockquote>
-<p><code>visibility: hidden;</code> 规则和 <code>display: none;</code> 有点类似，用于隐藏一个元素，不同之处在于被隐藏的元素仍然占据原有的渲染空间</p>
-</blockquote>
-</li>
-</ul>
-<h2 id="overflow属性"><a href="#overflow属性" class="headerlink" title="overflow属性"></a>overflow属性</h2><ul>
-<li><code>overflow: visible</code> 缺省，内容总是被显示</li>
-<li><code>overflow: scroll</code> 内容超出容器时，用滚动条</li>
-<li><code>overflow: hidden</code> 隐藏掉任何溢出部分的内容</li>
-<li><code>overflow: auto</code> 滚动条将只在内容溢出时被自动显示。<blockquote>
-<p>通常为元素设定固定的尺寸是为了设计上的一致体验，但由于实际网站中内容变化区间是较大的，可能会出现意外的情况，因此为固定尺寸的元素设定合适的溢出规则：<code>overflow: hidden</code> 或 <code>overflow: auto</code> 是一个良好的开发习惯。</p>
-</blockquote>
-</li>
-</ul>
-<h2 id="边框"><a href="#边框" class="headerlink" title="边框"></a>边框</h2><ol>
+        <h2 id="边框"><a href="#边框" class="headerlink" title="边框"></a>边框</h2><ol>
 <li><code>border</code>属性：</li>
 </ol>
 <ul>
 <li><code>border-color</code> 使用颜色单位定义颜色</li>
-<li><code>border-style</code> 可以是实线（solid）、虚线（dashed）、点线（dotted）等</li>
+<li><code>border-style</code> 可以是实线（solid）、虚线（dashed）、点线（dotted）、<code>double</code>、<code>outset</code>等</li>
 <li><code>border-width</code> 使用尺寸单位定义宽度</li>
 </ul>
 <ol start="2">
@@ -506,6 +459,74 @@
 </tbody>
 </table>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=<span class="string">"or-spacer"</span>&gt;</span><br><span class="line">    &lt;div class=<span class="string">"mask"</span>&gt;&lt;/div&gt;</span><br><span class="line">    &lt;span&gt;&lt;i&gt;wow&lt;/i&gt;&lt;/span&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;div class=<span class="string">"or-spacer-vertical left"</span>&gt;</span><br><span class="line">    &lt;div class=<span class="string">"mask"</span>&gt;&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;div class=<span class="string">"or-spacer-vertical right"</span>&gt;</span><br><span class="line">    &lt;div class=<span class="string">"mask"</span>&gt;&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">.or-spacer &#123;</span><br><span class="line">    margin-top: 100px;</span><br><span class="line">    margin-left: 100px;</span><br><span class="line">    width: 400px;</span><br><span class="line">    position: relative;</span><br><span class="line">&#125;</span><br><span class="line">.or-spacer .mask &#123;</span><br><span class="line">    overflow: hidden;</span><br><span class="line">    height: 20px;</span><br><span class="line">&#125;</span><br><span class="line">.or-spacer .mask:after &#123;</span><br><span class="line">    content: <span class="string">''</span>;</span><br><span class="line">    display: block;</span><br><span class="line">    margin: -25px auto 0;</span><br><span class="line">    width: 100%;</span><br><span class="line">    height: 25px;</span><br><span class="line">    border-radius: 125px/12px;</span><br><span class="line">    box-shadow: 0 0 8px black;</span><br><span class="line">&#125;</span><br><span class="line">.or-spacer span &#123;</span><br><span class="line">    width: 50px;</span><br><span class="line">    height: 50px;</span><br><span class="line">    position: absolute;</span><br><span class="line">    bottom: 100%;</span><br><span class="line">    margin-bottom: -25px;</span><br><span class="line">    left: 50%;</span><br><span class="line">    margin-left: -25px;</span><br><span class="line">    border-radius: 100%;</span><br><span class="line">    box-shadow: 0 2px 4px <span class="comment">#999;</span></span><br><span class="line">    background: white;</span><br><span class="line">&#125;</span><br><span class="line">.or-spacer span i &#123;</span><br><span class="line">    position: absolute;</span><br><span class="line">    top: 4px;</span><br><span class="line">    bottom: 4px;</span><br><span class="line">    left: 4px;</span><br><span class="line">    right: 4px;</span><br><span class="line">    border-radius: 100%;</span><br><span class="line">    border: 1px dashed <span class="comment">#aaa;</span></span><br><span class="line">    text-align: center;</span><br><span class="line">    line-height: 40px;</span><br><span class="line">    font-style: normal;</span><br><span class="line">    color: <span class="comment">#999;</span></span><br><span class="line">&#125;</span><br><span class="line">.or-spacer-vertical &#123;</span><br><span class="line">    display: inline-block;</span><br><span class="line">    margin-top: 100px;</span><br><span class="line">    margin-left: 100px;</span><br><span class="line">    width: 100px;</span><br><span class="line">    position: relative;</span><br><span class="line">&#125;</span><br><span class="line">.or-spacer-vertical .mask &#123;</span><br><span class="line">    overflow: hidden;</span><br><span class="line">    width: 20px;</span><br><span class="line">    height: 200px;</span><br><span class="line">&#125;</span><br><span class="line">.or-spacer-vertical.left .mask:after &#123;</span><br><span class="line">    content: <span class="string">''</span>;</span><br><span class="line">    display: block;</span><br><span class="line">    margin-left: -20px;</span><br><span class="line">    width: 20px;</span><br><span class="line">    height: 100%;</span><br><span class="line">    border-radius: 12px/125px;</span><br><span class="line">    box-shadow: 0 0 8px black;</span><br><span class="line">&#125;</span><br><span class="line">.or-spacer-vertical.right .mask:before &#123;</span><br><span class="line">    content: <span class="string">''</span>;</span><br><span class="line">    display: block;</span><br><span class="line">    margin-left: 20px;</span><br><span class="line">    width: 20px;</span><br><span class="line">    height: 100%;</span><br><span class="line">    border-radius: 12px/125px;</span><br><span class="line">    box-shadow: 0 0 8px black;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>四边阴影<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    box-shadow: 0px -10px 0px 0px red, // 上边</span><br><span class="line">                -10px 0px 0px 0px green, //左边</span><br><span class="line">                10px 0px 0px 0px blue, //右边</span><br><span class="line">                0px 10px 0px 0px yellow; //下边</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<ol start="6">
+<li>border-image<br><code>border-image: source slice width outset repeat | initial | inherit;</code><br>slice : 内偏移<br>width: 边界宽度<br>outset: 外边框宽<br>repeat/stretch/round（铺满）<br>兼容：<br><code>-webkit-border-image</code> // Safari 5<br><code>-o-border-image</code>  // Opera<br><code>border-image</code></li>
+</ol>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><h3 id="纯色背景"><a href="#纯色背景" class="headerlink" title="纯色背景"></a>纯色背景</h3><ul>
+<li><p><code>background-color</code> 背景色</p>
+</li>
+<li><p><code>background-image</code> 背景图片</p>
+<blockquote>
+<p>可以使用颜色渐变作为背景图片</p>
+</blockquote>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">body&#123; background-image: linear-gradient(white, grey);&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p><code>background-position</code> 背景位置，设置背景图像的起始（原点）位置<br>可以使用如下3种坐标值：</p>
+<ul>
+<li><code>xpos ypos</code>：像素值 <code>px</code>，左上角是 <code>0 0</code>。</li>
+<li><code>x% y%</code>：百分比，第一个值定义水平位置，第二个值定义垂直位置。左上角是 <code>0% 0%</code>。右下角是 <code>100% 100%</code>。如果您仅定义了一个值，另一个值将是 <code>50%</code>。</li>
+<li>位置关键词，如 <code>center</code>，<code>left</code>，<code>bottom</code>等，如果您仅规定了一个关键词，那么第二个值将是<code>center</code>。</li>
+</ul>
+</li>
+<li><p><code>background-repeat</code> 背景重复，缺省情况下，背景会被无限重复渲染，<code>repeat-x</code>、<code>repeat-y</code>、<code>no-repeat</code></p>
+</li>
+<li><p><code>background-size</code> 背景大小</p>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">background-size: length|percentage|cover|contain;</span><br><span class="line"></span><br><span class="line">1. length: 设置背景图像的高度和宽度。第一个值设置宽度，第二个值设置高度。如果只设置一个值，则第二个值会被设置为 <span class="string">"auto"</span>。</span><br><span class="line">2. percentage: 以元素的百分比来设置背景图像的宽度和高度。第一个值设置宽度，第二个值设置高度。如果只设置一个值，则第二个值会被设置为 <span class="string">"auto"</span>。</span><br><span class="line">3. cover: 把背景图像扩展至足够大，以使背景图像完全覆盖背景区域。背景图像的某些部分也许无法显示在背景定位区域中。</span><br><span class="line">4. contain: 把背景图像按宽度或高度扩展至最大尺寸，使其完全适应内容区域。</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p><code>background-origin</code> 指定背景图片的位置区域：<code>content-box</code>、<code>padding-box</code>、<code>border-box</code></p>
+</li>
+<li><p><code>background-clip</code> 剪裁从指定位置开始</p>
+</li>
+<li><p><code>background-attachment</code> 背景图片是否滚动</p>
+</li>
+<li><p>可以把背景属性何在一起</p>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">background-size: &lt;background-color&gt; &lt;background-image&gt; &lt;background-repeat&gt; &lt;background-attachment&gt; &lt;background-position&gt; / &lt;background-size&gt; &lt;background-origin&gt; &lt;background-clip&gt;;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>multiple background<br>多重背景图象，可以把不同背景图象只放到一个块元素里。</li>
+</ul>
+<p>多个图片url之间使用逗号隔开即可；如果有多个背景图片，而其他属性只有一个（例如background-repeat只有一个），表明所有背景图片应用该属性值。</p>
+<p>CSS3中在容器的多层背景，各子属性与逗号来分隔值，如果指定的值，如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">background-image: w1, w2, w3,…, wM</span><br><span class="line">background-repeat: x1, x2, x3,…, xR</span><br><span class="line">background-size: y1, y2, y3,…, yS</span><br><span class="line">background-position: s1, s2, s3,…, sP</span><br></pre></td></tr></table></figure></p>
+<p>当背景层的数值是N = max(M,R, S, P)</p>
+<p>每个属性可以假如它的值为n，通过重复指定的值如下所示：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">background-image: w1,…wM, w1,…wM, w1,… /* N values */</span><br><span class="line">background-repeat: x1,…xR, x1,…xR, x1,… /* N values */</span><br><span class="line">background-size: y1,…yS, y1,…yS, y1,… /* N values */</span><br><span class="line">background-position: s1,…rP, s1,…rP, s1,… /* N values */</span><br></pre></td></tr></table></figure></p>
+<p>范例书写：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">background-image: url(img/multiple-backgrounds.png), url(img/multiple-backgrounds.png), url(img/multiple-backgrounds.png);</span><br><span class="line">background-position: left top, -320px bottom, -640px top;</span><br><span class="line">background-repeat: no-repeat, no-repeat, repeat-y;</span><br></pre></td></tr></table></figure></p>
+<p>也可以简写：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">background: url(img/multiple-backgrounds.png) left top no-repeat, url(img/multiple-backgrounds.png) -320px bottom no-repeat, url(img/multiple-backgrounds.png) -640px top repeat-y;</span><br></pre></td></tr></table></figure></p>
+<h3 id="渐变背景"><a href="#渐变背景" class="headerlink" title="渐变背景"></a>渐变背景</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">background: -webkit-linear-gradient(angle, color_stop1, color_stop2);//Safari</span><br><span class="line">background: -o-linear-gradient(angle,color_stop1,color_stop2);//Opera</span><br><span class="line">background: -moz-linear-gradient(agnle,color_stop1,color_stop2);//firefix</span><br><span class="line">background: linear-gradient(agnle,color_stop1,color_stop2);//标准写在后面</span><br></pre></td></tr></table></figure>
+<p>angle角度：<br>标准浏览器 0deg表示从下到上，90deg表示从左到右<br>非标准浏览器 0deg表示从左到右，90deg表示从下到上<br>90deg - 标准 = 非标准</p>
+<ul>
+<li><p>重复渐变<br><code>background:repeating-linear-gradient(red, yellow 10%, green 20%)</code></p>
+</li>
+<li><p>径向渐变<br><code>background: radial-gradient(center, shape, size, star-color, ..., end-color);</code><br>shape: 渐变形状circle或者ellipse(默认)<br>size: closest-side, farthest-side, closest-corner, farthest-corner(默认)</p>
+</li>
+<li><p>重复径向渐变<br><code>background:repeating-radial-gradient</code></p>
+</li>
+</ul>
+<h3 id="文字渐变"><a href="#文字渐变" class="headerlink" title="文字渐变"></a>文字渐变</h3><p>通过背景渐变实现<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">background-image:-webkit-gradient(linear,0 0, 0 bottom, from(rgba(0,128,0)), to(rgba(51,51,51,1)));</span><br><span class="line">-webkit-background-clip: text;</span><br><span class="line">-webkit-text-fill-color: transparent;</span><br></pre></td></tr></table></figure></p>
+<h3 id="圆角渐变"><a href="#圆角渐变" class="headerlink" title="圆角渐变"></a>圆角渐变</h3><ol>
+<li><p>渐变边框</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">border: 10px solid;</span><br><span class="line">border-image: -webkit-linear-gradient(red,blue) 30 30;</span><br><span class="line">border-image: -moz-linear-gradient(red,blue) 30 30;</span><br><span class="line">border-image: linear-gradient(red,blue) 30 30;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>圆角渐变<br>利用背景渐变</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">.border&#123;</span><br><span class="line">    position: relative;</span><br><span class="line">    border: 4px solid transparent;</span><br><span class="line">    border-radius: 16px;</span><br><span class="line">    background: linear-gradient(orange, violet);</span><br><span class="line">    background-clip: padding-box;</span><br><span class="line">    padding: 10px;</span><br><span class="line">    /* just to show box-shadow still works fine */</span><br><span class="line">    box-shadow: 0 3px 9px black, inset 0 0 9px white;</span><br><span class="line">&#125;</span><br><span class="line">.border::after&#123;</span><br><span class="line">    position: absolute;</span><br><span class="line">    top: -4px; </span><br><span class="line">    bottom: -4px;</span><br><span class="line">    left: -4px; </span><br><span class="line">    right: -4px;</span><br><span class="line">    background: linear-gradient(red, blue);</span><br><span class="line">    content: <span class="string">''</span>;</span><br><span class="line">    z-index: -1;</span><br><span class="line">    border-radius: 16px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
 
       
     </div>
@@ -700,7 +721,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#display属性"><span class="nav-number">2.</span> <span class="nav-text">display属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#overflow属性"><span class="nav-number">3.</span> <span class="nav-text">overflow属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#边框"><span class="nav-number">4.</span> <span class="nav-text">边框</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#边框"><span class="nav-number">1.</span> <span class="nav-text">边框</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#背景"><span class="nav-number">2.</span> <span class="nav-text">背景</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#纯色背景"><span class="nav-number">2.1.</span> <span class="nav-text">纯色背景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#渐变背景"><span class="nav-number">2.2.</span> <span class="nav-text">渐变背景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文字渐变"><span class="nav-number">2.3.</span> <span class="nav-text">文字渐变</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#圆角渐变"><span class="nav-number">2.4.</span> <span class="nav-text">圆角渐变</span></a></li></ol></li></ol></div>
             
 
           </div>
